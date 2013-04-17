@@ -3654,6 +3654,15 @@ public final class Settings {
          */
         public static final String STATUS_BAR_QUICK_QS_PULLDOWN = "status_bar_quick_qs_pulldown";
 
+       /**
+        * MediaScanner behavior on boot.
+        * 0 = enabled
+        * 1 = ask (notification)
+        * 2 = disabled
+        * @hide
+        */
+        public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -9092,12 +9101,6 @@ public final class Settings {
          */
         public static final String DATABASE_DOWNGRADE_REASON = "database_downgrade_reason";
 
-        /**
-<<<<<<< HEAD
-=======
-         * Beginning of Pure Global Settings Additions
-         * @hide
-         */
 
         /**
          * String to contain power menu actions
@@ -9125,7 +9128,6 @@ public final class Settings {
         public static final String POWER_NOTIFICATIONS_RINGTONE = "power_notifications_ringtone";
 
         /**
->>>>>>> 042082a... [1/2] Forward port power connect/disconnect notification support
          * Whether to wake the display when plugging or unplugging the charger
          * @hide
          */
