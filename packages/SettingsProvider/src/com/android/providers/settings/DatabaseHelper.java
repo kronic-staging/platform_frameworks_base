@@ -2708,6 +2708,11 @@ class DatabaseHelper extends SQLiteOpenHelper {
 
             loadBooleanSetting(stmt, Settings.Global.GUEST_USER_ENABLED,
                     R.bool.def_guest_user_enabled);
+
+            // --- New global settings start here
+            loadIntegerSetting(stmt, Settings.Global.TETHER_DUN_REQUIRED,
+                    R.integer.def_tether_dun_required);
+
             loadSetting(stmt, Settings.Global.ENHANCED_4G_MODE_ENABLED,
                     ImsConfig.FeatureValueConstants.ON);
 
@@ -2718,6 +2723,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
              *
              * See: SettingsProvider.UpgradeController#onUpgradeLocked
              */
+
         } finally {
             if (stmt != null) stmt.close();
         }
