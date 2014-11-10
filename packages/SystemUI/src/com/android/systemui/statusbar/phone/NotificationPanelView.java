@@ -203,7 +203,7 @@ public class NotificationPanelView extends PanelView implements
 
     private Handler mHandler = new Handler();
     private SettingsObserver mSettingsObserver;
-    private int mOneFingerQuickSettingsInterceptMode;
+    private boolean mOneFingerQuickSettingsIntercept;
 
     private float mKeyguardStatusBarAnimateAlpha = 1f;
     private int mOldLayoutDirection;
@@ -822,8 +822,8 @@ public class NotificationPanelView extends PanelView implements
         final int action = event.getActionMasked();
 
         final boolean oneFingerDrag = action == MotionEvent.ACTION_DOWN
-                && mOneFingerQuickSettingsInterceptMode > ONE_FINGER_QS_INTERCEPT_OFF
-                && shouldQuickSettingsIntercept (event.getX(), event.getY(), -1, false);
+                && mOneFingerQuickSettingsIntercept && shouldQuickSettingsIntercept
+                        (event.getX(), event.getY(), -1, false);
 
         final boolean twoFingerDrag = action == MotionEvent.ACTION_POINTER_DOWN
                 && pointerCount == 2;
@@ -1511,7 +1511,7 @@ public class NotificationPanelView extends PanelView implements
         final float w = (header.getX() + header.getWidth());
         float region = (w * (1.f/3.f)); // TODO overlay region fraction?
 
-        boolean showQsOverride = false;
+        boolean showQsOverride = isLayoutRtl() ? (x < region) : (w - region < x);
 
         if (mOneFingerQuickSettingsInterceptMode == ONE_FINGER_QS_INTERCEPT_END) {
             showQsOverride = isLayoutRtl() ? (x < region) : (w - region < x);
@@ -2530,9 +2530,8 @@ public class NotificationPanelView extends PanelView implements
 
         public void update() {
             ContentResolver resolver = mContext.getContentResolver();
-            mOneFingerQuickSettingsInterceptMode = Settings.System.getIntForUser(
-                    resolver, Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN,
-                    ONE_FINGER_QS_INTERCEPT_END, UserHandle.USER_CURRENT);
+            mOneFingerQuickSettingsIntercept = Settings.System.getInt(
+                    resolver, Settings.System.STATUS_BAR_QUICK_QS_PULLDOWN, 1) == 1;
         }
     }
 }
