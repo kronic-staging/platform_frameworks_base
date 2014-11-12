@@ -4807,12 +4807,17 @@ public final class Settings {
         public static final String STATUS_BAR_NETWORK_TRAFFIC_ACTIVITY = "status_bar_network_traffic_activity";
 
         /**
+         * Enable/Disable screenshot sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
+
+        /**
          * Network traffic type
          * 0: text
          * 1: icon
          * 2: text and icon
          * default: 2
-         * @hide
          * @hide
          */
         public static final String STATUS_BAR_NETWORK_TRAFFIC_TYPE = "status_bar_network_traffic_type";
