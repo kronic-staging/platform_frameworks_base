@@ -721,7 +721,7 @@
              1 - MODE_NIGHT_NO
              2 - MODE_NIGHT_YES
     -->
-    <integer name="config_defaultNightMode">1</integer>
+    <integer name="config_defaultNightMode">2</integer>
 
     <!-- Indicate whether to allow the device to suspend when the screen is off
          due to the proximity sensor.  This resource should only be set to true
@@ -873,7 +873,7 @@
     <integer name="config_lowBatteryCloseWarningBump">5</integer>
 
     <!-- Default color for notification LED. -->
-    <color name="config_defaultNotificationColor">#ffffffff</color>
+    <color name="config_defaultNotificationColor">#ff0000ff</color>
 
     <!-- Default LED on time for notification LED in milliseconds. -->
     <integer name="config_defaultNotificationLedOn">500</integer>
