@@ -123,17 +123,20 @@ public class LightsService extends SystemService {
         }
 
         private void setLightLocked(int color, int mode, int onMS, int offMS, int brightnessMode) {
+
             if (shouldBeInLowPersistenceMode()) {
                 brightnessMode = BRIGHTNESS_MODE_LOW_PERSISTENCE;
             } else if (brightnessMode == BRIGHTNESS_MODE_LOW_PERSISTENCE) {
                 brightnessMode = mLastBrightnessMode;
             }
 
-            if ((color != mColor || mode != mMode || onMS != mOnMS || offMS != mOffMS ||
-                    mBrightnessMode != brightnessMode)) {
+            if (!mLocked && (color != mColor || mode != mMode || onMS != mOnMS || offMS != mOffMS ||
+                    mBrightnessMode != brightnessMode || mReset)) {
+
                 if (DEBUG) Slog.v(TAG, "setLight #" + mId + ": color=#"
                         + Integer.toHexString(color) + ": brightnessMode=" + brightnessMode);
                 mLastColor = mColor;
+                mReset = false;
                 mColor = color;
                 mMode = mode;
                 mOnMS = onMS;
@@ -164,6 +167,8 @@ public class LightsService extends SystemService {
         private int mLastColor;
         private boolean mVrModeEnabled;
         private boolean mUseLowPersistenceForVR;
+        private boolean mLocked;
+        private boolean mReset = true;
     }
 
     public LightsService(Context context) {
