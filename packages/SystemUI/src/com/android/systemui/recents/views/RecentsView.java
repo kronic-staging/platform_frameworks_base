@@ -36,7 +36,6 @@ import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowManagerGlobal;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import android.widget.LinearLayout;
 import com.android.internal.logging.MetricsLogger;
@@ -362,10 +361,10 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
                 mConfig.systemInsets.right, searchBarSpaceBounds, taskStackBounds);
 
         if (mClearRecents != null) {
-            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)
+            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams)
                     mClearRecents.getLayoutParams();
-
-            params.bottomMargin = mConfig.systemInsets.bottom;
+            params.topMargin = taskStackBounds.top;
+            params.rightMargin = width - taskStackBounds.right;
             mClearRecents.setLayoutParams(params);
         }
 
