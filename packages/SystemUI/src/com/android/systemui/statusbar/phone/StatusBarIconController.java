@@ -350,7 +350,6 @@ public class StatusBarIconController implements Tunable {
         }
         mDemoStatusIcons.dispatchDemoCommand(command, args);
     }
- }
 
     /**
      * Hides a view.
