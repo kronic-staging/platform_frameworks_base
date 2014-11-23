@@ -4604,6 +4604,12 @@ public final class Settings {
         public static final String PA_PIE_SELECT = "pa_pie_select";
 
         /**
+         *  Enable statusbar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
+        /**
          * Network traffic activity
          * 0: download
          * 1: upload
