@@ -1510,6 +1510,9 @@ public class NotificationPanelView extends PanelView implements
         final float w = (header.getX() + header.getWidth());
         float region = (w * (1.f/3.f)); // TODO overlay region fraction?
 
+<<<<<<< HEAD
+        boolean showQsOverride = isLayoutRtl() ? (x < region) : (w - region < x);
+=======
         boolean showQsOverride = false;
 
         if (mOneFingerQuickSettingsInterceptMode == ONE_FINGER_QS_INTERCEPT_END) {
@@ -1517,6 +1520,7 @@ public class NotificationPanelView extends PanelView implements
         } else if (mOneFingerQuickSettingsInterceptMode == ONE_FINGER_QS_INTERCEPT_START) {
             showQsOverride = isLayoutRtl() ? (w - region < x) : (x < region);
         }
+>>>>>>> e382261... Frameworks: add abillity to use quick settings pulldown on the left side
 
         if (mQsExpanded) {
             return onHeader || (mScrollView.isScrolledToBottom() && yDiff < 0) && isInQsArea(x, y);
@@ -1851,6 +1855,7 @@ public class NotificationPanelView extends PanelView implements
 
     private void setListening(boolean listening) {
         mHeader.setListening(listening);
+        mKeyguardStatusBar.setListening(listening);
         mQsPanel.setListening(listening);
     }
 
