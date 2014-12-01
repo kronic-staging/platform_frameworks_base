@@ -23,6 +23,7 @@ import android.animation.Animator.AnimatorListener;
 import android.animation.AnimatorListenerAdapter;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ContentUris;
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentResolver;
@@ -196,10 +197,8 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mSystemIconsSuperContainer.setOnLongClickListener(this);
         mDateGroup = findViewById(R.id.date_group);
         mDateGroup.setOnClickListener(this);
-        mDateGroup.setOnLongClickListener(this);
         mClock = findViewById(R.id.clock);
         mClock.setOnClickListener(this);
-        mClock.setOnLongClickListener(this);
         mTime = (TextView) findViewById(R.id.time_view);
         mAmPm = (TextView) findViewById(R.id.am_pm_view);
         mMultiUserSwitch = (MultiUserSwitch) findViewById(R.id.multi_user_switch);
@@ -664,10 +663,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             return true;
         } else if (v == mSystemIconsSuperContainer) {
             startBatteryLongClickActivity();
-        } else if (v == mClock) {
-            startClockLongClickActivity();
-        } else if (v == mDateGroup) {
-            startDateLongClickActivity();
         }
         return false;
 
@@ -695,22 +690,11 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 true /* dismissShade */);
     }
 
-    private void startClockLongClickActivity() {
-        mActivityStarter.startActivity(new Intent(AlarmClock.ACTION_SET_ALARM),
-                true /* dismissShade */);
-    }
-
     private void startDateActivity() {
         Uri.Builder builder = CalendarContract.CONTENT_URI.buildUpon();
         builder.appendPath("time");
         ContentUris.appendId(builder, System.currentTimeMillis());
         Intent intent = new Intent(Intent.ACTION_VIEW).setData(builder.build());
-        mActivityStarter.startActivity(intent, true /* dismissShade */);
-    }
-
-    private void startDateLongClickActivity() {
-        Intent intent = new Intent(Intent.ACTION_INSERT);
-            intent.setData(Events.CONTENT_URI);
         mActivityStarter.startActivity(intent, true /* dismissShade */);
     }
 
