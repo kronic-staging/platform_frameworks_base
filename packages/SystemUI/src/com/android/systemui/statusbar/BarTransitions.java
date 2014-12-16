@@ -80,7 +80,7 @@ public class BarTransitions {
     public void updateResources(Resources res) {
         mBarBackground.updateResources(res);
     }
-
+   
     /*
      * This is only called when navbar overlay changes and does not impact Statusbar transitions
      */

@@ -56,6 +56,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.inputmethodservice.InputMethodService;
+import android.net.Uri;
 import android.media.AudioAttributes;
 import android.media.MediaMetadata;
 import android.media.session.MediaController;
@@ -407,6 +408,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // to some other configuration change).
     ThemeConfig mCurrentTheme;
     private boolean mRecreating = false;
+    private int mBatterySaverWarningColor;
+
 
     // for disabling the status bar
     int mDisabled1 = 0;
@@ -654,6 +657,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.THEME_CUSTOM_HEADER),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.BATTERY_SAVER_MODE_COLOR),
+                    false, this, UserHandle.USER_ALL);
 		    update();
         }
 
@@ -764,13 +770,26 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 	   } else if (uri.equals(Settings.System.getUriFor(
                 Settings.System.NAVBAR_BUTTON_COLOR))) {
    	        mNavigationController.updateNavbarOverlay(getNavbarThemedResources());
-		} 
+	   } else if (uri.equals(Settings.System.getUriFor(
+                Settings.System.BATTERY_SAVER_MODE_COLOR))) {
+                mBatterySaverWarningColor = Settings.System.getIntForUser(
+                    mContext.getContentResolver(),
+                    Settings.System.BATTERY_SAVER_MODE_COLOR, 1,
+                    UserHandle.USER_CURRENT);
+               if (mBatterySaverWarningColor != 0) {
+                    mBatterySaverWarningColor = mContext.getResources()
+                    .getColor(com.android.internal.R.color.battery_saver_mode_color);
+               }
+            } 
             update();
         }
+
          public void update() {
             ContentResolver resolver = mContext.getContentResolver();
             mBlurRadius = Settings.System.getInt(resolver,
                     Settings.System.LOCKSCREEN_BLUR_RADIUS, 14);
+            boolean mShow4G = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
             mAosipLogoStyle = Settings.System.getIntForUser(
                     resolver, Settings.System.STATUS_BAR_AOSIP_LOGO_STYLE, 0,
                     UserHandle.USER_CURRENT);
@@ -811,11 +830,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-   public void update() {
-            ContentResolver resolver = mContext.getContentResolver();
-            boolean mShow4G = Settings.System.getIntForUser(resolver,
-                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
-    }
     private int mInteractingWindows;
     private boolean mAutohideSuspended;
     private int mStatusBarMode;
@@ -1234,6 +1248,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mKeyguardBottomArea.setKeyguardIndicationController(mKeyguardIndicationController);
 
         mStatusBarCarrierLabel = (CarrierText) mStatusBarView.findViewById(R.id.status_bar_carrier_text);
+
+        mBatterySaverWarningColor = Settings.System.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.System.BATTERY_SAVER_MODE_COLOR, 1,
+                UserHandle.USER_CURRENT);
+        if (mBatterySaverWarningColor != 0) {
+            mBatterySaverWarningColor = mContext.getResources()
+                   .getColor(com.android.internal.R.color.battery_saver_mode_color);
+        }
 
         // set the inital view visibility
         setAreThereNotifications();
@@ -3205,6 +3228,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 && windowState != WINDOW_STATE_HIDDEN && !powerSave;
         if (powerSave && getBarState() == StatusBarState.SHADE) {
             mode = MODE_WARNING;
+        }
+        if (mode == MODE_WARNING) {
+            transitions.setWarningColor(mBatterySaverWarningColor);
         }
         transitions.transitionTo(mode, anim);
     }
