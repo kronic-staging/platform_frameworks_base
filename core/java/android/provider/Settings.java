@@ -9101,13 +9101,11 @@ public final class Settings {
          */
         public static final String DATABASE_DOWNGRADE_REASON = "database_downgrade_reason";
 
-
         /**
          * String to contain power menu actions
          * @hide
          */
         public static final String POWER_MENU_ACTIONS = "power_menu_actions";
-
 
         /**
          * Whether to sound when charger power is connected/disconnected
