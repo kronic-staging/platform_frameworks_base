@@ -20,7 +20,9 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.view.animation.AnimationUtils;
@@ -30,7 +32,6 @@ import com.android.systemui.Prefs;
 import com.android.systemui.R;
 import com.android.systemui.recents.misc.Console;
 import com.android.systemui.recents.misc.SystemServicesProxy;
-
 
 /** A static Recents configuration for the current context
  * NOTE: We should not hold any references to a Context from a static instance */
@@ -139,6 +140,9 @@ public class RecentsConfiguration {
     public boolean developerOptionsEnabled;
     public boolean debugModeEnabled;
     public int svelteLevel;
+    public boolean mRecentsSearchbar;
+
+    private Context mContext;
 
     /** Private constructor */
     private RecentsConfiguration(Context context) {
@@ -179,6 +183,7 @@ public class RecentsConfiguration {
     void update(Context context) {
         Resources res = context.getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
+        mContext = context;
 
         // Debug mode
         debugModeEnabled = Prefs.getBoolean(context, Prefs.Key.DEBUG_MODE_ENABLED,
@@ -206,6 +211,11 @@ public class RecentsConfiguration {
 
         // Search Bar
         searchBarSpaceHeightPx = res.getDimensionPixelSize(R.dimen.recents_search_bar_space_height);
+
+        mRecentsSearchbarObserver.onChange(true);
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.RECENTS_SEARCH_BAR),
+                false, mRecentsSearchbarObserver);
 
         // Task stack
         taskStackScrollDuration =
@@ -270,6 +280,19 @@ public class RecentsConfiguration {
         fakeShadows = res.getBoolean(R.bool.config_recents_fake_shadows);
         svelteLevel = res.getInteger(R.integer.recents_svelte_level);
     }
+
+    public ContentObserver mRecentsSearchbarObserver = new ContentObserver(null) {
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            mRecentsSearchbar = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.RECENTS_SEARCH_BAR, 1) == 1;
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            onChange(selfChange, null);
+        }
+    };
 
     /** Updates the system insets */
     public void updateSystemInsets(Rect insets) {
@@ -339,6 +362,10 @@ public class RecentsConfiguration {
             Rect searchBarSpaceBounds) {
         // Return empty rects if search is not enabled
         int searchBarSize = searchBarSpaceHeightPx;
+        if (!hasTransposedSearchBar || !mRecentsSearchbar) {
+            searchBarSize = 0;
+        }
+
         if (isLandscape && hasTransposedSearchBar) {
             // In landscape, the search bar appears on the left
             searchBarSpaceBounds.set(0, topInset, searchBarSize, windowHeight);
