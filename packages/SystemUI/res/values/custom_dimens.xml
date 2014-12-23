@@ -75,4 +75,7 @@
     <dimen name="app_sidebar_icon_width">72dp</dimen>
     <dimen name="app_sidebar_icon_height">72dp</dimen>
 
+    <!-- Network traffic monitor multi-line text size -->
+    <dimen name="net_traffic_multi_text_size">8dp</dimen>
+
 </resources>
