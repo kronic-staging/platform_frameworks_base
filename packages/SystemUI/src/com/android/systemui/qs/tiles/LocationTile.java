@@ -22,7 +22,6 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -97,6 +96,11 @@ public class LocationTile extends QSTile<QSTile.BooleanState> {
         showDetail(true);
         mEnable.setAllowAnimation(true);
         mDisable.setAllowAnimation(true);
+    }
+
+    @Override
+    protected void handleLongClick() {
+        mHost.startActivityDismissingKeyguard(LOCATION_SETTINGS_INTENT);
     }
 
     @Override
