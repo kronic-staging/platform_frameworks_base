@@ -3919,6 +3919,13 @@ public final class Settings {
         public static final String SYSTEMUI_RECENTS_MEM_DISPLAY = "systemui_recents_mem_display";
 
         /**
+         * Whether to use the custom quick unlock screen control
+         * @hide
+         */
+        public static final String LOCKSCREEN_QUICK_UNLOCK_CONTROL =
+                "lockscreen_quick_unlock_control";
+
+        /**
          * Whether to show the weather info on the lock screen
          * @hide
          */
