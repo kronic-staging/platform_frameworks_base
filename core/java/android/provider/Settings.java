@@ -3586,6 +3586,13 @@ public final class Settings {
         public static final String QUICK_SETTINGS_TILES_VIBRATE = "quick_settings_vibrate";
 
         /**
+         * Use "main" tiles on the first row of the quick settings panel
+         * 0 = no, 1 = yes
+         * @hide
+         */
+        public static final String QS_USE_MAIN_TILES = "sysui_qs_main_tiles";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
