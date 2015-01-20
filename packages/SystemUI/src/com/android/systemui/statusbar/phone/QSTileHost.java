@@ -37,6 +37,7 @@ import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
+import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.ExpandedDesktopTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
@@ -58,12 +59,9 @@ import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.ThemesTile;
 import com.android.systemui.qs.tiles.ScreenOffTile;
 import com.android.systemui.qs.tiles.ScreenTimeoutTile;
-<<<<<<< HEAD
 import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.SyncTile;
-=======
 import com.android.systemui.qs.tiles.VolumeTile;
->>>>>>> bdb7b0e... Added show volume panel tile to QS
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.statusbar.policy.BluetoothController;
 import com.android.systemui.statusbar.policy.CastController;
@@ -309,6 +307,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
 	else if (tileSpec.equals("kill_app")) return new KillAppTile(this);
         else if (tileSpec.equals("navigation_bar")) return new NavigationBarTile(this);
         else if (tileSpec.equals("volume")) return new VolumeTile(this);
+        else if (tileSpec.equals("compass")) return new CompassTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
     }
