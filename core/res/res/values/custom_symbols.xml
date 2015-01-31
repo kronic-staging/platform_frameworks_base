@@ -31,6 +31,8 @@
   <java-symbol type="array" name="shutdown_reboot_actions" />
   <java-symbol type="bool" name="config_advanced_reboot" />
   <java-symbol type="style" name="GlobalActionsAnimation" />
+  <java-symbol type="dimen" name="global_actions_avatar_size" />
+  <java-symbol type="string" name="global_action_current_user" />
 
   <!-- Package Manager -->
   <java-symbol type="array" name="config_disabledComponents" />
