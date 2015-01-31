@@ -63,7 +63,6 @@ public class KeyButtonView extends ImageView {
     private boolean mInEditMode;
     private AudioManager mAudioManager;
     private boolean mGestureAborted;
-
     private boolean mPerformedLongClick;
 
     private final Runnable mCheckLongPress = new Runnable() {
@@ -76,13 +75,13 @@ public class KeyButtonView extends ImageView {
                     sendEvent(KeyEvent.ACTION_DOWN, CURSOR_REPEAT_FLAGS,
                             System.currentTimeMillis(), false);
                     postDelayed(mCheckLongPress, ViewConfiguration.getKeyRepeatDelay());
-                } else if (mCode != 0) {
-                    sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.FLAG_LONG_PRESS);
-                    sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
                 } else if (isLongClickable()) {
                     // Just an old-fashioned ImageView
                     mPerformedLongClick = true;
                     performLongClick();
+                } else {
+                    sendEvent(KeyEvent.ACTION_DOWN, KeyEvent.FLAG_LONG_PRESS);
+                    sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_LONG_CLICKED);
                 }
             }
         }
@@ -256,12 +255,10 @@ public class KeyButtonView extends ImageView {
                     // Provide the same haptic feedback that the system offers for virtual keys.
                     performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
                 }
-
                 if (supportsLongPress()) {
                     removeCallbacks(mCheckLongPress);
                     postDelayed(mCheckLongPress, ViewConfiguration.getLongPressTimeout());
                 }
-
                 break;
             case MotionEvent.ACTION_MOVE:
                 x = (int) ev.getX();
@@ -276,7 +273,6 @@ public class KeyButtonView extends ImageView {
                 if (mCode != 0) {
                     sendEvent(KeyEvent.ACTION_UP, KeyEvent.FLAG_CANCELED);
                 }
-
                 removeCallbacks(mCheckLongPress);
 
                 if (supportsLongPress()) {
