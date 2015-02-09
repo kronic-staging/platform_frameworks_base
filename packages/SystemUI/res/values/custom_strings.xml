@@ -104,4 +104,6 @@
     <!-- Announcement made when sync changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_changed_on">Sync turned on.</string>
 
+    <!-- Screen timeout tile -->
+    <string name="quick_settings_screen_off">Screen off</string>
 </resources>
