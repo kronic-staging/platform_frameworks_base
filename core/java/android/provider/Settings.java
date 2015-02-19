@@ -3660,6 +3660,12 @@ public final class Settings {
         public static final String STATUS_BAR_CARRIER_LABEL_NUMBER_OF_NOTIFICATION_ICONS = "status_bar_carrier_label_number_of_notification_icons";
 
         /**
+         * Alternative recent apps integration using OmniSwitch
+         * @hide
+         */
+        public static final String RECENTS_USE_OMNISWITCH = "recents_use_omniswitch";
+
+        /**
          *  Color of the (custom) carrier label on the status bar
          * @hide
          */
