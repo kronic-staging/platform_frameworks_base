@@ -2333,6 +2333,4 @@
 
   <java-symbol type="string" name="config_packagedKeyboardName" />
 
-  <!-- Package Manager -->
-  <java-symbol type="array" name="config_disabledComponents" />
 </resources>
