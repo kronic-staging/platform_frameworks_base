@@ -28,6 +28,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.android.internal.logging.MetricsLogger;
+
 import com.android.settingslib.bluetooth.CachedBluetoothDevice;
 
 import com.android.systemui.R;
@@ -230,11 +231,10 @@ public class BluetoothTile extends QSTile<QSTile.BooleanState>  {
         }
 
         private void updateItems() {
-	    if (mAdapter == null) return;
-            final Collection<CachedBluetoothDevice> devices = mController.getDevices();
+            if (mAdapter == null) return;
+                final Collection<CachedBluetoothDevice> devices = mController.getDevices();
             if (devices != null) {
                 mBluetoothItems.clear();
-                int i = 0;
                 for (CachedBluetoothDevice device : devices) {
                     if (device.getBondState() == BluetoothDevice.BOND_NONE) continue;
                     final Item item = new Item();

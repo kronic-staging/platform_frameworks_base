@@ -26,7 +26,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-
 import com.android.internal.logging.MetricsLogger;
 import com.android.settingslib.wifi.AccessPoint;
 
@@ -302,8 +301,8 @@ public class WifiTile extends QSTile<QSTile.SignalState> {
         }
 
         @Override
-        public void onSettingsActivityTriggered(Intent intent) {
-            mHost.startActivityDismissingKeyguard(intent);
+        public void onSettingsActivityTriggered(Intent settingsIntent) {
+            mHost.startActivityDismissingKeyguard(settingsIntent);
         }
 
         public void setItemsVisible(boolean visible) {

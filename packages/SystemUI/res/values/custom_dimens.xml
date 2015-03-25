@@ -77,5 +77,6 @@
 
     <!-- Network traffic monitor multi-line text size -->
     <dimen name="net_traffic_multi_text_size">8dp</dimen>
-
+    
+    <dimen name="qs_detail_item_height_twoline">72dp</dimen>
 </resources>
