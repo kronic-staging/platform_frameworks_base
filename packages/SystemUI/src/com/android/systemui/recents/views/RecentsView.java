@@ -374,23 +374,16 @@ public class RecentsView extends FrameLayout implements TaskStackView.TaskStackV
                     MeasureSpec.makeMeasureSpec(searchBarSpaceBounds.width(), MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(searchBarSpaceBounds.height(), MeasureSpec.EXACTLY));
 
-            int paddingSearchBar = searchBarSpaceBounds.height() + 25;
-
-            if (enableMemDisplay) {
-                if (!isLandscape) {
-                    mMemBar.setPadding(0, paddingSearchBar, 0, 0);
-                } else {
-                    mMemBar.setPadding(0, paddingStatusBar, 0, 0);
-                }
-            }
-        } else {
-            if (enableMemDisplay) {
-                mMemBar.setPadding(0, paddingStatusBar, 0, 0);
-            }
+            boolean enableMemDisplay = Settings.System.getInt(resolver,
+                    Settings.System.SYSTEMUI_RECENTS_MEM_DISPLAY, 1) == 1;
+            int padding = enableMemDisplay
+                    ? searchBarSpaceBounds.height() + 25
+                    : mContext.getResources().getDimensionPixelSize(R.dimen.status_bar_header_height);
+            mMemBar.setPadding(0, padding, 0, 0);
         }
         showMemDisplay();
 
-        boolean showClearAllRecents = Settings.System.getInt(resolver,
+        boolean showClearAllRecents = Settings.System.getInt(mContext.resolver,
                 Settings.System.SHOW_CLEAR_ALL_RECENTS, 1) == 1;
 
         Rect taskStackBounds = new Rect();
