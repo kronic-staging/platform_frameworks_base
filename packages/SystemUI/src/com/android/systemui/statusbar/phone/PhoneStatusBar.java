@@ -593,7 +593,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SHOW_FOURG),
+                    Settings.System.SHOW_FOURG);
                     false, this, UserHandle.USER_ALL);
             update();
         }
@@ -2133,6 +2133,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         final boolean show = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER_LABEL_SHOW, 0) == 1;
+
+        final boolean mShow4G = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
 
         final boolean forceHide = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER_LABEL_HIDE_LABEL, 1) == 1;
