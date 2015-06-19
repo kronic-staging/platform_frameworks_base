@@ -117,6 +117,7 @@ import com.android.internal.logging.MetricsLogger;
 import com.android.internal.statusbar.NotificationVisibility;
 import com.android.internal.statusbar.StatusBarIcon;
 import com.android.internal.util.cm.WeatherControllerImpl;
+import com.android.internal.util.benzo.Helpers;
 import com.android.internal.util.darkkat.DeviceUtils;
 
 import com.android.keyguard.CarrierText;
@@ -523,7 +524,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
                     UserHandle.USER_ALL);
-                    Settings.System.SHOW_FOURG),
+                    Settings.System.SHOW_FOURG);
                     false, this, UserHandle.USER_ALL);
             update();
         }
@@ -606,10 +607,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-   public void update() {
-            boolean mShow4G = Settings.System.getIntForUser(resolver,
-                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
-    }
     private int mInteractingWindows;
     private boolean mAutohideSuspended;
     private int mStatusBarMode;
@@ -2104,6 +2101,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         final boolean show = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER_LABEL_SHOW, 0) == 1;
 
+        final boolean mShow4G = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
+
         final boolean forceHide = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER_LABEL_HIDE_LABEL, 1) == 1;
         final int maxAllowedIcons = Settings.System.getInt(resolver,
@@ -2155,7 +2155,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     private void updateClockStyle() {
-        ContentResolver resolver = mContext.getContentResolver();FF
+        ContentResolver resolver = mContext.getContentResolver();
 
         int clockStyle = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_CLOCK_DATE_POSITION, 0, mCurrentUserId);
