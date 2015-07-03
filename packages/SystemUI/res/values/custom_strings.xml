@@ -247,4 +247,7 @@
     <string name="accessibility_quick_settings_compass_changed_off">Compass turned off.</string>
     <string name="accessibility_quick_settings_compass_changed_on">Compass turned on.</string>
 
+    <!-- Pie tile -->
+    <string name="quick_settings_pie_label">Pie</string>
+
 </resources>
