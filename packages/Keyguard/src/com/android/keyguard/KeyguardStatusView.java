@@ -300,7 +300,6 @@ public class KeyguardStatusView extends GridLayout implements
         final Resources res = getContext().getResources();
         View weatherPanel = findViewById(R.id.weather_panel);
         TextView noWeatherInfo = (TextView) findViewById(R.id.no_weather_info_text);
-
         mShowWeather = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER, 0) == 1;
         boolean showLocation = Settings.System.getInt(resolver,
@@ -336,10 +335,8 @@ public class KeyguardStatusView extends GridLayout implements
             }
         }
 
-        if (mWeatherView != null) {
-            mWeatherView.setVisibility(
+        mWeatherView.setVisibility(
                 (mShowWeather && !forceHideByNumberOfNotifications) ? View.VISIBLE : View.GONE);
-        }
         if (forceHide) {
             noWeatherInfo.setVisibility(View.VISIBLE);
             weatherPanel.setVisibility(View.GONE);
