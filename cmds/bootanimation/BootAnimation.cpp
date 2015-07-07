@@ -163,7 +163,7 @@ status_t BootAnimation::initTexture(Texture* texture, AssetManager& assets,
     return NO_ERROR;
 }
 
-status_t BootAnimation::initTexture(const Animation::Frame& frame)
+status_t BootAnimation::initTexture(const Animation::Frame& frame, bool useNpot)
 {
     //StopWatch watch("blah");
 
@@ -199,25 +199,25 @@ status_t BootAnimation::initTexture(const Animation::Frame& frame)
 
     switch (bitmap.colorType()) {
         case kN32_SkColorType:
-            if (tw != w || th != h) {
+            if (!useNpot && (tw != w || th != h)) {
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA,
                         GL_UNSIGNED_BYTE, 0);
                 glTexSubImage2D(GL_TEXTURE_2D, 0,
                         0, 0, w, h, GL_RGBA, GL_UNSIGNED_BYTE, p);
             } else {
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, tw, th, 0, GL_RGBA,
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA,
                         GL_UNSIGNED_BYTE, p);
             }
             break;
 
         case kRGB_565_SkColorType:
-            if (tw != w || th != h) {
+            if (!useNpot && (tw != w || th != h)) {
                 glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, tw, th, 0, GL_RGB,
                         GL_UNSIGNED_SHORT_5_6_5, 0);
                 glTexSubImage2D(GL_TEXTURE_2D, 0,
                         0, 0, w, h, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, p);
             } else {
-                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, tw, th, 0, GL_RGB,
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, w, h, 0, GL_RGB,
                         GL_UNSIGNED_SHORT_5_6_5, p);
             }
             break;
@@ -465,6 +465,20 @@ bool BootAnimation::movie()
     }
     char const* s = desString.string();
 
+    // Check if npot textures are supported
+    bool useNpot = false;
+    String8 gl_extensions;
+    const char* exts = (const char *)glGetString(GL_EXTENSIONS);
+    if (!exts) {
+        glGetError();
+    } else {
+        gl_extensions.setTo(exts);
+        if ((gl_extensions.find("GL_ARB_texture_non_power_of_two") >= 0) ||
+            (gl_extensions.find("GL_OES_texture_npot") >= 0)) {
+            useNpot = true;
+        }
+    }
+
     // Create and initialize an AudioPlayer if we have an audio_conf.txt file
     String8 audioConf;
     if (readFile("audio_conf.txt", audioConf)) {
@@ -616,7 +630,7 @@ bool BootAnimation::movie()
                         glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
                         glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
                     }
-                    initTexture(frame);
+                    initTexture(frame, useNpot);
                 }
 
                 if (!clearReg.isEmpty()) {
