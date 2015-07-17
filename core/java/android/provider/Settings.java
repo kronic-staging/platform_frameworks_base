@@ -3538,6 +3538,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_SOUNDS_ENABLED = "lockscreen_sounds_enabled";
 
+        /**
+         * Whether to attach a queue to media notifications.
+         * Boolean setting.
+         * @hide
+         */
+        public static final String NOTIFICATION_PLAY_QUEUE = "notification_play_queue";
 
         /**
          * Give Missed call notifications a breathing effect
@@ -4513,7 +4519,9 @@ public final class Settings {
             STATUSBAR_BATTERY_STYLE,
             STATUSBAR_BATTERY_PERCENT,
             STATUSBAR_BATTERY_PERCENT_INSIDE,
-            STATUSBAR_BATTERY_CHARGING_IMAGE
+            STATUSBAR_BATTERY_CHARGING_IMAGE,
+            NOTIFICATION_PLAY_QUEUE
+
         };
 
         /**

@@ -189,6 +189,9 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
 
+    <!-- Media Queue -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
     <application
         android:name=".SystemUIApplication"
         android:persistent="true"
