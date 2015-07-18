@@ -4151,6 +4151,14 @@ public final class Settings {
         public static final String TOAST_ANIMATION = "toast_animation";
 
         /**
+         * Whether to allow notifications with the screen on or DayDreams.
+         * The value is boolean (1 or 0). Default will always be false.
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_SCREEN_ON =
+                "notification_light_screen_on_enable";
+
+        /**
          * ListView Animations
          * 0 == None
          * 1 == Wave (Left)
@@ -4238,6 +4246,7 @@ public final class Settings {
             PHONE_BLACKLIST_REGEX_ENABLED,
             STATUS_BAR_SHOW_BATTERY_PERCENT,
             STATUS_BAR_BATTERY_STYLE,
+            NOTIFICATION_LIGHT_SCREEN_ON,
             ALLOW_LIGHTS
         };
 
