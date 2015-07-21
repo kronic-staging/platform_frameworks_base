@@ -61,7 +61,7 @@ public class ViewConfiguration {
      * Defines the default duration in milliseconds before a press turns into
      * a long press
      */
-    private static final int DEFAULT_LONG_PRESS_TIMEOUT = 500;
+    private static final int DEFAULT_LONG_PRESS_TIMEOUT = 250;
 
     /**
      * Defines the time between successive key repeats in milliseconds.
@@ -87,7 +87,7 @@ public class ViewConfiguration {
      * is a jump tap. If the user does not complete the jump tap within this interval, it is
      * considered to be a tap.
      */
-    private static final int JUMP_TAP_TIMEOUT = 500;
+    private static final int JUMP_TAP_TIMEOUT = 250;
 
     /**
      * Defines the duration in milliseconds between the first tap's up event and
@@ -121,12 +121,12 @@ public class ViewConfiguration {
      * Defines the duration in milliseconds we want to display zoom controls in response
      * to a user panning within an application.
      */
-    private static final int ZOOM_CONTROLS_TIMEOUT = 3000;
+    private static final int ZOOM_CONTROLS_TIMEOUT = 1500;
 
     /**
      * Inset in dips to look for touchable content when the user touches the edge of the screen
      */
-    private static final int EDGE_SLOP = 12;
+    private static final int EDGE_SLOP = 6;
 
     /**
      * Distance a touch can wander before we think the user is scrolling in dips.
@@ -180,7 +180,7 @@ public class ViewConfiguration {
     /**
      * Maximum velocity to initiate a fling, as measured in dips per second
      */
-    private static final int MAXIMUM_FLING_VELOCITY = 8000;
+    private static final int MAXIMUM_FLING_VELOCITY = 1800;
 
     /**
      * Delay before dispatching a recurring accessibility event in milliseconds.
@@ -200,12 +200,12 @@ public class ViewConfiguration {
     /**
      * The coefficient of friction applied to flings/scrolls.
      */
-    private static final float SCROLL_FRICTION = 0.015f;
+    private static final float SCROLL_FRICTION = 0.005f;
 
     /**
      * Max distance in dips to overscroll for edge effects
      */
-    private static final int OVERSCROLL_DISTANCE = 0;
+    private static final int OVERSCROLL_DISTANCE = 6;
 
     /**
      * Max distance in dips to overfling for edge effects
