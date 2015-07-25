@@ -4018,6 +4018,12 @@ public final class Settings {
         public static final String RECENT_SHOW_RUNNING_TASKS = "show_running_tasks";
 
         /**
+         * Whether the notification light will be allowed when in zen mode during downtime
+         * @hide
+         */
+        public static final String ALLOW_LIGHTS = "allow_lights";
+
+        /**
          * Amount of apps to show in recents
          * @hide
          */
@@ -4231,7 +4237,8 @@ public final class Settings {
             PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE,
             PHONE_BLACKLIST_REGEX_ENABLED,
             STATUS_BAR_SHOW_BATTERY_PERCENT,
-            STATUS_BAR_BATTERY_STYLE
+            STATUS_BAR_BATTERY_STYLE,
+            ALLOW_LIGHTS
         };
 
         /**
