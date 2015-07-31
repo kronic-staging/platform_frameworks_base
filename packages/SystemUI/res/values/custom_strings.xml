@@ -84,6 +84,10 @@
     <string name="quick_settings_ambient_display_label">Ambient Display</string>
     <string name="quick_settings_screenshot_label">Screenshot</string>
     <string name="quick_settings_nfc_label">NFC</string>
+    <string name="quick_settings_kernel_adiutor_label">Kernel</string>
+
+    <!-- Content description of the KernelAdiutor tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_quick_settings_kernel_adiutor">Kernel.</string>
     
     <!-- Content description of the heads up tile in quick settings when off (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_heads_up_off">Heads up off.</string>
