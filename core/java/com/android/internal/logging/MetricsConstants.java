@@ -266,7 +266,9 @@ public interface MetricsConstants {
     public static final int QS_LOCATION_DETAILS = 240;
     public static final int QS_HEADSUP = 241;
     public static final int QS_EXPANDED = 242;
-    public static final int QS_NAVBAR = 244;
+    public static final int QS_NAVBAR = 243;
+    public static final int QS_VOLUME = 244;
+    public static final int QS_KERNEL = 245;
 
     // Lock screen weather settings
     public static final int LOCKSCREEN_WEATHER_SETTINGS = 248;
