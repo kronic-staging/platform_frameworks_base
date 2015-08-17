@@ -222,6 +222,7 @@ public class QsTuner extends Fragment implements Callback {
 	else if (spec.equals("kill_app")) return R.string.qs_kill_app;
         else if (spec.equals("navigation_bar")) return R.string.quick_settings_smartbar;
         else if (spec.equals("navigation_bar")) return R.string.quick_settings_navigation_bar;
+        else if (spec.equals("volume")) return R.string.quick_settings_volume_panel_label;
         return 0;
     }
 
@@ -481,8 +482,12 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("adb_network")) return R.drawable.ic_qs_network_adb_on;
             else if (mSpec.equals("caffeine")) return R.drawable.ic_qs_caffeine_on;
             else if (mSpec.equals("ime")) return R.drawable.ic_qs_ime;
+<<<<<<< HEAD
  	    else if (mSpec.equals("kill_app")) return R.drawable.ic_app_kill;
             else if (mSpec.equals("navigation_bar")) return R.drawable.ic_qs_smartbar;
+=======
+            else if (mSpec.equals("volume")) return R.drawable.ic_qs_volume_panel;
+>>>>>>> bdb7b0e... Added show volume panel tile to QS
             return R.drawable.android;
         }
 

@@ -234,4 +234,8 @@
     <!-- Screen record notification error title -->
     <string name="screenrecord_notif_error">Unable to record screen</string>
 
+    <!-- Volume QS Tile -->
+    <string name="accessibility_quick_settings_volume_panel">Volume panel.</string>
+    <string name="quick_settings_volume_panel_label">Volume panel</string>
+
 </resources>
