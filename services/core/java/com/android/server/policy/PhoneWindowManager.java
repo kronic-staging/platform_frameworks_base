@@ -4308,6 +4308,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             d.left = r.left;
             r.left = 0;
         }
+
         if ((sysui & View.SYSTEM_UI_FLAG_LAYOUT_STABLE) != 0) {
             // If app is requesting a stable layout, don't let the
             // content insets go below the stable values.
