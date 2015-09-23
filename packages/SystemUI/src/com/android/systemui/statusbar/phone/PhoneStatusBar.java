@@ -3602,7 +3602,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         SettingsObserver observer = new SettingsObserver(mHandler);
         if (newTheme != null) mCurrentTheme = (ThemeConfig) newTheme.clone();
         if (updateStatusBar) {
-            mContext.recreateTheme();
             recreateStatusBar();
             if (mNavigationBarView != null) {
                 mNavigationBarView.onRecreateStatusbar();
