@@ -264,6 +264,7 @@ public interface MetricsConstants {
     public static final int FUELGAUGE_INACTIVE_APPS = 238;
     public static final int OWLSNEST = 239;
     public static final int QS_LOCATION_DETAILS = 240;
+    public static final int QS_HEADSUP = 241;
 
     // These constants must match those in the analytic pipeline, do not edit.
     // Add temporary values to the top of MetricsLogger instead.
