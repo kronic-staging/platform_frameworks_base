@@ -4138,12 +4138,6 @@ public final class Settings {
         public static final String ANIMATION_CONTROLS_DURATION = "animation_controls_duration";
 
         /**
-         * Change volume up and down handlign based on rotation
-         * @hide
-         */
-        public static final String SWAP_VOLUME_BUTTONS = "swap_volume_buttons";
-
-        /**
          * Toast animations
          *
          * @hide
@@ -6943,6 +6937,12 @@ public final class Settings {
          * @hide
          */
         public static final String FLING_LONGSWIPE_THRESHOLD_DOWN_LAND = "fling_longswipe_threshold_down_land";
+
+        /**
+         * Whether to allow killing of the foreground app by long-pressing the Back button
+         * @hide
+         */
+        public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
 
         /**
          * This are the settings to be backed up.

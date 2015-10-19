@@ -145,4 +145,8 @@
     <string name="quick_settings_expanded_desktop">Expanded</string>
     <string name="quick_settings_expanded_desktop_off">Normal</string>
 
+    <!-- Battery Saver Dimss -->
+    <string name="battery_saver_dismiss_title">Dismiss</string>
+    <string name="battery_saver_notification_action_text_short">Turn off</string>
+
 </resources>
