@@ -3381,6 +3381,16 @@ public final class Settings {
         public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
 
         /**
+         * Colors used for the color picker panel puttons
+         * 0: DarkKat colors
+         * 1: Material colors
+         * 2: RGB colors
+         * default: 0
+         * @hide
+         */
+        public static final String COLOR_PICKER_PALETTE = "color_picker_palette";
+
+        /**
          * Whether to prevent loud volume levels when headset is first plugged in.
          * @hide
          */
