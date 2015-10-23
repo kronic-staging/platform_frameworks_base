@@ -36,4 +36,7 @@
   <!-- Screen Recording -->
   <java-symbol type="bool" name="config_enableScreenrecordChord" />
 
+  <!-- Config IME switcher -->
+  <java-symbol type="bool" name="config_show_IMESwitcher" />
+
 </resources>

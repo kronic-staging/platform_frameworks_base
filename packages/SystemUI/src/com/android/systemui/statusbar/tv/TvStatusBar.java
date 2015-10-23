@@ -109,6 +109,10 @@ public class TvStatusBar extends BaseStatusBar {
     }
 
     @Override
+    public void setAutoRotate(boolean enabled) {
+    }
+
+    @Override
     protected void setAreThereNotifications() {
     }
 

@@ -93,7 +93,7 @@ interface IStatusBarService
      *        bar caused by this app transition in millis
      */
     void appTransitionStarting(long statusBarAnimationsStartTime, long statusBarAnimationsDuration);
-
     void startAssist(in Bundle args);
     void showCustomIntentAfterKeyguard(inout Intent intent);
+    void setAutoRotate(boolean enabled);
 }
