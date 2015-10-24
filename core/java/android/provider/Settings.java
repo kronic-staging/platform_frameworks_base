@@ -3722,6 +3722,18 @@ public final class Settings {
         public static final String STATUS_BAR_CARRIER_LABEL_NUMBER_OF_NOTIFICATION_ICONS = "status_bar_carrier_label_number_of_notification_icons";
 
         /**
+         * Whether to show low battery notification
+         * @hide
+         */
+        public static final String BATTERY_LOW_NOTIFICATION = "battery_low_notification";
+
+        /**
+         * Whether to show battery saver notification
+         * @hide
+         */
+        public static final String BATTERY_SAVER_NOTIFICATION = "battery_saver_notification";
+
+        /**
          * Alternative recent apps integration using OmniSwitch
          * @hide
          */
