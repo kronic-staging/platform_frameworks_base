@@ -3358,6 +3358,12 @@ public final class Settings {
          */
         public static final String STATUS_BAR_CUSTOM_HEADER_PROVIDER = "status_bar_custom_header_provider";
 
+         /**
+         * Status bar battery %
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+
         /**
          * Whether to prevent loud volume levels when headset is first plugged in.
          * @hide
@@ -3437,7 +3443,8 @@ public final class Settings {
             VIBRATE_WHEN_RINGING,
             RINGTONE,
             LOCK_TO_APP_ENABLED,
-            NOTIFICATION_SOUND
+            NOTIFICATION_SOUND,
+            STATUS_BAR_SHOW_BATTERY_PERCENT
         };
 
         /**
