@@ -54,7 +54,6 @@ import java.util.Collection;
 /** View that represents the quick settings tile panel. **/
 public class QSPanel extends ViewGroup {
     private static final float TILE_ASPECT = 1.2f;
-    private static final float TILE_ASPECT_SMALL = 0.8f;
 
     private final Context mContext;
     protected final ArrayList<TileRecord> mRecords = new ArrayList<TileRecord>();
@@ -67,7 +66,6 @@ public class QSPanel extends ViewGroup {
     private final H mHandler = new H();
 
     private int mColumns;
-    private int mNumberOfColumns;
     private int mCellWidth;
     private int mCellHeight;
     private int mLargeCellWidth;
@@ -81,7 +79,6 @@ public class QSPanel extends ViewGroup {
     private boolean mClosingDetail;
 
     private boolean mBrightnessSliderEnabled;
-    private boolean mUseFourColumns;
     private boolean mVibrationEnabled;
 
     private Record mDetailRecord;
