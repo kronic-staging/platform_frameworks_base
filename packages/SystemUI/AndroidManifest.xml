@@ -138,6 +138,8 @@
     <!-- Sync tile -->
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <!-- Weather -->
+    <uses-permission android:name="com.cyanogenmod.lockclock.permission.READ_WEATHER" />
 
     <application
         android:name=".SystemUIApplication"
