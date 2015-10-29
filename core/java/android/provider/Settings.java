@@ -3143,6 +3143,12 @@ public final class Settings {
                 "notification_light_pulse_default_color";
 
         /**
+         * Disable FC Notifications
+         * @hide
+         */
+        public static final String DISABLE_FC_NOTIFICATIONS = "disable_fc_notifications";
+
+        /**
          * How long to flash the notification LED by default
          * @hide
          */
