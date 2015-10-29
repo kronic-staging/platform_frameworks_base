@@ -217,4 +217,15 @@ interface IAudioService {
     int setFocusPropertiesForPolicy(int duckingBehavior, in IAudioPolicyCallback pcb);
 
     void setVolumePolicy(in VolumePolicy policy);
+
+    /**
+     * Internal TeamEos api to protect Pulse
+     * @hide
+     */
+    void setVisualizerLocked(boolean doLock);
+
+    /**
+     * @hide
+     */
+    boolean isVisualizerLocked(String callingPackage);
 }
