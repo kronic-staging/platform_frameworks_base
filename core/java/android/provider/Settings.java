@@ -3608,6 +3608,66 @@ public final class Settings {
                 "mute_annoying_notifications_threshold";
 
         /**
+         * Color of the signal icons on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_ICONS_SIGNAL_COLOR = "status_bar_network_icons_signal_color";
+
+        /**
+         * Color of the signal icons on the status bar, (dark mode)
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_ICONS_SIGNAL_COLOR_DARK_MODE = "status_bar_network_icons_signal_color_dark_mode";
+
+        /**
+         * Color of the no sim icon on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_ICONS_NO_SIM_COLOR = "status_bar_network_icons_no_sim_color";
+
+        /**
+         * Color of the no sim icon on the status bar, (dark mode)
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_ICONS_NO_SIM_COLOR_DARK_MODE = "status_bar_network_icons_no_sim_color_dark_mode";
+
+        /**
+         * Color of the airplane mode icon on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_ICONS_AIRPLANE_MODE_COLOR = "status_bar_network_icons_airplane_mode_color";
+
+        /**
+         * Color of the airplane mode icon on the status bar, (dark mode)
+         * @hide
+         */
+        public static final String STATUS_BAR_NETWORK_ICONS_AIRPLANE_MODE_COLOR_DARK_MODE = "status_bar_network_icons_airplane_mode_color_dark_mode";
+
+        /**
+         * Color of the status icons on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_STATUS_ICONS_COLOR = "status_bar_status_icons_status_color";
+
+        /**
+         * Color of the status icons on the status bar, (dark mode)
+         * @hide
+         */
+        public static final String STATUS_BAR_STATUS_ICONS_COLOR_DARK_MODE = "status_bar_status_icons_status_color_color_dark_mode";
+
+        /**
+         * Color of the notification icons on the status bar
+         * @hide
+         */
+        public static final String STATUS_BAR_NOTIFICATION_ICONS_COLOR = "status_bar_notification_icons_color";
+
+        /**
+         * Color of the notification icons on the status bar, (dark mode)
+         * @hide
+         */
+        public static final String STATUS_BAR_NOTIFICATION_ICONS_COLOR_DARK_MODE = "status_bar_notification_icons_color_dark_mode";
+
+        /**
          * Volume keys control cursor in text fields (default is 0)
          * 0 - Disabled
          * 1 - Volume up/down moves cursor left/right
