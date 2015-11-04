@@ -1758,9 +1758,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         final boolean hasArtwork = artworkBitmap != null;
 
         if ((hasArtwork || DEBUG_MEDIA_FAKE_ARTWORK)
-                && (mState == StatusBarState.KEYGUARD || mState == StatusBarState.SHADE_LOCKED)
-                && mFingerprintUnlockController.getMode()
-                        != FingerprintUnlockController.MODE_WAKE_AND_UNLOCK_PULSING) {
+                && (mState == StatusBarState.KEYGUARD || mState == StatusBarState.SHADE_LOCKED)) {
             // time to show some art!
             if (mBackdrop.getVisibility() != View.VISIBLE) {
                 mBackdrop.setVisibility(View.VISIBLE);
@@ -1817,12 +1815,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
                 if (mFingerprintUnlockController.getMode()
                         == FingerprintUnlockController.MODE_WAKE_AND_UNLOCK_PULSING) {
-
                     // We are unlocking directly - no animation!
                     mBackdrop.setVisibility(View.GONE);
                 } else {
                     mBackdrop.animate()
-                            // Never let the alpha become zero - otherwise the RenderNode
+	                            // Never let the alpha become zero - otherwise the RenderNode
                             // won't draw anything and uninitialized memory will show through
                             // if mScrimSrcModeEnabled. Note that 0.001 is rounded down to 0 in
                             // libhwui.
@@ -1841,7 +1838,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             });
                     if (mKeyguardFadingAway) {
                         mBackdrop.animate()
-
                                 // Make it disappear faster, as the focus should be on the activity
                                 // behind.
                                 .setDuration(mKeyguardFadingAwayDuration / 2)
@@ -4305,8 +4301,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     public void appTransitionPending() {
 
         // Use own timings when Keyguard is going away, see keyguardGoingAway and
-        // setKeyguardFadingAway
-        if (!mKeyguardFadingAway) {
+        // setKeyguardFadingAway.
+        if (!mKeyguardGoingAway) {
             mIconController.appTransitionPending();
         }
     }
@@ -4320,8 +4316,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     public void appTransitionStarting(long startTime, long duration) {
 
         // Use own timings when Keyguard is going away, see keyguardGoingAway and
-        // setKeyguardFadingAway.
-        if (!mKeyguardGoingAway) {
+        // setKeyguardFadingAway
+        if (!mKeyguardFadingAway) {
             mIconController.appTransitionStarting(startTime, duration);
         }
         if (mIconPolicy != null) {
@@ -4367,7 +4363,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
     }
-
     public void notifyFpAuthModeChanged() {
         updateDozing();
     }
