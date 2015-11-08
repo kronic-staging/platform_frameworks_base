@@ -32,5 +32,4 @@
   <!-- Last app switch animations -->
   <java-symbol type="anim" name="last_app_in" />
   <java-symbol type="anim" name="last_app_out" />
->>>>>>> d8bd02d... Navigation: Bring in custom action and Fling resources
 </resources>
