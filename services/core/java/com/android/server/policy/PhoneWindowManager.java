@@ -120,6 +120,8 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
+import android.view.WindowManagerPolicyControl;
+import android.widget.Toast;
 import com.android.internal.R;
 import com.android.internal.statusbar.IStatusBarService;
 import com.android.internal.util.gesture.EdgeGesturePosition;
