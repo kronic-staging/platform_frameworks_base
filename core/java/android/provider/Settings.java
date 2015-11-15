@@ -2527,10 +2527,17 @@ public final class Settings {
         public static final int SCREEN_BRIGHTNESS_MODE_AUTOMATIC = 1;
 
         /**
+         * Enable/disable brightness control in statusbar
+         * @hide
+         */
+        public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+
+        /** Whether to show the brightness slider in quick settings panel.
+         *
          * MediaScanner behavior on boot.
          * 0 = enabled
          * 1 = ask (notification)
-         * 2 = disabled
+         * 2 = disabled]
          * @hide
          */
         public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
