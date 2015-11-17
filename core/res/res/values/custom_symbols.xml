@@ -85,4 +85,8 @@
   <java-symbol type="drawable" name="ic_shortcut_action_screenshot" />
   <java-symbol type="drawable" name="ic_shortcut_action_search" />
 
+  <!-- AOSiP is starting -->
+  <java-symbol type="string" name="android_start_title_pn" />
+  <java-symbol type="string" name="android_upgrading_title_pn" />
+
 </resources>
