@@ -6940,6 +6940,13 @@ public final class Settings {
          */
         public static final String THEME_PREV_BOOT_API_LEVEL = "theme_prev_boot_api_level";
 
+
+        /**
+         * The TCP/IP port to run ADB on, or -1 for USB
+         * @hide
+         */
+        public static final String ADB_PORT = "adb_port";
+
         /**
          * @hide
          */
