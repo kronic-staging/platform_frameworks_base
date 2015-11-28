@@ -73,7 +73,7 @@ public class ViewConfiguration {
      * appropriate button to bring up the global actions dialog (power off,
      * lock screen, etc).
      */
-    private static final int GLOBAL_ACTIONS_KEY_TIMEOUT = 500;
+    private static final int GLOBAL_ACTIONS_KEY_TIMEOUT = 250;
 
     /**
      * Defines the duration in milliseconds we will wait to see if a touch event
@@ -180,7 +180,7 @@ public class ViewConfiguration {
     /**
      * Maximum velocity to initiate a fling, as measured in dips per second
      */
-    private static final int MAXIMUM_FLING_VELOCITY = 1800;
+    private static final int MAXIMUM_FLING_VELOCITY = 18000;
 
     /**
      * Delay before dispatching a recurring accessibility event in milliseconds.
