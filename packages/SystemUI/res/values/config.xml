@@ -119,8 +119,7 @@
 
     <!-- The default tiles to display in QuickSettings -->
 
-    <string name="quick_settings_tiles_default" translatable="false">
-        wifi,bt,inversion,dnd,cell,airplane,rotation,flashlight,headsup,screenoff,owls_nest,location,cast,hotspot,timeout,usb_tether,ambient_display,screenshot,nfc,sync,owls_nest,battery_saver,reboot
+    <string name="quick_settings_tiles_default" translatable="false"> wifi,bt,inversion,dnd,cell,airplane,rotation,flashlight,headsup,screenoff,owls_nest,location,cast,hotspot,timeout,usb_tether,ambient_display,screenshot,nfc,sync,owls_nest,battery_saver,reboot,music 
     </string>
 
     <!-- The tiles to display in QuickSettings -->

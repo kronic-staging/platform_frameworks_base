@@ -40,6 +40,7 @@ import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
+import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.OwlsNestTile;
 import com.android.systemui.qs.tiles.RebootTile;
@@ -282,6 +283,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("owls_nest")) return new OwlsNestTile(this);
         else if (tileSpec.equals("battery_saver")) return new BatterySaverTile(this);
         else if (tileSpec.equals("reboot")) return new RebootTile(this);
+        else if (tileSpec.equals("music")) return new MusicTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
     }
