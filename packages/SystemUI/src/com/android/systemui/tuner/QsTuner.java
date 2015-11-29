@@ -210,6 +210,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("timeout")) return R.string.quick_settings_timeout_label;
         else if (spec.equals("brightness")) return R.string.quick_settings_brightness;
         else if (spec.equals("music")) return R.string.quick_settings_music_label;
+        else if (spec.equals("reboot")) return R.string.quick_settings_reboot_label;
         return 0;
     }
 
@@ -458,6 +459,7 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("headsup")) return R.drawable.ic_qs_heads_up_on;
             else if (mSpec.equals("sync")) return R.drawable.ic_qs_sync_on;
             else if (mSpec.equals("music")) return R.drawable.ic_qs_media_play;
+            else if (mSpec.equals("reboot")) return R.drawable.ic_qs_reboot;
             return R.drawable.android;
         }
 
