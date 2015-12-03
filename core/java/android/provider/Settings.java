@@ -4650,6 +4650,12 @@ public final class Settings {
         public static final String INCREASING_RING = "increasing_ring";
 
         /**
+         * Boolean value whether to link ringtone and notification volume
+         * @hide
+         */
+        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+
+        /**
          * Start volume fraction for increasing ring volume
          * @hide
          */
