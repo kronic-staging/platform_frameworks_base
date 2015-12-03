@@ -4151,6 +4151,12 @@ public final class Settings {
         public static final String LISTVIEW_ANIMATION = "listview_animation";
 
         /**
+         * Boolean value whether to link ringtone and notification volume
+         * @hide
+         */
+        public static final String VOLUME_LINK_NOTIFICATION = "volume_link_notification";
+
+        /**
          * ListView Interpolators
          * 0 == None
          * 1 == accelerate_interpolator
