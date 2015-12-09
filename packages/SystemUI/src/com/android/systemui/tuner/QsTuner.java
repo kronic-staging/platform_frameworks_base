@@ -207,6 +207,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("screenshot")) return R.string.quick_settings_screenshot_label;
         else if (spec.equals("headsup")) return R.string.quick_settings_heads_up_label;
         else if (spec.equals("sync")) return R.string.quick_settings_sync_label;
+        else if (spec.equals("battery_saver")) return R.string.quick_settings_battery_saver;
         return 0;
     }
 
@@ -454,6 +455,14 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("nfc")) return R.drawable.ic_qs_nfc_on;
             else if (mSpec.equals("headsup")) return R.drawable.ic_qs_heads_up_on;
             else if (mSpec.equals("sync")) return R.drawable.ic_qs_sync_on;
+<<<<<<< HEAD
+=======
+            else if (mSpec.equals("timeout")) return R.drawable.ic_qs_screen_timeout_vector;
+            else if (mSpec.equals("brightness")) return R.drawable.ic_qs_brightness_auto_on_alpha;
+            else if (mSpec.equals("music")) return R.drawable.ic_qs_media_play;
+            else if (mSpec.equals("reboot")) return R.drawable.ic_qs_reboot;
+            else if (mSpec.equals("battery_saver")) return R.drawable.ic_qs_battery_saver_on;
+>>>>>>> 91de150... Add Battery Saver QS Tile
             return R.drawable.android;
         }
 
