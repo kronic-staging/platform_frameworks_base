@@ -17,4 +17,8 @@
 <resources>
 
     <color name="set_wallpaper_text_color">@android:color/white</color>
+
+    <!-- SystemUI Tuner Parts -->
+    <string name="systemui_tuner_statusbar_title">Statusbar Items</string>
+    <string name="systemui_tuner_qs_title">Quick Settings</string>
 </resources>
