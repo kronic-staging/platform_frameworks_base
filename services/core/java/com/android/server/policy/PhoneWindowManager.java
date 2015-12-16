@@ -670,8 +670,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int MSG_POWER_LONG_PRESS = 14;
     private static final int MSG_UPDATE_DREAMING_SLEEP_TOKEN = 15;
     private static final int MSG_DISPATCH_VOLKEY_WITH_WAKE_LOCK = 16;
-    private boolean mClearedBecauseOfForceShow;
-    private boolean mTopWindowIsKeyguard;
 
     private CameraManager mCameraManager;
     private boolean mTorchEnabled;
