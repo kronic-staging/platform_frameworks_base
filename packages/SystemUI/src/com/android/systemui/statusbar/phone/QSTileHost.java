@@ -69,6 +69,7 @@ import com.android.systemui.qs.tiles.OwlsNestTile;
 import com.android.systemui.qs.tiles.PulseTile;
 import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
+import com.android.systemui.qs.tiles.ScreenrecordTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.qs.tiles.SyncTile;
@@ -473,6 +474,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("night")) return new NightDisplayTile(this);
         else if (tileSpec.equals("caffeine")) return new CaffeineTile(this);
         else if (tileSpec.equals("heads_up")) return new HeadsUpTile(this);
+        else if (tileSpec.equals("screenrecord")) return new ScreenrecordTile(this);
         else if (tileSpec.equals("screenshot")) return new ScreenshotTile(this);
         else if (tileSpec.equals("sound")) return new SoundTile(this);
         else if (tileSpec.equals("adb_network")) return new AdbOverNetworkTile(this);

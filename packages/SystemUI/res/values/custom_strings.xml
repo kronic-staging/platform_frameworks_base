@@ -69,6 +69,10 @@
     <!-- Screenshot QS tile -->
     <string name="quick_settings_screenshot_label">Screenshot</string>
 
+    <!-- Screenrecord QS tile -->
+    <string name="quick_settings_screenrecord">Screenrecord</string>
+    <string name="quick_settings_screenrecord_on">Recording ...</string>
+
     <!-- LTE QS tile -->
     <string name="quick_settings_lte_label">LTE</string>
     <string name="lte_on">LTE ON </string>
