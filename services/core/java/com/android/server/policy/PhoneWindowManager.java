@@ -413,6 +413,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     boolean mUseTvRouting;
 
     boolean mVolumeRockerWake;
+    boolean mVolumeWakeScreen;
     int mPointerLocationMode = 0; // guarded by mLock
 
     // The last window we were told about in focusChanged.
