@@ -177,7 +177,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     }
 
     private int mShowBatteryText;
-
     private boolean mShowBatteryTextExpanded;
 
     public StatusBarHeaderView(Context context, AttributeSet attrs) {
