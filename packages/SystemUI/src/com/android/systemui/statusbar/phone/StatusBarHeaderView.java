@@ -149,13 +149,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private float mLastHeight;
 
     private int mShowBatteryText;
-
-    private ContentObserver mObserver = new ContentObserver(new Handler()) {
-        public void onChange(boolean selfChange, Uri uri) {
-            loadShowBatteryTextSetting();
-        }
-    };
-
     private boolean mShowBatteryTextExpanded;
 
     public StatusBarHeaderView(Context context, AttributeSet attrs) {
