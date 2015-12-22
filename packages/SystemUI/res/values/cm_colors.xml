@@ -85,4 +85,11 @@
     <color name="play_button_text_color">#000000</color>
     <color name="zen_ic_close_tint_color">@android:color/white</color>
     <color name="header_debug_info_text_color">#00A040</color>
+
+    <!-- PopupWindows -->
+    <color name="smartbar_editor_popup_background">@android:color/white</color>
+    <color name="smartbar_editor_popup_text">@android:color/black</color>
+    <color name="smartbar_editor_popup_icon_fill">@*android:color/material_deep_teal_500</color>
+    <color name="smartbar_editor_popup_horiz_separator">@*android:color/material_deep_teal_500</color>
+
 </resources>
