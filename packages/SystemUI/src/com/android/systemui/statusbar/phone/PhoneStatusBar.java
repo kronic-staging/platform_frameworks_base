@@ -121,6 +121,7 @@ import com.android.internal.utils.du.DUActionUtils;
 import com.android.internal.utils.du.DUPackageMonitor;
 import com.android.internal.utils.du.DUSystemReceiver;
 import com.android.internal.util.cm.WeatherControllerImpl;
+import com.android.internal.util.benzo.Helpers;
 import com.android.internal.util.darkkat.DeviceUtils;
 
 import com.android.keyguard.CarrierText;
@@ -339,6 +340,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     // settings
     private QSPanel mQSPanel;
+
+    // 4G instead of LTE
+    private boolean mShow4G;
 
     // top bar
     StatusBarHeaderView mHeader;
@@ -588,6 +592,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SHOW_FOURG),
+                    false, this, UserHandle.USER_ALL);
+            update();
         }
 
         @Override
@@ -653,10 +661,26 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     || uri.equals(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR))) {
                 rebuildRecentsScreen();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHOW_FOURG))) {
+                    mShow4G = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.SHOW_FOURG,
+                            0, UserHandle.USER_CURRENT) == 1;
+                            Helpers.restartSystemUI();
+                            updateRowStates();
+                            updateSpeedbump();
+                            updateClearAll();
+                            updateEmptyShadeView();
             }
         }
     }
 
+   public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            boolean mShow4G = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
+    }
     private int mInteractingWindows;
     private boolean mAutohideSuspended;
     private int mStatusBarMode;

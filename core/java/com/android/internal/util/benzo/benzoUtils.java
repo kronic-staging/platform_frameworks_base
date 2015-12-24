@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011 The Android Open Source Project
+ * Copyright (C) 2014 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,19 +14,13 @@
  * limitations under the License.
  */
 
-package com.android.settingslib.net;
+package com.android.internal.util.benzo;
 
-import android.net.NetworkStatsHistory;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 
-public class ChartData {
-    public NetworkStatsHistory network;
-
-    public NetworkStatsHistory detail;
-    public NetworkStatsHistory detailDefault;
-    public NetworkStatsHistory detailForeground;
+public class benzoUtils {
 
     public static boolean isWifiOnly(Context context) {
         ConnectivityManager cm = (ConnectivityManager)context.getSystemService(
