@@ -17,11 +17,19 @@
 package com.android.internal.util.benzo;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.net.ConnectivityManager;
 
 public class benzoUtils {
 
     public static boolean isNavBarDefault(Context context) {
         return context.getResources().getBoolean(
                 com.android.internal.R.bool.config_showNavigationBar);
+    }
+
+    public static boolean isWifiOnly(Context context) {
+        ConnectivityManager cm = (ConnectivityManager)context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        return (cm.isNetworkSupported(ConnectivityManager.TYPE_MOBILE) == false);
     }
 }

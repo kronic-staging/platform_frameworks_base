@@ -337,6 +337,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // settings
     private QSPanel mQSPanel;
 
+    // 4G instead of LTE
+    private boolean mShow4G;
+
     // top bar
     StatusBarHeaderView mHeader;
     KeyguardStatusBarView mKeyguardStatusBar;
@@ -520,6 +523,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
                     UserHandle.USER_ALL);
+                    Settings.System.SHOW_FOURG),
+                    false, this, UserHandle.USER_ALL);
+            update();
         }
 
         @Override
@@ -585,10 +591,25 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     || uri.equals(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR))) {
                 rebuildRecentsScreen();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHOW_FOURG))) {
+                    mShow4G = Settings.System.getIntForUser(
+                            mContext.getContentResolver(),
+                            Settings.System.SHOW_FOURG,
+                            0, UserHandle.USER_CURRENT) == 1;
+                            Helpers.restartSystemUI();
+                            updateRowStates();
+                            updateSpeedbump();
+                            updateClearAll();
+                            updateEmptyShadeView();
             }
         }
     }
 
+   public void update() {
+            boolean mShow4G = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_FOURG, 0, UserHandle.USER_CURRENT) == 1;
+    }
     private int mInteractingWindows;
     private boolean mAutohideSuspended;
     private int mStatusBarMode;
@@ -2134,7 +2155,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     private void updateClockStyle() {
-        ContentResolver resolver = mContext.getContentResolver();
+        ContentResolver resolver = mContext.getContentResolver();FF
 
         int clockStyle = Settings.System.getIntForUser(resolver,
                 Settings.System.STATUS_BAR_CLOCK_DATE_POSITION, 0, mCurrentUserId);
