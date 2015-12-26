@@ -24,6 +24,10 @@
   <!-- Vendor warning -->
   <java-symbol type="string" name="system_error_vendorprint" />
 
+  <!-- Power menu Animations  -->
+  <java-symbol type="style" name="PowerMenuBottomAnimation" />
+  <java-symbol type="style" name="PowerMenuTopAnimation" />
+
   <!-- Reboot - Advanced Reboot -->
   <java-symbol type="string" name="reboot_confirm" />
   <java-symbol type="string" name="reboot_title" />
