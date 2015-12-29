@@ -23,4 +23,3 @@
     android:background="#CC000000"
     android:src="@drawable/no_recent_apps_logo"
     android:visibility="gone" />
-
