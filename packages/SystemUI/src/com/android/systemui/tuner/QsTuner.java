@@ -207,7 +207,6 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("screenshot")) return R.string.quick_settings_screenshot_label;
         else if (spec.equals("headsup")) return R.string.quick_settings_heads_up_label;
         else if (spec.equals("sync")) return R.string.quick_settings_sync_label;
-<<<<<<< HEAD
         else if (spec.equals("battery_saver")) return R.string.quick_settings_battery_saver;
         else if (spec.equals("music")) return R.string.quick_settings_music_label;
         else if (spec.equals("reboot")) return R.string.quick_settings_reboot_label;
