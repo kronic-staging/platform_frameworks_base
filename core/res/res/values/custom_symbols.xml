@@ -27,6 +27,7 @@
   <!-- Power menu Animations  -->
   <java-symbol type="style" name="PowerMenuBottomAnimation" />
   <java-symbol type="style" name="PowerMenuTopAnimation" />
+  <java-symbol type="style" name="PowerMenuRotateAnimation" />
 
   <!-- Reboot - Advanced Reboot -->
   <java-symbol type="string" name="reboot_confirm" />
