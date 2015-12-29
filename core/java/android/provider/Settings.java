@@ -4402,6 +4402,18 @@ public final class Settings {
          */
         public static final String LOCK_SCREEN_WEATHER_ICON_COLOR = "lock_screen_weather_icon_color";
 
+	/**
+         * Statusbar AOSIP logo
+         * @hide
+         */
+        public static final String STATUS_BAR_AOSIP_LOGO = "status_bar_aosip_logo";
+
+        /**
+         * Statusbar AOSIP logo color setting
+         * @hide
+         */
+        public static final String STATUS_BAR_AOSIP_LOGO_COLOR = "status_bar_aosip_logo_color";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.

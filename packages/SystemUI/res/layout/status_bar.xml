@@ -4,16 +4,16 @@
 **
 ** Copyright 2006, The Android Open Source Project
 **
-** Licensed under the Apache License, Version 2.0 (the "License"); 
-** you may not use this file except in compliance with the License. 
-** You may obtain a copy of the License at 
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
 **
-**     http://www.apache.org/licenses/LICENSE-2.0 
+**     http://www.apache.org/licenses/LICENSE-2.0
 **
-** Unless required by applicable law or agreed to in writing, software 
-** distributed under the License is distributed on an "AS IS" BASIS, 
-** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-** See the License for the specific language governing permissions and 
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
 -->
@@ -62,6 +62,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 >
+
                 <com.android.keyguard.CarrierText
                     android:id="@+id/status_bar_carrier_text"
                     android:layout_width="wrap_content"
@@ -73,6 +74,17 @@
                     android:textAppearance="@style/TextAppearance.StatusBar.Clock"
                     android:textColor="#ffffff"
                     android:singleLine="true" />
+
+                <ImageView
+                    android:id="@+id/aosip_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="4dip"
+                    android:src="@drawable/ic_status_bar_aosip_logo"
+                    android:scaleType="center"
+                    android:visibility="gone"
+                    />
+
                 <com.android.systemui.statusbar.StatusBarIconView android:id="@+id/moreIcon"
                     android:layout_width="@dimen/status_bar_icon_size"
                     android:layout_height="match_parent"
@@ -110,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:singleLine="true"
-                android:paddingStart="7dp"
+                android:paddingStart="1dp"
                 android:gravity="center_vertical|start"
                 />
         </com.android.keyguard.AlphaOptimizedLinearLayout>
@@ -135,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:singleLine="true"
-	        android:gravity="center"
+	    android:gravity="center"
             />
     </com.android.keyguard.AlphaOptimizedLinearLayout>
 </com.android.systemui.statusbar.phone.PhoneStatusBarView>
