@@ -42,4 +42,19 @@
     <string name="global_action_search">Search</string>
     <string name="global_action_voicesearch">Voice Search</string>
 
+    <!-- Title of an application permission, listed so the user can choose whether they want the application to do this. -->
+    <string name="permlab_setKeyguardWallpaper">set keyguard wallpaper</string>
+    <!-- Description of an application permission, listed so the user can choose whether they want to allow the application to do this. -->
+    <string name="permdesc_setKeyguardWallpaper">Allows an app to change the lock screen wallpaper.</string>
+
+    <!-- Long-press back kill application -->
+    <string name="app_killed_message">Application killed</string>
+
+    <!-- Vendor mismatched fingerprint warning [CHAR LIMIT=NONE] -->
+    <string name="system_error_vendorprint">It appears your vendor image may be out of date. Please flash the latest vendor image for your device.</string>
+
+    <!-- AOSiP is starting -->
+    <string name="android_start_title_pn">AOSiP is starting\u2026</string>
+    <string name="android_upgrading_title_pn">AOSiP is upgrading\u2026</string>
+
 </resources>

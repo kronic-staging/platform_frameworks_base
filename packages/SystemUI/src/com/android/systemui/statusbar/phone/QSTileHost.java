@@ -29,6 +29,7 @@ import com.android.systemui.R;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.AmbientDisplayTile;
+import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
@@ -39,7 +40,9 @@ import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
+import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.NfcTile;
+import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.ScreenOffTile;
@@ -276,6 +279,9 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("nfc")) return new NfcTile(this);
         else if (tileSpec.equals("headsup")) return new HeadsUpTile(this);
         else if (tileSpec.equals("sync")) return new SyncTile(this);
+        else if (tileSpec.equals("battery_saver")) return new BatterySaverTile(this);
+        else if (tileSpec.equals("music")) return new MusicTile(this);
+        else if (tileSpec.equals("reboot")) return new RebootTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
     }
