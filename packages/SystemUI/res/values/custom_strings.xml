@@ -99,6 +99,19 @@
     <!-- Content description of the sync tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_on">Sync on.</string>
 
+    <!-- Music QS Tile -->
+    <string name="quick_settings_music_label">Music</string>
+    <string name="quick_settings_music_play">Play</string>
+    <string name="quick_settings_music_pause">Pause</string>
+
+    <!-- Reboot/Recovery QS Tile -->
+    <string name="quick_settings_reboot_label">Reboot</string>
+    <string name="quick_settings_reboot_recovery_label">Recovery</string>
+
+    <!-- Battery Saver QS Tile -->
+    <string name="quick_settings_battery_saver">Battery saver</string>
+    <string name="quick_settings_battery_saver_off">Battery saver off</string>
+
     <!-- Announcement made when sync changes to off (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_sync_changed_off">Sync turned off.</string>
     <!-- Announcement made when sync changes to on (not shown on the screen). [CHAR LIMIT=NONE] -->
