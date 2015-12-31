@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-/*
-** Copyright 2009, The Android Open Source Project
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -16,11 +17,10 @@
 ** limitations under the License.
 */
 -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <style name="GlobalActionsAnimation">
+        <item name="windowEnterAnimation">@anim/slide_in_up</item>
+        <item name="windowExitAnimation">@anim/slide_out_down</item>
+    </style>
+</resources>
 
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-        android:background="#ff000000" android:zAdjustment="normal">
-    <alpha android:fromAlpha="1.0" android:toAlpha="0.7"
-            android:fillEnabled="true" android:fillBefore="false" android:fillAfter="true"
-            android:interpolator="@interpolator/fast_out_slow_in"
-            android:duration="217"/>
-</set>
