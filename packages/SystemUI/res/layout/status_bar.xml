@@ -76,7 +76,7 @@
                     android:singleLine="true" />
 
                 <ImageView
-                    android:id="@+id/aosip_logo"
+                    android:id="@+id/left_aosip_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="4dip"
@@ -124,6 +124,15 @@
                 android:singleLine="true"
                 android:paddingStart="1dp"
                 android:gravity="center_vertical|start"
+                />
+            <ImageView
+                android:id="@+id/aosip_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="4dp"
+                android:src="@drawable/ic_status_bar_aosip_logo"
+                android:scaleType="center"
+                android:visibility="gone"
                 />
         </com.android.keyguard.AlphaOptimizedLinearLayout>
     </LinearLayout>

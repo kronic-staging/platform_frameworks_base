@@ -4371,6 +4371,14 @@ public final class Settings {
         public static final String LOCKSCREEN_CLOCK_DATE_COLOR = "lockscreen_clock_date_color";
 
         /**
+         * Style of Status bar logo
+         * 0 - Left (default)
+         * 1 - Right
+         * @hide
+         */
+        public static final String STATUS_BAR_AOSIP_LOGO_STYLE = "status_bar_aosip_logo_style";
+
+         /**
          * Change the color of the lockscreen owner's info text
          *
          * @hide

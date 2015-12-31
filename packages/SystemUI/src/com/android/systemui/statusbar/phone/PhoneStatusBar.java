@@ -343,6 +343,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private boolean mAosipLogo;
     private int mAosipLogoColor;
     private ImageView aosipLogo;
+    private int mAosipLogoStyle;
 
     // settings
     private QSPanel mQSPanel;
@@ -607,6 +608,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_AOSIP_LOGO_COLOR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AOSIP_LOGO_STYLE),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -684,6 +688,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             updateSpeedbump();
                             updateClearAll();
                             updateEmptyShadeView();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_AOSIP_LOGO_STYLE))) {
+                recreateStatusBar();
+                updateRowStates();
+                updateSpeedbump();
+                updateClearAll();
+                updateEmptyShadeView();
             }
         }
          public void update() {
@@ -696,9 +707,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mAosipLogoColor = Settings.System.getIntForUser(resolver,
                     Settings.System.STATUS_BAR_AOSIP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
             if (mAosipLogoStyle == 0) {
-                AosipLogo = (ImageView) mStatusBarView.findViewById(R.id.left_Aosip_logo);
+                aosipLogo = (ImageView) mStatusBarView.findViewById(R.id.left_aosip_logo);
             } else {
-                AosipLogo = (ImageView) mStatusBarView.findViewById(R.id.Aosip_logo);
+                aosipLogo = (ImageView) mStatusBarView.findViewById(R.id.aosip_logo);
             }
             showAosipLogo(mAosipLogo, mAosipLogoColor, mAosipLogoStyle);
 
@@ -1128,13 +1139,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mIconController = new StatusBarIconController(
                 mContext, mStatusBarView, mKeyguardStatusBar, this);
 
-             ContentResolver resolver = mContext.getContentResolver();
-            mAosipLogo = Settings.System.getIntForUser(resolver,
-                    Settings.System.STATUS_BAR_AOSIP_LOGO, 0, mCurrentUserId) == 1;
-            mAosipLogoColor = Settings.System.getIntForUser(resolver,
-                    Settings.System.STATUS_BAR_AOSIP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
-            showAosipLogo(mAosipLogo, mAosipLogoColor);
-
         // Background thread for any controllers that need it.
         mHandlerThread = new HandlerThread(TAG, Process.THREAD_PRIORITY_BACKGROUND);
         mHandlerThread.start();
@@ -1206,6 +1210,22 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     mHandler);
         }
         mWeatherController = new WeatherControllerImpl(mContext);
+
+             ContentResolver resolver = mContext.getContentResolver();
+        mAosipLogoStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AOSIP_LOGO_STYLE, 0,
+                UserHandle.USER_CURRENT);
+        if (mAosipLogoStyle == 0) {
+            aosipLogo = (ImageView) mStatusBarView.findViewById(R.id.left_aosip_logo);
+        } else {
+            aosipLogo = (ImageView) mStatusBarView.findViewById(R.id.aosip_logo);
+        }
+        mAosipLogo = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AOSIP_LOGO, 0, mCurrentUserId) == 1;
+        mAosipLogoColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.STATUS_BAR_AOSIP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+        showAosipLogo(mAosipLogo, mAosipLogoColor, mAosipLogoStyle);
+
         mKeyguardUserSwitcher = new KeyguardUserSwitcher(mContext,
                 (ViewStub) mStatusBarWindowContent.findViewById(R.id.keyguard_user_switcher),
                 mKeyguardStatusBar, mNotificationPanel, mUserSwitcherController);
@@ -3463,13 +3483,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     };
 
-    public void showAosipLogo(boolean show, int color) {
+    public void showAosipLogo(boolean show, int color, int style) {
         if (mStatusBarView == null) return;
-        aosipLogo = (ImageView) mStatusBarView.findViewById(R.id.aosip_logo);
-        aosipLogo.setColorFilter(color, Mode.SRC_IN);
-        if (aosipLogo != null) {
-            aosipLogo.setVisibility(show ? (mAosipLogo ? View.VISIBLE : View.GONE) : View.GONE);
+        if (!show) {
+            aosipLogo.setVisibility(View.GONE);
+            return;
         }
+        aosipLogo.setColorFilter(color, Mode.SRC_IN);
+        if (style == 0) {
+            aosipLogo.setVisibility(View.GONE);
+            aosipLogo = (ImageView) mStatusBarView.findViewById(R.id.left_aosip_logo);
+        } else {
+            aosipLogo.setVisibility(View.GONE);
+            aosipLogo = (ImageView) mStatusBarView.findViewById(R.id.aosip_logo);
+        }
+        aosipLogo.setVisibility(View.VISIBLE);
     }
 
     private void resetUserExpandedStates() {
