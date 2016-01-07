@@ -80,6 +80,9 @@
     <!-- Content description of the caffeine tile in quick settings when on (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_caffeine_on">Caffeine on.</string>
 
+     <!-- Content description of the notification button for accessibility (not shown on the screen). [CHAR LIMIT=NONE] -->
+    <string name="accessibility_notifications">Power</string>
+
     <!-- QuickSettings tiles -->
     <string name="quick_settings_timeout_label">Timeout</string>
     <string name="quick_settings_screen_timeout_detail_title">Screen timeout</string>
@@ -148,6 +151,7 @@
     <string name="navbar_menu_always_button">Menu (alwaysShow) button</string>
     <string name="navbar_menu_big_button">Menu button</string>
     <string name="navbar_power_button">Power button</string>
+    <string name="navbar_notifications_button">Notifications button</string>
     <string name="accessibility_dpad_left">Cursor left</string>
     <string name="accessibility_dpad_right">Cursor right</string>
 
