@@ -3791,6 +3791,12 @@ public final class Settings {
         public static final String LOCKSCREEN_ROTATION = "lockscreen_rotation";
 
         /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         * @hide
+         */
+        public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+
+        /**
          * Change volume up and down handlign based on rotation
          * @hide
          */
