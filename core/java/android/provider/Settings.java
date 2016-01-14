@@ -3704,6 +3704,12 @@ public final class Settings {
                 "mute_annoying_notifications_threshold";
 
         /**
+         * whether to enable or disable vibration on succesful fingerprint auth
+         * @hide
+         */
+        public static final String FINGERPRINT_SUCCESS_VIB = "fingerprint_success_vib";
+
+        /**
          * Volume rocker wake
          * @hide
          */
