@@ -4341,6 +4341,13 @@ public final class Settings {
          */
         public static final String PA_PIE_CHEVRON = "pa_pie_chevron";
 
+		
+        /**
+	 * whether to enable torch on lockscreen
+         * @hide
+         */
+        public static final String KEYGUARD_TOGGLE_TORCH = "keyguard_toggle_torch";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
