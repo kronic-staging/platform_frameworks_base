@@ -138,8 +138,7 @@ public class DetailedWeatherView extends LinearLayout {
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         mWeatherTimestamp.setText(sdf.format(timeStamp));
         mWeatherData.setText(weatherData.temp + weatherData.tempUnits + " - " +
-                weatherData.windSpeed + " " + weatherData.windUnits + " " + weatherData.windDirection +" - " +
-                weatherData.humidity);
+                weatherData.windSpeed + " " + weatherData.windUnits + " " + weatherData.windDirection +" - " + weatherData.humidity);
 
         sdf = new SimpleDateFormat("EE");
         Calendar cal = Calendar.getInstance();
