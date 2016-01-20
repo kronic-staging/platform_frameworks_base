@@ -1893,8 +1893,6 @@ class DatabaseHelper extends SQLiteOpenHelper {
         }
 
         if (upgradeVersion < 116) {
-            moveSettingsToNewTable(db, TABLE_SYSTEM, TABLE_SECURE,
-                    new String[]{Settings.Secure.VOLUME_LINK_NOTIFICATION}, true);
             if (mUserHandle == UserHandle.USER_OWNER) {
                 db.beginTransaction();
                 SQLiteStatement stmt = null;
