@@ -3958,7 +3958,23 @@ public final class Settings {
         public static final String DIM_NAV_BUTTONS_TIMEOUT = "dim_nav_buttons_timeout";
 
         /**
+<<<<<<< HEAD
          * Alpha value percentage to dim the nav buttons to
+=======
+         * Change the number of columns displayed in the Settings dashboard
+         * @hide
+         */
+        public static final String DASHBOARD_COLUMNS = "dashboard_columns";
+
+        /**
+         * Display style of the status bar battery information
+         * 0: Display the battery an icon in portrait mode
+         * 2: Display the battery as a circle
+         * 4: Hide the battery status information
+         * 5: Display the battery an icon in landscape mode
+         * 6: Display the battery as plain text
+         * default: 0
+>>>>>>> b9d454c... Configurable dashboard columns [2/2]
          * @hide
          */
         public static final String DIM_NAV_BUTTONS_ALPHA = "dim_nav_buttons_alpha";
