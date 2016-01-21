@@ -18,6 +18,8 @@
 
 package com.android.server.power;
 
+import com.android.internal.R;
+
 import android.app.ActivityManagerNative;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -50,6 +52,7 @@ import android.os.storage.IMountShutdownObserver;
 import android.provider.Settings;
 import android.system.ErrnoException;
 import android.system.Os;
+import android.view.Gravity;
 import android.widget.ListView;
 
 import com.android.internal.telephony.ITelephony;
@@ -247,11 +250,25 @@ public final class ShutdownThread extends Thread {
 
             closer.dialog = sConfirmDialog;
             sConfirmDialog.setOnDismissListener(closer);
+            WindowManager.LayoutParams attrs = sConfirmDialog.getWindow().getAttributes();
+            attrs.windowAnimations = R.style.GlobalActionsAnimation;
+            attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
+            attrs.alpha = setRebootDialogAlpha(context);
+
             sConfirmDialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
             sConfirmDialog.show();
         } else {
             beginShutdownSequence(context);
         }
+    }
+
+    private static float setRebootDialogAlpha(Context context) {
+        int mRebootDialogAlpha = Settings.System.getInt(
+                context.getContentResolver(),
+                Settings.System.TRANSPARENT_POWER_MENU, 100);
+        double dAlpha = mRebootDialogAlpha / 100.0;
+        float alpha = (float) dAlpha;
+        return alpha;
     }
 
     private static void doSoftReboot() {
@@ -378,6 +395,9 @@ public final class ShutdownThread extends Thread {
         }
         pd.setCancelable(false);
         pd.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
+        WindowManager.LayoutParams attrs = pd.getWindow().getAttributes();
+
+        attrs.alpha = setRebootDialogAlpha(context);
 
         pd.show();
 
