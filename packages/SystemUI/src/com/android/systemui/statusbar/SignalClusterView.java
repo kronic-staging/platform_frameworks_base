@@ -95,7 +95,6 @@ public class SignalClusterView
     private int mWideTypeIconStartPadding;
     private int mSecondaryTelephonyPadding;
 
-    private boolean mIgnoreSystemUITuner = false;
     private boolean mBlockAirplane;
     private boolean mBlockMobile;
     private boolean mBlockWifi;
@@ -178,9 +177,7 @@ public class SignalClusterView
         for (PhoneState state : mPhoneStates) {
             mMobileSignalGroup.addView(state.mMobileGroup);
         }
-        if (!mIgnoreSystemUITuner) {
-            TunerService.get(mContext).addTunable(this, StatusBarIconController.ICON_BLACKLIST);
-        }
+        TunerService.get(mContext).addTunable(this, StatusBarIconController.ICON_BLACKLIST);
 
         apply();
         applyIconTint();
@@ -540,30 +537,6 @@ public class SignalClusterView
 
     private void setTint(ImageView v, int tint) {
         v.setImageTintList(ColorStateList.valueOf(tint));
-    }
-
-    public void setIgnoreSystemUITuner(boolean ignore) {
-        if (mIgnoreSystemUITuner == ignore) {
-            return;
-        }
-
-        mIgnoreSystemUITuner = ignore;
-        if (mIgnoreSystemUITuner) {
-            TunerService.get(mContext).removeTunable(this);
-            mBlockAirplane = false;
-            mBlockMobile = false;
-            mBlockEthernet = false;
-            mBlockWifi = false;
-        }
-        if (isAttachedToWindow()) {
-            if (mIgnoreSystemUITuner) {
-                // Re-register to get new callbacks.
-                mNC.removeSignalCallback(this);
-                mNC.addSignalCallback(this);
-            } else {
-                TunerService.get(mContext).addTunable(this, StatusBarIconController.ICON_BLACKLIST);
-            }
-        }
     }
 
     private class PhoneState {
