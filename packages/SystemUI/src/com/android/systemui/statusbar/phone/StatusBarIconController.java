@@ -695,7 +695,6 @@ public class StatusBarIconController implements Tunable {
         mNoSimColorTint = mNoSimColor;
         mAirplaneModeColorTint = mAirplaneModeColor;
 
-        mSignalCluster.setIgnoreSystemUITuner(true);
         mSignalCluster.setIconTint(mNetworkSignalColor, mNoSimColor, mAirplaneModeColor, mDarkIntensity);
     }
 

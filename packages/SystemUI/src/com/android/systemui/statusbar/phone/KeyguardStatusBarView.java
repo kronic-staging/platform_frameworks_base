@@ -242,7 +242,6 @@ public class KeyguardStatusBarView extends RelativeLayout {
     }
 
     public void updateNetworkIconColors() {
-        mSignalCluster.setIgnoreSystemUITuner(true);
         mSignalCluster.setIconTint(
                 StatusBarColorHelper.getNetworkSignalColor(mContext),
                 StatusBarColorHelper.getNoSimColor(mContext),
