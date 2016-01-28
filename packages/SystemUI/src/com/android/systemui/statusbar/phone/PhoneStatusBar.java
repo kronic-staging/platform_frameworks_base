@@ -4862,7 +4862,10 @@ public void showmCustomlogo(boolean show , int color , int style) {
     }
 
     public void showScreenPinningRequest(boolean allowCancel) {
-        mScreenPinningRequest.showPrompt(allowCancel);
+        //mScreenPinningRequest.showPrompt(allowCancel);
+        try {
+            ActivityManagerNative.getDefault().startLockTaskModeOnCurrent();
+        } catch (RemoteException e) {}
     }
 
     public boolean hasActiveNotifications() {
