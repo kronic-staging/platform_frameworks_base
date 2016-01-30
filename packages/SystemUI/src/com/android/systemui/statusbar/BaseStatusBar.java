@@ -247,14 +247,8 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     protected int mZenMode;
 
-<<<<<<< HEAD
-=======
-    protected AppSidebar mAppSidebar;
-    protected int mSidebarPosition;
-
     protected AppCircleSidebar mAppCircleSidebar;
 
->>>>>>> eb7f9a1... Implement App circle sidebar [1/2]
     @ChaosLab(name="GestureAnywhere", classification=Classification.NEW_FIELD)
     protected GestureAnywhereView mGestureAnywhereView;
 
