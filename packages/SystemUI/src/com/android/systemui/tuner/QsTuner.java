@@ -215,6 +215,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("expanded_desktop")) return R.string.quick_settings_expanded_desktop;
         else if (spec.equals("sound")) return R.string.quick_settings_sound_label;
         else if (spec.equals("kernel")) return R.string.quick_settings_kernel_adiutor_label;
+        else if (spec.equals("themes")) return R.string.quick_settings_themes;
         return 0;
     }
 
@@ -470,6 +471,7 @@ public class QsTuner extends Fragment implements Callback {
             else if (mSpec.equals("expanded_desktop")) return R.drawable.ic_qs_expanded_desktop;
             else if (mSpec.equals("sound")) return R.drawable.ic_qs_ringer_audible;
             else if (mSpec.equals("kernel")) return R.drawable.ic_qs_kernel;
+	    else if (mSpec.equals("themes")) return R.drawable.ic_qs_themes_on;
             return R.drawable.android;
         }
 
