@@ -49,13 +49,7 @@ import com.android.systemui.qs.tiles.NfcTile;
 import com.android.systemui.qs.tiles.OwlsNestTile;
 import com.android.systemui.qs.tiles.RebootTile;
 import com.android.systemui.qs.tiles.RotationLockTile;
-<<<<<<< HEAD
-=======
-import com.android.systemui.qs.tiles.ScreenOffTile;
-import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.SoundTile;
-import com.android.systemui.qs.tiles.VolumeTile;
->>>>>>> 7d40171... Add Sound tile to Quick Settings
 import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.ScreenOffTile;
 import com.android.systemui.qs.tiles.ScreenTimeoutTile;
