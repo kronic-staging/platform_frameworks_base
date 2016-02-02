@@ -176,4 +176,10 @@
   <java-symbol type="id" name="dexopt_message" />
   <java-symbol type="id" name="dexopt_message_detail" />
   <java-symbol type="id" name="dexopt_progress" />
+
+  <!-- Show battery fully charged notification -->
+  <java-symbol type="bool" name="config_showBatteryFullyChargedNotification" />
+  <java-symbol type="string" name="notify_battery_fully_charged_title" />
+  <java-symbol type="string" name="notify_battery_fully_charged_text" />
+
 </resources>

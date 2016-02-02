@@ -100,5 +100,9 @@
     <!-- Slimseekbar -->
     <string name="default_string">Default</string>
 
+    <!-- Battery fully charged notification -->
+    <string name="notify_battery_fully_charged_title">Battery fully charged</string>
+    <string name="notify_battery_fully_charged_text">Disconnect your device from the charger to improve battery longevity.</string>
+
 </resources>
 
