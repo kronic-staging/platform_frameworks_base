@@ -3647,6 +3647,19 @@ public final class Settings {
         public static final String STATUS_BAR_CARRIER_LABEL_HIDE_LABEL = "status_bar_carrier_label_hide_label";
 
         /**
+         * Hide lockscreen date
+         * @hide
+         */
+        public static final String HIDE_LOCKSCREEN_DATE = "hide_lockscreen_date";
+
+        /**
+         * Hide lockscreen clock
+         * @hide
+         */
+        public static final String HIDE_LOCKSCREEN_CLOCK = "hide_lockscreen_clock";
+
+        /**
+         * enable custom lockscreen max notifications config
          * Hide the carrier label on the status bar when the notification icons will reach this number
          * 1: 1 notification icon (always)
          * 2: 2 notification icons
