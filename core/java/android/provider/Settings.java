@@ -3724,6 +3724,12 @@ public final class Settings {
          */
         public static final String HIDE_LOCKSCREEN_CLOCK = "hide_lockscreen_clock";
 
+        /**
+         * Hide lockscreen date
+         * @hide
+         */
+        public static final String HIDE_LOCKSCREEN_ALARM = "hide_lockscreen_alarm";
+
        /**
         * USB Data automatic unlock
         */
