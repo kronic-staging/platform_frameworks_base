@@ -221,6 +221,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("ime")) return R.string.quick_settings_ime_label;
 	else if (spec.equals("kill_app")) return R.string.qs_kill_app;
         else if (spec.equals("navigation_bar")) return R.string.quick_settings_smartbar;
+        else if (spec.equals("navigation_bar")) return R.string.quick_settings_navigation_bar;
         return 0;
     }
 

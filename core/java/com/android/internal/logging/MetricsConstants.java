@@ -262,7 +262,6 @@ public interface MetricsConstants {
     public static final int TUNER_DEMO_MODE_ON = 236;
     public static final int TUNER_BATTERY_PERCENTAGE = 237;
     public static final int FUELGAUGE_INACTIVE_APPS = 238;
-<<<<<<< HEAD
     public static final int OWLSNEST = 239;
     public static final int QS_LOCATION_DETAILS = 240;
     public static final int QS_HEADSUP = 241;
@@ -270,10 +269,7 @@ public interface MetricsConstants {
     public static final int QS_VOLUME = 243;
     public static final int QS_KERNEL = 244;
     public static final int QS_CAFFEINE = 245;
-=======
-    public static final int DIRTYTWEAKS = 239;
-    public static final int QS_NAVBAR_TOGGLE = 240;
->>>>>>> 4470509... Navigation Bar Tile
+    public static final int QS_NAVBAR_TOGGLE = 246;
 
     // Lock screen weather settings
     public static final int LOCKSCREEN_WEATHER_SETTINGS = 248;
