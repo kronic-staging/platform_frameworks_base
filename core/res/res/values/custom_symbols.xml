@@ -166,4 +166,7 @@
   <!-- vendor image -->
   <java-symbol type="string" name="system_error_vendorprint" />
 
+  <!-- google webview -->
+  <java-symbol type="string" name="config_alternateWebViewPackageName" />
+
 </resources>
