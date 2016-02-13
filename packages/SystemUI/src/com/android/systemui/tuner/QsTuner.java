@@ -218,6 +218,7 @@ public class QsTuner extends Fragment implements Callback {
         else if (spec.equals("themes")) return R.string.quick_settings_themes;
         else if (spec.equals("adb_network")) return R.string.quick_settings_adb_network;
         else if (spec.equals("caffeine")) return R.string.quick_settings_caffeine_label;
+        else if (spec.equals("ime")) return R.string.quick_settings_ime_label;
         return 0;
     }
 
@@ -476,6 +477,7 @@ public class QsTuner extends Fragment implements Callback {
 	    else if (mSpec.equals("themes")) return R.drawable.ic_qs_themes_on;
             else if (mSpec.equals("adb_network")) return R.drawable.ic_qs_network_adb_on;
             else if (mSpec.equals("caffeine")) return R.drawable.ic_qs_caffeine_on;
+            else if (mSpec.equals("ime")) return R.drawable.ic_qs_ime;
             return R.drawable.android;
         }
 

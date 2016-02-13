@@ -186,4 +186,8 @@
     <string name="accessibility_quick_settings_network_adb_on">ADB over network on.</string>
     <string name="accessibility_quick_settings_network_adb_changed_off">ADB over network turned off.</string>
     <string name="accessibility_quick_settings_network_adb_changed_on">ADB over network turned on.</string>
+
+    <!-- IME selector Tile -->
+    <string name="quick_settings_ime_label">IME</string>
+
 </resources>
