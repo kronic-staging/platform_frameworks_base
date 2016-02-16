@@ -1286,6 +1286,8 @@ public final class StreamConfigurationMap {
 
         StreamConfiguration[] configurations =
                 (dataspace == HAL_DATASPACE_DEPTH) ? mDepthConfigurations : mConfigurations;
+        StreamConfigurationDuration[] minFrameDuration =
+                (dataspace == HAL_DATASPACE_DEPTH) ? mDepthMinFrameDurations : mMinFrameDurations;
 
         for (StreamConfiguration config : configurations) {
             int fmt = config.getFormat();
@@ -1294,8 +1296,8 @@ public final class StreamConfigurationMap {
                     // Filter slow high-res output formats; include for
                     // highRes, remove for !highRes
                     long duration = 0;
-                    for (int i = 0; i < mMinFrameDurations.length; i++) {
-                        StreamConfigurationDuration d = mMinFrameDurations[i];
+                    for (int i = 0; i < minFrameDuration.length; i++) {
+                        StreamConfigurationDuration d = minFrameDuration[i];
                         if (d.getFormat() == fmt &&
                                 d.getWidth() == config.getSize().getWidth() &&
                                 d.getHeight() == config.getSize().getHeight()) {
