@@ -3598,6 +3598,12 @@ public final class Settings {
         public static final String STATUS_BAR_CUSTOM_HEADER = "status_bar_custom_header";
 
         /**
+         *  Enable flashlight notification
+         * @hide
+         */
+        public static final String FLASHLIGHT_NOTIFICATION = "flashlight_notification";
+
+        /**
          * header image package to use for daylight header - package name - null if default
          * @hide
          */
