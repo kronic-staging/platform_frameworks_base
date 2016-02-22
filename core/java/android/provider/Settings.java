@@ -4220,6 +4220,43 @@ public final class Settings {
          */
         public static final String QS_TRANSPARENT_HEADER = "qs_transparent_header";
 
+  	 /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_TEMP_COLOR = "lock_screen_weather_temp_color";
+
+ 	 /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_CON_COLOR = "lock_screen_weather_con_color";
+
+  	 /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_STAMP_COLOR = "lock_screen_weather_stamp_color";
+
+  	 /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_HUM_COLOR = "lock_screen_weather_hum_color";
+
+  	 /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_CITY_COLOR = "lock_screen_weather_city_color";
+
+  	 /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_WIND_COLOR = "lock_screen_weather_wind_color";
+
+
         /**
          * Whether to display app circle sidebar
          * @hide
@@ -4340,6 +4377,24 @@ public final class Settings {
          * @hide
          */
         public static final String LOCKSCREEN_ALARM_COLOR = "lockscreen_alarm_color";
+
+        /**
+         * Whether to colorize all weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_COLORIZE_ALL_ICONS = "lock_screen_weather_colorize_all_icons";
+
+        /**
+         * Color of the weather text on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_TEXT_COLOR = "lock_screen_weather_text_color";
+
+        /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_ICON_COLOR = "lock_screen_weather_icon_color";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
