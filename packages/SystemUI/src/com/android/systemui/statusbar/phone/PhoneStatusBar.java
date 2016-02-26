@@ -593,7 +593,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SHOW_FOURG);
+                    Settings.System.SHOW_FOURG),
                     false, this, UserHandle.USER_ALL);
             update();
         }
