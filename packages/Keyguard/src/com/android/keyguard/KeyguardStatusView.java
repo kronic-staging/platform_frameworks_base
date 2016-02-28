@@ -306,7 +306,6 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER_LOCATION, 1) == 1;
         boolean showTimestamp = Settings.System.getInt(resolver,
                 Settings.System.LOCK_SCREEN_SHOW_WEATHER_TIMESTAMP, 1) == 1;
-
         int clockColor = Settings.System.getInt(resolver,
                 Settings.System.LOCKSCREEN_CLOCK_COLOR, 0xFFFFFFFF);
         int clockDateColor = Settings.System.getInt(resolver,
@@ -315,7 +314,7 @@ public class KeyguardStatusView extends GridLayout implements
                 Settings.System.LOCKSCREEN_OWNER_INFO_COLOR, 0xFFFFFFFF);
         int alarmColor = Settings.System.getInt(resolver,
                 Settings.System.LOCKSCREEN_ALARM_COLOR, 0xFFFFFFFF);
-        int iconNameValue = Settings.System.getInt(resolver,
+        int lockClockFont = Settings.System.getIntForUser(resolver,
                 Settings.System.LOCK_SCREEN_WEATHER_CONDITION_ICON, 0);
         int primaryTextColor =
                 res.getColor(R.color.keyguard_default_primary_text_color);
