@@ -118,7 +118,7 @@
     <integer name="quick_settings_user_time_settings_tile_span">1</integer>
 
     <!-- The default tiles to display in QuickSettings -->
-    <string name="quick_settings_tiles_default" translatable="false"> adb_network,airplane,ambient_display,battery_saver,bt,brightness,cast,caffeine,cell,dnd,expanded_desktop,flashlight,headsup,hotspot,ime,inversion,kernel,location,music,nfc,owls_nest,reboot,rotation,screenoff,screenshot,sound,sync,themes,timeout,usb_tether,wifi
+    <string name="quick_settings_tiles_default" translatable="false"> adb_network,airplane,ambient_display,battery_saver,bt,brightness,cast,caffeine,cell,dnd,expanded_desktop,flashlight,headsup,hotspot,ime,inversion,kernel,kill_app,location,music,nfc,owls_nest,reboot,rotation,screenoff,screenshot,sound,sync,themes,timeout,usb_tether,wifi
     </string>
 
     <!-- The tiles to display in QuickSettings -->
