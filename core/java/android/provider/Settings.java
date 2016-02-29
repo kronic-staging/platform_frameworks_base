@@ -3799,6 +3799,24 @@ public final class Settings {
         public static final String PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE = "phone_blacklist_unknown_number_enabled";
 
         /**
+         * Whether to show the battery bar
+         * @hide
+         */
+        public static final String STATUSBAR_COLOR_SWITCH = "statusbar_color_switch";
+
+        /**
+         * Color of Battery Icon
+         * @hide
+         */
+        public static final String BATTERY_ICON_COLOR = "battery_icon_color";
+
+        /**
+         * Color of Battery Text
+         * @hide
+         */
+        public static final String BATTERY_TEXT_COLOR = "battery_text_color";
+
+        /**
          * Constants to be used for {@link PHONE_BLACKLIST_PRIVATE_NUMBER_MODE} and
          * {@link PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE}.
          * @hide

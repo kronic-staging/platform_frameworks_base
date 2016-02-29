@@ -68,6 +68,8 @@ public class KeyguardStatusBarView extends RelativeLayout {
 
     private int mSystemIconsSwitcherHiddenExpandedMargin;
     private Interpolator mFastOutSlowInInterpolator;
+   
+    public Boolean mColorSwitch = false ;
 
     public KeyguardStatusBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -242,22 +244,38 @@ public class KeyguardStatusBarView extends RelativeLayout {
     }
 
     public void updateNetworkIconColors() {
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
+	if(mColorSwitch) {
         mSignalCluster.setIgnoreSystemUITuner(true);
         mSignalCluster.setIconTint(
                 StatusBarColorHelper.getNetworkSignalColor(mContext),
                 StatusBarColorHelper.getNoSimColor(mContext),
                 StatusBarColorHelper.getAirplaneModeColor(mContext), 0f);
+	 }
     }
 
     public void updateNetworkSignalColor() {
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
+	if(mColorSwitch) {
         mSignalCluster.applyNetworkSignalTint(StatusBarColorHelper.getNetworkSignalColor(getContext()));
+	}
     }
 
     public void updateNoSimColor() {
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
+	if(mColorSwitch) {
         mSignalCluster.applyNoSimTint(StatusBarColorHelper.getNoSimColor(getContext()));
+	}
     }
 
     public void updateAirplaneModeColor() {
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
+	if(mColorSwitch) {
         mSignalCluster.applyAirplaneModeTint(StatusBarColorHelper.getAirplaneModeColor(getContext()));
+	}
     }
 }

@@ -40,7 +40,7 @@ import android.widget.TextView;
 
 import com.android.internal.statusbar.StatusBarIcon;
 import com.android.internal.util.darkkat.ColorHelper;
-import com.android.internal.util.darkkat.DeviceUtils;
+import com.android.internal.util.slim.DeviceUtils;
 import com.android.internal.util.darkkat.StatusBarColorHelper;
 import com.android.internal.util.NotificationColorUtil;
 import com.android.systemui.BatteryLevelTextView;
@@ -133,6 +133,7 @@ public class StatusBarIconController implements Tunable {
     private long mTransitionDeferringDuration;
 
     private Animator mColorTransitionAnimator;
+    public Boolean mColorSwitch = false ;
 
     private final ArraySet<String> mIconBlacklist = new ArraySet<>();
 
@@ -147,6 +148,8 @@ public class StatusBarIconController implements Tunable {
             PhoneStatusBar phoneStatusBar) {
         mContext = context;
         mPhoneStatusBar = phoneStatusBar;
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
         mNotificationColorUtil = NotificationColorUtil.getInstance(context);
         mSystemIconArea = (LinearLayout) statusBar.findViewById(R.id.system_icon_area);
         mStatusIcons = (LinearLayout) statusBar.findViewById(R.id.statusIcons);
@@ -171,12 +174,15 @@ public class StatusBarIconController implements Tunable {
         mHandler = new Handler();
         updateResources();
         TunerService.get(mContext).addTunable(this, ICON_BLACKLIST);
+	
         setUpCustomColors();
-
         mColorTransitionAnimator = createColorTransitionAnimator(0, 1);
     }
 
     private void setUpCustomColors() {
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
+	if (mColorSwitch) {
         mStatusIconsColor = StatusBarColorHelper.getStatusIconsColor(mContext);
         mStatusIconsColorOld = mStatusIconsColor;
         mStatusIconsColorTint = mStatusIconsColor;
@@ -190,7 +196,8 @@ public class StatusBarIconController implements Tunable {
         mAirplaneModeColorOld = mAirplaneModeColor;
         mAirplaneModeColorTint = mAirplaneModeColor;
         mNotificationIconsColor = StatusBarColorHelper.getNotificationIconsColor(mContext);
-        mNotificationIconsColorTint = mNotificationIconsColor;
+        mNotificationIconsColorTint = mNotificationIconsColor; 
+	}
     }
 
     @Override
@@ -226,6 +233,8 @@ public class StatusBarIconController implements Tunable {
 
     public void addSystemIcon(String slot, int index, int viewIndex, StatusBarIcon icon) {
         boolean blocked = mIconBlacklist.contains(slot);
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
         StatusBarIconView view = new StatusBarIconView(mContext, slot, null, blocked);
         view.set(icon);
         mStatusIcons.addView(view, viewIndex, new LinearLayout.LayoutParams(
@@ -235,17 +244,23 @@ public class StatusBarIconController implements Tunable {
         mStatusIconsKeyguard.addView(view, viewIndex, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, mIconSize));
         applyIconTint();
+	if(mColorSwitch) {
         updateStatusIconsKeyguardColor();
+	}
     }
 
     public void updateSystemIcon(String slot, int index, int viewIndex,
-            StatusBarIcon old, StatusBarIcon icon) {
+            StatusBarIcon old, StatusBarIcon icon) {	
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;
         StatusBarIconView view = (StatusBarIconView) mStatusIcons.getChildAt(viewIndex);
         view.set(icon);
         view = (StatusBarIconView) mStatusIconsKeyguard.getChildAt(viewIndex);
         view.set(icon);
         applyIconTint();
+        if(mColorSwitch) {
         updateStatusIconsKeyguardColor();
+	}
     }
 
     public void removeSystemIcon(String slot, int index, int viewIndex) {
@@ -457,6 +472,10 @@ public class StatusBarIconController implements Tunable {
 
     private void setIconTintInternal(float darkIntensity) {
         mDarkIntensity = darkIntensity;
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;	
+ 
+	if (mColorSwitch) {
         mStatusIconsColorTint = (int) ArgbEvaluator.getInstance().evaluate(darkIntensity,
                 mStatusIconsColor, StatusBarColorHelper.getStatusIconsColorDark(mContext));
         mNetworkSignalColorTint = (int) ArgbEvaluator.getInstance().evaluate(darkIntensity,
@@ -467,9 +486,12 @@ public class StatusBarIconController implements Tunable {
                 mAirplaneModeColor, StatusBarColorHelper.getAirplaneModeColorDark(mContext));
         mNotificationIconsColorTint = (int) ArgbEvaluator.getInstance().evaluate(darkIntensity,
                 mNotificationIconsColor, StatusBarColorHelper.getNotificationIconsColorDark(mContext));
-
+	} else {
+		 mIconTint = (int) ArgbEvaluator.getInstance().evaluate(darkIntensity,
+              mLightModeIconColorSingleTone, mDarkModeIconColorSingleTone);
+	}
         applyIconTint();
-    }
+    }  
 
     private void deferIconTintChange(float darkIntensity) {
         if (mTintChangePending && darkIntensity == mPendingDarkIntensity) {
@@ -480,26 +502,52 @@ public class StatusBarIconController implements Tunable {
     }
 
     private void applyIconTint() {
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;	
+	int batterytext = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.BATTERY_TEXT_COLOR, 0xFFFFFFFF);
+        int mBatteryIconColor = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.BATTERY_ICON_COLOR, 0xFFFFFFFF);
         for (int i = 0; i < mStatusIcons.getChildCount(); i++) {
             StatusBarIconView v = (StatusBarIconView) mStatusIcons.getChildAt(i);
+	    if (mColorSwitch) {
             v.setImageTintList(ColorStateList.valueOf(mStatusIconsColorTint));
-        }
-
         mSignalCluster.setIconTint(
                 mNetworkSignalColorTint, mNoSimColorTint, mAirplaneModeColorTint, mDarkIntensity);
         mMoreIcon.setImageTintList(ColorStateList.valueOf(mIconTint));
         mBatteryLevelTextView.setTextColor(mIconTint);
+	    } else {
+	    v.setImageTintList(ColorStateList.valueOf(mIconTint));
+        	}
+	}
+	if (mColorSwitch) {
+        mSignalCluster.setIconTint(
+                mNetworkSignalColorTint, mNoSimColorTint, mAirplaneModeColorTint, mDarkIntensity);
+        mMoreIcon.setImageTintList(ColorStateList.valueOf(mNotificationIconsColorTint));
+	mBatteryLevelTextView.setTextColor(batterytext);
+	mBatteryMeterView.setDarkIntensity(mBatteryIconColor);
+	} else {
+	mSignalCluster.setIconStockTint(mIconTint, mDarkIntensity);
+        mMoreIcon.setImageTintList(ColorStateList.valueOf(mIconTint));
+	mBatteryLevelTextView.setTextColor(mIconTint);
         mBatteryMeterView.setDarkIntensity(mDarkIntensity);
         applyNotificationIconsTint();
+	}
     }
 
     private void applyNotificationIconsTint() {
+	mColorSwitch =  Settings.System.getInt(mContext.getContentResolver(),
+				 Settings.System.STATUSBAR_COLOR_SWITCH, 0) == 1;	
         for (int i = 0; i < mNotificationIcons.getChildCount(); i++) {
             StatusBarIconView v = (StatusBarIconView) mNotificationIcons.getChildAt(i);
             boolean isPreL = Boolean.TRUE.equals(v.getTag(R.id.icon_is_pre_L));
             boolean colorize = !isPreL || isGrayscale(v);
             if (colorize) {
+		if (mColorSwitch) {
                 v.setImageTintList(ColorStateList.valueOf(mNotificationIconsColorTint));
+		} else {
+		v.setImageTintList(ColorStateList.valueOf(mIconTint));
+		}
             }
         }
     }
