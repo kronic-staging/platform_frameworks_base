@@ -690,11 +690,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             updateEmptyShadeView();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_AOSIP_LOGO_STYLE))) {
-                recreateStatusBar();
-                updateRowStates();
-                updateSpeedbump();
-                updateClearAll();
-                updateEmptyShadeView();
+                            recreateStatusBar();
+                            updateRowStates();
+                            updateSpeedbump();
+                            updateClearAll();
+                            updateEmptyShadeView();
             }
         }
          public void update() {
