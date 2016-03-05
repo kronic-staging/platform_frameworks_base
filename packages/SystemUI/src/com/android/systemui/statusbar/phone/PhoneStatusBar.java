@@ -641,6 +641,23 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             updateEmptyShadeView();
             }
         }
+         public void update() {
+            ContentResolver resolver = mContext.getContentResolver();
+            mAosipLogoStyle = Settings.System.getIntForUser(
+                    resolver, Settings.System.STATUS_BAR_AOSIP_LOGO_STYLE, 0,
+                    UserHandle.USER_CURRENT);
+            mAosipLogo = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_AOSIP_LOGO, 0, mCurrentUserId) == 1;
+            mAosipLogoColor = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_AOSIP_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+            if (mAosipLogoStyle == 0) {
+                AosipLogo = (ImageView) mStatusBarView.findViewById(R.id.left_Aosip_logo);
+            } else {
+                AosipLogo = (ImageView) mStatusBarView.findViewById(R.id.Aosip_logo);
+            }
+            showAosipLogo(mAosipLogo, mAosipLogoColor, mAosipLogoStyle);
+
+        }
     }
 
     private int mInteractingWindows;
@@ -3879,6 +3896,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (newTheme != null) mCurrentTheme = (ThemeConfig) newTheme.clone();
         if (updateStatusBar) {
             recreateStatusBar();
+            observer.update();
         } else {
             loadDimens();
         }
