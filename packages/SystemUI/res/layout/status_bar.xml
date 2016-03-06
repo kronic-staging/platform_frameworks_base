@@ -85,6 +85,8 @@
                     android:visibility="gone"
                     />
 
+            	<include layout="@layout/custom_icons" />
+
                 <com.android.systemui.statusbar.StatusBarIconView android:id="@+id/moreIcon"
                     android:layout_width="@dimen/status_bar_icon_size"
                     android:layout_height="match_parent"
