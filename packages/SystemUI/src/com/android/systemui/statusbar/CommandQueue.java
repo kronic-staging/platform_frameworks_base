@@ -16,6 +16,7 @@
 
 package com.android.systemui.statusbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -65,6 +66,7 @@ public class CommandQueue extends IStatusBar.Stub {
     private static final int MSG_ASSIST_DISCLOSURE          = 22 << MSG_SHIFT;
     private static final int MSG_START_ASSIST               = 23 << MSG_SHIFT;
     private static final int MSG_CAMERA_LAUNCH_GESTURE      = 24 << MSG_SHIFT;
+    private static final int MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD = 25 << MSG_SHIFT;
 
     public static final int FLAG_EXCLUDE_NONE = 0;
     public static final int FLAG_EXCLUDE_SEARCH_PANEL = 1 << 0;
@@ -112,6 +114,7 @@ public class CommandQueue extends IStatusBar.Stub {
         public void showAssistDisclosure();
         public void startAssist(Bundle args);
         public void onCameraLaunchGestureDetected(int source);
+        public void showCustomIntentAfterKeyguard(Intent intent);
     }
 
     public CommandQueue(Callbacks callbacks, StatusBarIconList list) {
@@ -312,6 +315,12 @@ public class CommandQueue extends IStatusBar.Stub {
         mPaused = false;
     }
 
+    public void showCustomIntentAfterKeyguard(Intent intent) {
+        mHandler.removeMessages(MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD);
+        Message m = mHandler.obtainMessage(MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD, 0, 0, intent);
+        m.sendToTarget();
+    }
+
     private final class H extends Handler {
         public void handleMessage(Message msg) {
             if (mPaused) {
@@ -416,6 +425,9 @@ public class CommandQueue extends IStatusBar.Stub {
                     break;
                 case MSG_CAMERA_LAUNCH_GESTURE:
                     mCallbacks.onCameraLaunchGestureDetected(msg.arg1);
+                    break;
+                case MSG_START_CUSTOM_INTENT_AFTER_KEYGUARD:
+                    mCallbacks.showCustomIntentAfterKeyguard((Intent) msg.obj);
                     break;
             }
         }

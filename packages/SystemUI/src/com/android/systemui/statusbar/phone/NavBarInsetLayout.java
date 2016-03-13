@@ -32,7 +32,7 @@ import android.view.WindowManager;
 import android.view.WindowManagerGlobal;
 import android.widget.FrameLayout;
 import com.android.systemui.R;
-import com.android.systemui.du.UserContentObserver;
+import com.android.systemui.cm.UserContentObserver;
 import com.android.systemui.statusbar.BaseStatusBar;
 import android.provider.Settings;
 
