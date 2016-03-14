@@ -85,9 +85,9 @@ import java.text.NumberFormat;
  * The view to manage the header area in the expanded status bar.
  */
 
-    static final String TAG = "StatusBarHeaderView";
-public class StatusBarHeaderView extends RelativeLayout implements View.OnClickListener, NextAlarmController.NextAlarmChangeCallback, EmergencyListener, StatusBarHeaderMachine.IStatusBarHeaderMachineObserver {
+public class StatusBarHeaderView extends RelativeLayout implements View.OnClickListener, NextAlarmController.NextAlarmChangeCallback, EmergencyListener, StatusBarHeaderMachine.IStatusBarHeaderMachineObserver, View.OnLongClickListener {
 
+    static final String TAG = "StatusBarHeaderView";
     private boolean mExpanded;
     private boolean mListening;
 
@@ -155,6 +155,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
     private boolean mShowingDetail;
     private boolean mDetailTransitioning;
 
+    private SettingsObserver mSettingsObserver;
     private ImageView mBackgroundImage;
     private Drawable mCurrentBackground;
     private float mLastHeight;
@@ -215,6 +216,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         mAlarmStatus = (TextView) findViewById(R.id.alarm_status);
         mAlarmStatus.setOnClickListener(this);
         mSignalCluster = findViewById(R.id.signal_cluster);
+        mSettingsObserver = new SettingsObserver(new Handler());
         mSystemIcons = (LinearLayout) findViewById(R.id.system_icons);
         mBackgroundImage = (ImageView) findViewById(R.id.background_image);
         mWeatherImage = (CurrentWeatherView) findViewById(R.id.current_weather_view);
