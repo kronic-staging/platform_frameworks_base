@@ -662,14 +662,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             mWeatherImage.showRefresh();
             forceRefreshWeatherSettings();
             return true;
-        }
-        return false;
-        mQSPanel.vibrateTile(20);
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
-        if (v == mSystemIconsSuperContainer) {
+        } else if (v == mSystemIconsSuperContainer) {
             startBatteryLongClickActivity();
         } else if (v == mClock) {
             startClockLongClickActivity();
@@ -677,6 +670,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             startDateLongClickActivity();
         }
         return false;
+
     }
 
     private void startSettingsActivity() {
