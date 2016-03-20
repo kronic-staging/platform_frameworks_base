@@ -21,6 +21,6 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:background="#CC000000"
-    android:src="@drawable/no_recent_apps_logo"
+    android:src="@drawable/aosip_empty_recents"
     android:visibility="gone" />
 
