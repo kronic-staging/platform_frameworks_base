@@ -138,6 +138,8 @@ import com.android.server.LocalServices;
 import com.android.server.policy.keyguard.KeyguardServiceDelegate;
 import com.android.server.policy.keyguard.KeyguardServiceDelegate.DrawnListener;
 
+import org.custom.internal.BootDexoptDialog;
+
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;

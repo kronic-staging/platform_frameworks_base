@@ -87,6 +87,7 @@
   <java-symbol type="drawable" name="ic_shortcut_action_screenshot" />
   <java-symbol type="drawable" name="ic_shortcut_action_search" />
 
+<<<<<<< HEAD
   <!-- AOSiP is starting -->
   <java-symbol type="string" name="android_start_title_pn" />
   <java-symbol type="string" name="android_upgrading_title_pn" />
@@ -165,4 +166,15 @@
 
   <!-- google webview -->
   <java-symbol type="string" name="config_alternateWebViewPackageName" />
+
+  <!-- Alpha -->
+  <java-symbol type="drawable" name="logo_aosip" />
+
+  <!-- Boot dexopt layout -->
+  <java-symbol type="drawable" name="dexopt_brand_logo" />
+  <java-symbol type="layout" name="boot_dexopt_layout" />
+  <java-symbol type="id" name="dexopt_icon" />
+  <java-symbol type="id" name="dexopt_message" />
+  <java-symbol type="id" name="dexopt_message_detail" />
+  <java-symbol type="id" name="dexopt_progress" />
 </resources>
