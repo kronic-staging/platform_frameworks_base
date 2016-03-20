@@ -417,10 +417,14 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
         if (mSignalCluster != null) {
             updateSignalClusterDetachment();
         }
+            mEmergencyCallsOnly.setVisibility(mExpanded && mShowEmergencyCallsOnly ? VISIBLE : GONE);
+            mBatteryLevel.setForceShown(mExpanded && mShowBatteryTextExpanded);
+            mBatteryLevel.setVisibility(mExpanded ? View.VISIBLE : View.GONE);
+            mWeatherImage.setVisibility((mExpanded && isShowWeatherHeader())? View.VISIBLE : View.INVISIBLE);
+        }
         mEmergencyCallsOnly.setVisibility(mExpanded && mShowEmergencyCallsOnly ? VISIBLE : GONE);
         mBatteryLevel.setForceShown(mExpanded && mShowBatteryTextExpanded);
         mBatteryLevel.setVisibility(View.VISIBLE);
-        mWeatherImage.setVisibility((mExpanded && isShowWeatherHeader())? View.VISIBLE : View.INVISIBLE);
         mSettingsContainer.findViewById(R.id.tuner_icon).setVisibility(
                 TunerService.isTunerEnabled(mContext) ? View.INVISIBLE : View.INVISIBLE);
         TunerService.setTunerEnabled(mContext, true);

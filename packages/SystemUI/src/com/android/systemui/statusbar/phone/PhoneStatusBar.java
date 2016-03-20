@@ -724,6 +724,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 updateClearAll();
                 updateEmptyShadeView();
 	   }
+            update();
         }
          public void update() {
             ContentResolver resolver = mContext.getContentResolver();
@@ -756,6 +757,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                  mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_2);
             }
             showmCustomlogo(mCustomlogo, mCustomlogoColor,  mCustomlogoStyle);
+             mHeader.settingsChanged();
 
         }
     }
