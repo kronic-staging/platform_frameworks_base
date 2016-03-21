@@ -429,7 +429,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
                 TunerService.isTunerEnabled(mContext) ? View.INVISIBLE : View.INVISIBLE);
         TunerService.setTunerEnabled(mContext, true);
             }
-        }
 
     private void updateSignalClusterDetachment() {
         boolean detached = mExpanded;
