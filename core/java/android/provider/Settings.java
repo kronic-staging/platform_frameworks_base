@@ -4110,6 +4110,7 @@ public final class Settings {
          */
         public static final String ALLOW_LIGHTS = "allow_lights";
 
+
         /**
          * Amount of apps to show in recents
          * @hide

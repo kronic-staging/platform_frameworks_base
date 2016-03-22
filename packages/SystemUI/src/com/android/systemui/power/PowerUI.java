@@ -22,11 +22,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.UserHandle;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.Slog;
@@ -56,6 +60,9 @@ public class PowerUI extends SystemUI {
     private final int[] mLowBatteryReminderLevels = new int[2];
 
     private long mScreenOffTime = -1;
+
+    // For filtering ACTION_POWER_DISCONNECTED on boot
+    boolean mIgnoreFirstPowerEvent = true;
 
     public void start() {
         mPowerManager = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
@@ -140,6 +147,8 @@ public class PowerUI extends SystemUI {
             filter.addAction(Intent.ACTION_USER_SWITCHED);
             filter.addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGING);
             filter.addAction(PowerManager.ACTION_POWER_SAVE_MODE_CHANGED);
+            filter.addAction(Intent.ACTION_POWER_CONNECTED);
+            filter.addAction(Intent.ACTION_POWER_DISCONNECTED);
             mContext.registerReceiver(this, filter, null, mHandler);
             updateSaverMode();
         }
@@ -164,6 +173,10 @@ public class PowerUI extends SystemUI {
 
                 final boolean plugged = mPlugType != 0;
                 final boolean oldPlugged = oldPlugType != 0;
+
+                if (mIgnoreFirstPowerEvent && plugged) {
+                    mIgnoreFirstPowerEvent = false;
+                }
 
                 int oldBucket = findBatteryLevelBucket(oldBatteryLevel);
                 int bucket = findBatteryLevelBucket(mBatteryLevel);
@@ -214,11 +227,42 @@ public class PowerUI extends SystemUI {
                 updateSaverMode();
             } else if (PowerManager.ACTION_POWER_SAVE_MODE_CHANGING.equals(action)) {
                 setSaverMode(intent.getBooleanExtra(PowerManager.EXTRA_POWER_SAVE_MODE, false));
+            } else if (Intent.ACTION_POWER_CONNECTED.equals(action)
+                    || Intent.ACTION_POWER_DISCONNECTED.equals(action)) {
+                final ContentResolver cr = mContext.getContentResolver();
+                if (mIgnoreFirstPowerEvent) {
+                    mIgnoreFirstPowerEvent = false;
+                } else {
+                    if (Settings.Global.getInt(cr,
+                            Settings.Global.CHARGING_SOUNDS_ENABLED, 1) == 1) {
+                        playPowerNotificationSound();
+                    }
+                }
             } else {
                 Slog.w(TAG, "unknown intent: " + intent);
             }
         }
     };
+
+    void playPowerNotificationSound() {
+        final ContentResolver cr = mContext.getContentResolver();
+        final String soundPath = Settings.Global.getString(cr,
+                Settings.Global.WIRELESS_CHARGING_STARTED_SOUND);
+        if (soundPath != null) {
+            Ringtone powerRingtone = RingtoneManager.getRingtone(mContext,
+                    Uri.parse("file://" + soundPath));
+            if (powerRingtone != null) {
+                powerRingtone.play();
+            }
+        }
+        if (Settings.System.getInt(cr,
+                Settings.System.HAPTIC_FEEDBACK_ENABLED, 1) == 1) {
+            Vibrator vibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
+            if (vibrator != null) {
+                vibrator.vibrate(75);
+            }
+        }
+    }
 
     public void dump(FileDescriptor fd, PrintWriter pw, String[] args) {
         pw.print("mLowBatteryAlertCloseLevel=");
