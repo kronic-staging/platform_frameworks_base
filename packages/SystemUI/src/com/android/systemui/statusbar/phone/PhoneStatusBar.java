@@ -3870,6 +3870,10 @@ public void showmCustomlogo(boolean show , int color , int style) {
         if (mState == StatusBarState.KEYGUARD) {
             // this will make sure the keyguard is showing
             showKeyguard();
+            // make sure to hide the notification icon area and system iconography
+            // to avoid overlap (CYNGNOS-2253)
+            mIconController.hideNotificationIconArea(false);
+            mIconController.hideSystemIconArea(false);
         }
     }
 
