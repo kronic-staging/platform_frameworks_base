@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="4dip"
-                    android:src="@drawable/custom"
+                    android:src="@drawable/aosip_custom"
                     android:scaleType="center"
                     android:visibility="gone"
                     />
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="4dip"
-                    android:src="@drawable/custom_1"
+                    android:src="@drawable/aosip_custom_1"
                     android:scaleType="center"
                     android:visibility="gone"
                     />
@@ -49,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="4dip"
-                    android:src="@drawable/custom_2"
+                    android:src="@drawable/aosip_custom_2"
                     android:scaleType="center"
                     android:visibility="gone"
                     />
