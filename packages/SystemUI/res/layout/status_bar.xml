@@ -114,6 +114,7 @@
                 android:layout_height="match_parent"
                 android:drawablePadding="3dp"
                 android:singleLine="false"
+                android:fontFamily="sans-serif-condensed"
                 android:gravity="right|center_vertical"
                 />
 
