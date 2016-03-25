@@ -789,9 +789,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 	       if ( mCustomlogoStyle == 0) {
                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom);
             } else if ( mCustomlogoStyle == 1) {
-			  mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_1);
+                mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_1);
 	    } else if ( mCustomlogoStyle == 2) {
-                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_2);
+                mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_2);
+	    } else if ( mCustomlogoStyle == 3) {
+                mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_3);
+	    } else if ( mCustomlogoStyle == 4) {
+                mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_4);
             }
             showmCustomlogo(mCustomlogo, mCustomlogoColor,  mCustomlogoStyle);
              mHeader.settingsChanged();
@@ -1324,6 +1328,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 		 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_1);
 	    } else if ( mCustomlogoStyle == 2) {
                  mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_2);
+	    } else if ( mCustomlogoStyle == 3) {
+                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_3);
+	    } else if ( mCustomlogoStyle == 4) {
+                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_4);
             } 
             showmCustomlogo(mCustomlogo, mCustomlogoColor,  mCustomlogoStyle);
 
@@ -3660,6 +3668,12 @@ public void showmCustomlogo(boolean show , int color , int style) {
 	    } else if ( style == 2) {
 		 mCLogo.setVisibility(View.GONE);
                  mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_2);
+	    } else if ( style == 3) {
+		 mCLogo.setVisibility(View.GONE);
+                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_3);
+	    } else if ( style == 4) {
+		 mCLogo.setVisibility(View.GONE);
+                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_4);
             } 
         mCLogo.setVisibility(View.VISIBLE);
 
