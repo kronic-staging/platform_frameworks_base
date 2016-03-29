@@ -63,6 +63,16 @@
                 android:layout_height="match_parent"
                 >
 
+                <ImageView
+                    android:id="@+id/left_aosip_logo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="4dip"
+                    android:src="@drawable/ic_status_bar_aosip_logo"
+                    android:scaleType="center"
+                    android:visibility="gone"
+                    />
+
                 <com.android.keyguard.CarrierText
                     android:id="@+id/status_bar_carrier_text"
                     android:layout_width="wrap_content"
@@ -74,16 +84,6 @@
                     android:textAppearance="@style/TextAppearance.StatusBar.Clock"
                     android:textColor="#ffffff"
                     android:singleLine="true" />
-
-                <ImageView
-                    android:id="@+id/left_aosip_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingEnd="4dip"
-                    android:src="@drawable/ic_status_bar_aosip_logo"
-                    android:scaleType="center"
-                    android:visibility="gone"
-                    />
 
             	<include layout="@layout/custom_icons" />
 
