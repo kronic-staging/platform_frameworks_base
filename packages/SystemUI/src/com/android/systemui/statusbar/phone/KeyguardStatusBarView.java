@@ -84,7 +84,7 @@ public class KeyguardStatusBarView extends RelativeLayout {
         mSignalCluster = (SignalClusterView) findViewById(R.id.signal_cluster);
         mMultiUserSwitch = (MultiUserSwitch) findViewById(R.id.multi_user_switch);
         mMultiUserAvatar = (ImageView) findViewById(R.id.multi_user_avatar);
-        mCarrierLabel = (TextView) findViewById(R.id.keyguard_carrier_text);
+        mCarrierLabel = (CarrierText) findViewById(R.id.keyguard_carrier_text);
         if (DuUtils.isWifiOnly(getContext())) {
             mCarrierLabel.setText("");
         }
