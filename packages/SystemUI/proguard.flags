@@ -1,3 +1,4 @@
+-dontwarn
 -keep class com.android.systemui.statusbar.policy.KeyButtonView {
   public float getDrawingAlpha();
   public void setDrawingAlpha(float);
@@ -16,3 +17,4 @@
 
 # org.dirtyunicorns.navigation trail-drawaing library fix
 -dontwarn com.google.common.annotations.VisibleForTesting
+-dontwarn android.support.v7**
