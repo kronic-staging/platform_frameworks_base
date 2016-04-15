@@ -235,59 +235,67 @@ class SaveImageInBackgroundTask extends AsyncTask<SaveImageInBackgroundData, Voi
 
             // Save
             OutputStream out = new FileOutputStream(mImageFilePath);
-            image.compress(Bitmap.CompressFormat.PNG, 100, out);
+            boolean success = image.compress(Bitmap.CompressFormat.PNG, 100, out);
             out.flush();
             out.close();
 
-            // Save the screenshot to the MediaStore
-            ContentValues values = new ContentValues();
-            ContentResolver resolver = context.getContentResolver();
-            values.put(MediaStore.Images.ImageColumns.DATA, mImageFilePath);
-            values.put(MediaStore.Images.ImageColumns.TITLE, mImageFileName);
-            values.put(MediaStore.Images.ImageColumns.DISPLAY_NAME, mImageFileName);
-            values.put(MediaStore.Images.ImageColumns.DATE_TAKEN, mImageTime);
-            values.put(MediaStore.Images.ImageColumns.DATE_ADDED, dateSeconds);
-            values.put(MediaStore.Images.ImageColumns.DATE_MODIFIED, dateSeconds);
-            values.put(MediaStore.Images.ImageColumns.MIME_TYPE, "image/png");
-            values.put(MediaStore.Images.ImageColumns.WIDTH, mImageWidth);
-            values.put(MediaStore.Images.ImageColumns.HEIGHT, mImageHeight);
-            values.put(MediaStore.Images.ImageColumns.SIZE, new File(mImageFilePath).length());
-            Uri uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            if (success) {
+                // Save the screenshot to the MediaStore
+                ContentValues values = new ContentValues();
+                ContentResolver resolver = context.getContentResolver();
+                values.put(MediaStore.Images.ImageColumns.DATA, mImageFilePath);
+                values.put(MediaStore.Images.ImageColumns.TITLE, mImageFileName);
+                values.put(MediaStore.Images.ImageColumns.DISPLAY_NAME, mImageFileName);
+                values.put(MediaStore.Images.ImageColumns.DATE_TAKEN, mImageTime);
+                values.put(MediaStore.Images.ImageColumns.DATE_ADDED, dateSeconds);
+                values.put(MediaStore.Images.ImageColumns.DATE_MODIFIED, dateSeconds);
+                values.put(MediaStore.Images.ImageColumns.MIME_TYPE, "image/png");
+                values.put(MediaStore.Images.ImageColumns.WIDTH, mImageWidth);
+                values.put(MediaStore.Images.ImageColumns.HEIGHT, mImageHeight);
+                values.put(MediaStore.Images.ImageColumns.SIZE, new File(mImageFilePath).length());
+                Uri uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
 
-            // Create a share intent
-            String subjectDate = DateFormat.getDateTimeInstance().format(new Date(mImageTime));
-            String subject = String.format(SCREENSHOT_SHARE_SUBJECT_TEMPLATE, subjectDate);
-            Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-            sharingIntent.setType("image/png");
-            sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
-            sharingIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+                // Create a share intent
+                String subjectDate = DateFormat.getDateTimeInstance().format(new Date(mImageTime));
+                String subject = String.format(SCREENSHOT_SHARE_SUBJECT_TEMPLATE, subjectDate);
+                Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                sharingIntent.setType("image/png");
+                sharingIntent.putExtra(Intent.EXTRA_STREAM, uri);
+                sharingIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
-            // Create a share action for the notification
-            final PendingIntent callback = PendingIntent.getBroadcast(context, 0,
-                    new Intent(context, GlobalScreenshot.TargetChosenReceiver.class)
-                            .putExtra(GlobalScreenshot.CANCEL_ID, mNotificationId),
-                    PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
-            Intent chooserIntent = Intent.createChooser(sharingIntent, null,
-                    callback.getIntentSender());
-            chooserIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    | Intent.FLAG_ACTIVITY_NEW_TASK);
-            mNotificationBuilder.addAction(R.drawable.ic_screenshot_share,
-                    r.getString(com.android.internal.R.string.share),
-                    PendingIntent.getActivity(context, 0, chooserIntent,
+                // Create a share action for the notification
+                final PendingIntent callback = PendingIntent.getBroadcast(context, 0,
+                        new Intent(context, GlobalScreenshot.TargetChosenReceiver.class)
+                        .putExtra(GlobalScreenshot.CANCEL_ID, mNotificationId),
+                        PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+                Intent chooserIntent = Intent.createChooser(sharingIntent, null,
+                        callback.getIntentSender());
+                chooserIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        | Intent.FLAG_ACTIVITY_NEW_TASK);
+                mNotificationBuilder.addAction(R.drawable.ic_screenshot_share,
+                        r.getString(com.android.internal.R.string.share),
+                        PendingIntent.getActivity(context, 0, chooserIntent,
                             PendingIntent.FLAG_CANCEL_CURRENT));
 
-            // Create a delete action for the notification
-            final PendingIntent deleteAction = PendingIntent.getBroadcast(context,  0,
-                    new Intent(context, GlobalScreenshot.DeleteScreenshotReceiver.class)
-                            .putExtra(GlobalScreenshot.CANCEL_ID, mNotificationId)
-                            .putExtra(GlobalScreenshot.SCREENSHOT_URI_ID, uri.toString()),
-                    PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
-            mNotificationBuilder.addAction(R.drawable.ic_screenshot_delete,
-                    r.getString(com.android.internal.R.string.delete), deleteAction);
+                // Create a delete action for the notification
+                final PendingIntent deleteAction = PendingIntent.getBroadcast(context,  0,
+                        new Intent(context, GlobalScreenshot.DeleteScreenshotReceiver.class)
+                        .putExtra(GlobalScreenshot.CANCEL_ID, mNotificationId)
+                        .putExtra(GlobalScreenshot.SCREENSHOT_URI_ID, uri.toString()),
+                        PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT);
+                mNotificationBuilder.addAction(R.drawable.ic_screenshot_delete,
+                        r.getString(com.android.internal.R.string.delete), deleteAction);
 
-            params[0].imageUri = uri;
-            params[0].image = null;
-            params[0].result = 0;
+                params[0].imageUri = uri;
+                params[0].image = null;
+                params[0].result = 0;
+            } else {
+                File file = new File(mImageFilePath);
+                file.delete();
+                params[0].clearImage();
+                params[0].result = 1;
+            }
+
         } catch (Exception e) {
             // IOException/UnsupportedOperationException may be thrown if external storage is not
             // mounted
