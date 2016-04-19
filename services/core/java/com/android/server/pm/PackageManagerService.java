@@ -17522,6 +17522,49 @@ public class PackageManagerService extends IPackageManager.Stub {
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * Makes sure resources and idmaps for themes that are applied are up to date.  This should only
+     * impact boots when something on /system has changed.
+     */
+    private void processAppliedThemes() {
+        ThemeConfig themeConfig = ThemeConfig.getBootTheme(mContext.getContentResolver());
+        if (themeConfig == null) return;
+
+        // gather up all the themes applied and then process them
+        Set<String> themesToProcess = new ArraySet<String>();
+        // process theme set for icons
+        if (themeConfig.getIconPackPkgName() != null) {
+            themesToProcess.add(themeConfig.getIconPackPkgName());
+        }
+        // process theme set for non-app specific overlays
+        if (themeConfig.getOverlayPkgName() != null) {
+            themesToProcess.add(themeConfig.getOverlayPkgName());
+        }
+        // process theme set for status bar
+        if (themeConfig.getOverlayForStatusBar() != null) {
+            themesToProcess.add(themeConfig.getOverlayForStatusBar());
+        }
+        // process theme set for navigation bar
+        if (themeConfig.getOverlayForNavBar() != null) {
+            themesToProcess.add(themeConfig.getOverlayForNavBar());
+        }
+        // process themes set for specific apps
+        Map<String, ThemeConfig.AppTheme> appThemesMap = themeConfig.getAppThemes();
+        for (String themePkgName : appThemesMap.keySet()) {
+            themesToProcess.add(themePkgName);
+        }
+
+        // now start the processing
+        for (String themePkgName : themesToProcess) {
+            processThemeResources(themePkgName);
+        }
+
+        updateIconMapping(themeConfig.getIconPackPkgName());
+    }
+
+    /**
+>>>>>>> 141aa4c... Themes: Update icon mapping on boot
      * The new resource cache structure does not flatten the paths for idmaps, so this method
      * checks for files that end with @idmap and assumes this indicates the older format and
      * removes all files and directories from the resource cache so that it can be rebuilt
