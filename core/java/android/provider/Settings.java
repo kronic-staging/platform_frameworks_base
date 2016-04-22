@@ -4410,6 +4410,12 @@ public final class Settings {
          */
         public static final String DASHBOARD_TILEVIEW_DIVIDERS = "dashboard_tileview_dividers";
 
+        /**
+         * whether to enable /disable showing charging current on lockscreen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_SHOW_CURRENT = "lock_screen_show_current";
+
          /**
          * Change the color of the lockscreen bottom camera shortcut
          *
