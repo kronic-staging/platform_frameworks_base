@@ -3604,8 +3604,20 @@ public final class Settings {
          */
         public static final String COLOR_PICKER_PALETTE = "color_picker_palette";
 
+	/**
+         * Navbar Button Color Switch
+         * @hide
+         */
+        public static final String NAVBAR_TINT_SWITCH = "navbar_tint_switch";
+        
+         /**
+         * Navbar Button Color
+         * @hide
+         */
+        public static final String NAVBAR_BUTTON_COLOR= "navbar_button_color";
+
         /**
-         *  Weather to use a custom label for the carrier name on the status bar
+         *  Whether to use a custom label for the carrier name on the status bar
          * @hide
          */
         public static final String STATUS_BAR_CARRIER_LABEL_USE_CUSTOM = "status_bar_carrier_label_use_custom";
