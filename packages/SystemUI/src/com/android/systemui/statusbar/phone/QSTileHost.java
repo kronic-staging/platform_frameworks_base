@@ -47,6 +47,7 @@ import com.android.systemui.qs.tiles.ImeTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.KernelAdiutorTile;
 import com.android.systemui.qs.tiles.LocationTile;
+import com.android.systemui.qs.tiles.PulseTile;
 import com.android.systemui.qs.tiles.MusicTile;
 import com.android.systemui.qs.tiles.KillAppTile;
 import com.android.systemui.qs.tiles.NavigationBarTile;
@@ -310,6 +311,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("volume")) return new VolumeTile(this);
         else if (tileSpec.equals("compass")) return new CompassTile(this);
 	else if (tileSpec.equals("pie")) return new PieTile(this);
+	else if (tileSpec.equals("pulse")) return new PulseTile(this);
         else if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(this,tileSpec);
         else throw new IllegalArgumentException("Bad tile spec: " + tileSpec);
     }
