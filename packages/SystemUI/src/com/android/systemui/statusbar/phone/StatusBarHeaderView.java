@@ -967,7 +967,7 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
             }
             mShowingDetail = showingDetail;
             if (showingDetail) {
-                mQsDetailHeaderTitle.setText(detail.getTitle());
+                mQsDetailHeaderTitle.setText(QSTile.getDetailAdapterTitle(getContext(), detail));
                 final Boolean toggleState = detail.getToggleState();
                 if (toggleState == null) {
                     mQsDetailHeaderSwitch.setVisibility(INVISIBLE);
