@@ -3861,6 +3861,12 @@ public final class Settings {
         public static final int BLACKLIST_DO_NOT_BLOCK = 0;
 
         /**
+         * Custom Pulse Widths
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_DIMEN = "pulse_custom_dimen";
+
+        /**
          * @hide
          */
         public static final int BLACKLIST_BLOCK = 1;
@@ -4622,7 +4628,7 @@ public final class Settings {
          */
         public static final String PA_PIE_EXPANDED_DESKTOP = "pa_pie_expanded_desktop";
 
-       // PIE COLORS EVERYWHERE! //
+       // PIE COLORS EVERYWHERE! //e15b9f924b5f2bb4fb38206f2e2ccc8744da718a
 
         /**
          * @hide
