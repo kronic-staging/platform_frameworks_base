@@ -93,6 +93,7 @@ public class KeyguardStatusBarView extends RelativeLayout {
         mFastOutSlowInInterpolator = AnimationUtils.loadInterpolator(getContext(),
                 android.R.interpolator.fast_out_slow_in);
         updateUserSwitcher();
+        updateVisibilities();
     }
 
     @Override
@@ -169,6 +170,7 @@ public class KeyguardStatusBarView extends RelativeLayout {
         if (animate) {
             animateNextLayoutChange();
         }
+        updateVisibilities();
         updateSystemIconsLayoutParams();
     }
 
