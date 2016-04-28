@@ -124,7 +124,7 @@ adb_network,airplane,ambient_display,battery_saver,bt,brightness,cast,caffeine,c
 
     <!-- The tiles to display in QuickSettings -->
     <string name="quick_settings_tiles" translatable="false">
-        wifi,bt,dnd,cell,airplane,rotation,flashlight,location,cast,themes,owls_nest
+        wifi,bt,dnd,cell,airplane,rotation,flashlight,location,cast,themes,owls_nest,navigation_bar
     </string>
 
     <!-- Whether or not the RSSI tile is capitalized or not. -->
