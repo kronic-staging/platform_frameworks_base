@@ -3829,6 +3829,12 @@ public final class Settings {
          */
         public static final String PULSE_EMPTY_BLOCK_SIZE = "pulse_empty_block_size";
         
+         /**
+         * Pulse Fudge Factor
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_FUDGE_FACTOR = "pulse_custom_fudge_factor";
+        
 	/**
          * Color of the status icons on the status bar, (dark mode)
          * @hide
