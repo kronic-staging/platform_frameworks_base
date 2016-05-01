@@ -572,6 +572,35 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(musicPackage, STORAGE_PERMISSIONS, userId);
             }
 
+            // Chromium Regular
+            PackageParser.Package chromiumPackageReg = getDefaultProviderAuthorityPackageLPr(
+                    "org.chromium.chrome", userId);
+            if (chromiumPackageReg != null) {
+                grantRuntimePermissionsLPw(chromiumPackageReg, CONTACTS_PERMISSIONS, userId);
+            }
+
+            // Chromium Other
+            PackageParser.Package chromiumPackageOther = getDefaultProviderAuthorityPackageLPr(
+                    "org.swe.atego.browser", userId);
+            if (chromiumPackageOther != null) {
+                grantRuntimePermissionsLPw(chromiumPackageOther, CONTACTS_PERMISSIONS, userId);
+            }
+
+            // SaberChrome
+            PackageParser.Package chromiumPackageSaber = getDefaultProviderAuthorityPackageLPr(
+                    "org.frap129.saberchrome.browser", userId);
+            if (chromiumPackageSaber != null) {
+                grantRuntimePermissionsLPw(chromiumPackageSaber, CONTACTS_PERMISSIONS, userId);
+            }
+            
+            // cLock
+            PackageParser.Package cLockPackage = getDefaultProviderAuthorityPackageLPr(
+                    "com.cyanogenmod.lockclock", userId);
+            if (cLockPackage != null) {
+                grantRuntimePermissionsLPw(cLockPackage, CALENDAR_PERMISSIONS, userId);
+		grantRuntimePermissionsLPw(cLockPackage, LOCATION_PERMISSIONS, userId);
+            }
+
             // Google Account
             PackageParser.Package googleaccountPackage = getDefaultProviderAuthorityPackageLPr(
                     "com.google.android.gsf.login", userId);
@@ -656,13 +685,6 @@ final class DefaultPermissionGrantPolicy {
                 grantRuntimePermissionsLPw(vendingPackage, LOCATION_PERMISSIONS, userId);
                 grantRuntimePermissionsLPw(vendingPackage, SMS_PERMISSIONS, userId);
             }
-
-            // Chromium Browser
-            PackageParser.Package chromiumPackage = getDefaultProviderAuthorityPackageLPr(
-                    "org.chromium.chrome", userId);
-            if (chromiumPackage != null) {
-                grantRuntimePermissionsLPw(chromiumPackage, CONTACTS_PERMISSIONS, userId);
-              }
 
             // Android Wear Home
             if (mService.hasSystemFeature(PackageManager.FEATURE_WATCH)) {
