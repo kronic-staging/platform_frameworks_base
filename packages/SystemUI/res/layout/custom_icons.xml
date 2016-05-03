@@ -71,5 +71,14 @@
                     android:scaleType="center"
                     android:visibility="gone"
                     />
+                <ImageView
+                    android:id="@+id/custom_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="4dip"
+                    android:src="@drawable/aosip_custom_5"
+                    android:scaleType="center"
+                    android:visibility="gone"
+                    />
 
 </LinearLayout>

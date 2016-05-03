@@ -783,6 +783,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_3);
 	    } else if ( mCustomlogoStyle == 4) {
                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_4);
+	    } else if ( mCustomlogoStyle == 5) {
+                mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_5);
             }
             showmCustomlogo(mCustomlogo, mCustomlogoColor,  mCustomlogoStyle);
              mHeader.settingsChanged();
@@ -1321,6 +1323,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                  mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_3);
 	    } else if ( mCustomlogoStyle == 4) {
                  mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_4);
+	    } else if ( mCustomlogoStyle == 5) {
+                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_5);
             } 
             showmCustomlogo(mCustomlogo, mCustomlogoColor,  mCustomlogoStyle);
 
@@ -3637,6 +3641,9 @@ public void showmCustomlogo(boolean show , int color , int style) {
 	    } else if ( style == 4) {
 		 mCLogo.setVisibility(View.GONE);
                  mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_4);
+	    } else if ( style == 5) {
+		 mCLogo.setVisibility(View.GONE);
+                 mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_5);
             } 
         mCLogo.setVisibility(View.VISIBLE);
 
