@@ -16,12 +16,9 @@
 
 package com.android.systemui.qs.tiles;
 
-import android.content.Context;
 import android.content.Intent;
 import android.provider.Settings;
-import android.provider.Settings.Secure;
 
-import com.android.systemui.qs.SecureSetting;
 import com.android.systemui.qs.QSTile;
 import com.android.systemui.R;
 
@@ -32,17 +29,8 @@ public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
 
     private static final Intent DISPLAY_SETTINGS = new Intent("android.settings.DISPLAY_SETTINGS");
 
-    private final SecureSetting mSetting;
-
     public AmbientDisplayTile(Host host) {
         super(host);
-
-        mSetting = new SecureSetting(mContext, mHandler, Secure.DOZE_ENABLED) {
-            @Override
-            protected void handleValueChanged(int value, boolean observedChange) {
-                handleRefreshState(value);
-            }
-        };
     }
 
     @Override
@@ -66,15 +54,18 @@ public class AmbientDisplayTile extends QSTile<QSTile.BooleanState> {
                 Settings.Secure.DOZE_ENABLED,
                 enabled ? 1 : 0);
     }
+    
+   private boolean isAmbientDisplayEnabled() {
+        return Settings.Secure.getInt(mContext.getContentResolver(),
+                Settings.Secure.DOZE_ENABLED, 1) == 1;
+    }
 
     @Override
     protected void handleUpdateState(BooleanState state, Object arg) {
-        final int value = arg instanceof Integer ? (Integer)arg : mSetting.getValue();
-        final boolean enable = value != 0;
-        state.value = enable;
+        state.value = isAmbientDisplayEnabled();
         state.visible = true;
         state.label = mContext.getString(R.string.quick_settings_ambient_display_label);
-        if (enable) {
+        if (state.value) {
             state.icon = ResourceIcon.get(R.drawable.ic_qs_ambientdisplay_on);
             state.contentDescription =  mContext.getString(
                     R.string.accessibility_quick_settings_ambient_display_on);
