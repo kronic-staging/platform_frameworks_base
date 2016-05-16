@@ -3817,24 +3817,6 @@ public final class Settings {
          */
         public static final String STATUS_BAR_STATUS_ICONS_COLOR = "status_bar_status_icons_status_color";
                         
-        /**
-         * Size of Filled bars
-         * @hide
-         */
-        public static final String PULSE_FILLED_BLOCK_SIZE = "pulse_filled_block_size";
-        
-         /**
-         * Size of Empty Spaces Between Horizontal Visualizer Bars
-         * @hide
-         */
-        public static final String PULSE_EMPTY_BLOCK_SIZE = "pulse_empty_block_size";
-        
-         /**
-         * Pulse Fudge Factor
-         * @hide
-         */
-        public static final String PULSE_CUSTOM_FUDGE_FACTOR = "pulse_custom_fudge_factor";
-        
 	/**
          * Color of the status icons on the status bar, (dark mode)
          * @hide
@@ -3900,7 +3882,7 @@ public final class Settings {
          * Custom Spacing Between Pulse Bars
          * @hide
          */
-        public static final String PULSE_CUSTOM_DIV = "pulse_custom_div";
+        public static final String PULSE_CUSTOM_DIV = "pulse_custom_div";]
 
         /**
          * @hide
@@ -7549,6 +7531,36 @@ public final class Settings {
          * @hide
          */
         public static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
+                
+        /**
+         * Custom Pulse Widths
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_DIMEN = "pulse_custom_dimen";
+                        
+        /**
+         * Custom Spacing Between Pulse Bars
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_DIV = "pulse_custom_div";
+        
+        /**
+         * Size of Filled bars
+         * @hide
+         */
+        public static final String PULSE_FILLED_BLOCK_SIZE = "pulse_filled_block_size";
+        
+         /**
+         * Size of Empty Spaces Between Horizontal Visualizer Bars
+         * @hide
+         */
+        public static final String PULSE_EMPTY_BLOCK_SIZE = "pulse_empty_block_size";
+        
+         /**
+         * Pulse Fudge Factor
+         * @hide
+         */
+        public static final String PULSE_CUSTOM_FUDGE_FACTOR = "pulse_custom_fudge_factor";
 
         /**
          * This are the settings to be backed up.
