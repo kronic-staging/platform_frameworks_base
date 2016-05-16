@@ -3787,6 +3787,21 @@ public final class Settings {
         public static final String PHONE_BLACKLIST_ENABLED = "phone_blacklist_enabled";
 
         /**
+         * Change quick settings tiles animation style
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_STYLE = "anim_tile_style";
+
+
+        /**
+         * Change quick settings tiles animation duration
+         *
+         * @hide
+         */
+        public static final String ANIM_TILE_DURATION = "anim_tile_duration";
+
+        /**
          * Whether a notification should be shown when a call/message is blocked
          * @hide
          */
