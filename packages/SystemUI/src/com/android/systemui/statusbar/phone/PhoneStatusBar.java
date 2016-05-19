@@ -2413,24 +2413,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     }
 
-    public void showClock(boolean show) {
-        if (mStatusBarView == null) return;
-        ContentResolver resolver = mContext.getContentResolver();
-        View clock = mStatusBarView.findViewById(R.id.clock);
-        View cclock = mStatusBarView.findViewById(R.id.center_clock);
-        if (mClockLocation == 0 && clock != null) {
-            clock.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
-        }
-        if (mClockLocation == 1 && cclock != null) {
-            cclock.setVisibility(show ? (mShowClock ? View.VISIBLE : View.GONE) : View.GONE);
-        }
-    }
-
-    public void setClockAndDateStatus(int width, int mode, boolean enabled) {
-        mClockLocation = mode;
-        mShowClock = enabled;
-	}
-
     private int adjustDisableFlags(int state) {
         if (!mLaunchTransitionFadingAway && !mKeyguardFadingAway
                 && (mExpandedVisible || mBouncerShowing || mWaitingForKeyguardExit)) {
