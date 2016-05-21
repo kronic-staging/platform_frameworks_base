@@ -4110,6 +4110,12 @@ public final class Settings {
          */
         public static final String ALLOW_LIGHTS = "allow_lights";
 
+        /**
+         * Whether to attach a queue to media notifications.
+         * Boolean setting.
+         * @hide
+         */
+        public static final String NOTIFICATION_PLAY_QUEUE = "notification_play_queue";
 
         /**
          * Amount of apps to show in recents
@@ -4893,7 +4899,8 @@ public final class Settings {
             STATUS_BAR_SHOW_BATTERY_PERCENT,
             STATUS_BAR_BATTERY_STYLE,
             NOTIFICATION_LIGHT_SCREEN_ON,
-            ALLOW_LIGHTS
+            ALLOW_LIGHTS,
+            NOTIFICATION_PLAY_QUEUE
         };
 
         /**

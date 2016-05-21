@@ -29,7 +29,7 @@ import android.view.ViewGroup;
 import com.android.systemui.R;
 import com.android.systemui.cm.UserContentObserver;
 
-import cyanogenmod.providers.CMSettings;
+import android.provider.Settings;
 
 public class MediaExpandableNotificationRow extends ExpandableNotificationRow {
 
@@ -205,7 +205,7 @@ public class MediaExpandableNotificationRow extends ExpandableNotificationRow {
         protected void observe() {
             super.observe();
             mContext.getContentResolver().registerContentObserver(
-                    CMSettings.System.getUriFor(CMSettings.System.NOTIFICATION_PLAY_QUEUE),
+                    Settings.System.getUriFor(Settings.System.NOTIFICATION_PLAY_QUEUE),
                     true, this);
         }
 
@@ -225,7 +225,7 @@ public class MediaExpandableNotificationRow extends ExpandableNotificationRow {
     }
 
     public static boolean isQueueEnabled(Context context) {
-        return CMSettings.System.getInt(context.getContentResolver(),
-                CMSettings.System.NOTIFICATION_PLAY_QUEUE, 1) == 1;
+        return Settings.System.getInt(context.getContentResolver(),
+                Settings.System.NOTIFICATION_PLAY_QUEUE, 1) == 1;
     }
 }
