@@ -40,4 +40,5 @@ interface IThemeService {
     void unregisterThemeProcessingListener(in IThemeProcessingListener listener);
 
     void rebuildResourceCache();
+
 }
