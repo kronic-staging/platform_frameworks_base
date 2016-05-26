@@ -656,7 +656,6 @@ public class StatusBarHeaderView extends RelativeLayout implements View.OnClickL
 
     @Override
     public boolean onLongClick(View v) {
-        vibrateheader(20);
         if (v == mWeatherDetailed) {
             showWeatherSettings();
             return true;
