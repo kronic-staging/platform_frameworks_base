@@ -60,12 +60,29 @@
                 sysui:ignoreRightInset="true"
                 android:importantForAccessibility="no"/>
 
-    <com.android.systemui.statusbar.AlphaOptimizedView
-                android:id="@+id/heads_up_scrim"
+    <FrameLayout android:id="@+id/scrimview"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:visibility="visible">
+        <com.android.systemui.statusbar.ScrimView
+                android:id="@+id/scrim_behind"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/heads_up_scrim_height"
-                android:background="@drawable/heads_up_scrim"
+                android:layout_height="match_parent"
                 android:importantForAccessibility="no"/>
+        <com.android.systemui.statusbar.AlphaOptimizedView
+            android:id="@+id/heads_up_scrim"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/heads_up_scrim_height"
+            android:background="@drawable/heads_up_scrim"
+            android:importantForAccessibility="no"/>
+        <com.android.systemui.statusbar.VisualizerView
+                android:id="@+id/visualizerview"
+                android:gravity="bottom"
+                android:layout_gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"/>
+    </FrameLayout>
 
     </com.android.systemui.statusbar.phone.NavBarInsetLayout>
 
