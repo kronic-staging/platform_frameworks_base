@@ -93,6 +93,9 @@
     <string name="quick_settings_kernel_adiutor_label">Kernel</string>
     <string name="quick_settings_caffeine_label">Caffeine</string>
     <string name="qs_kill_app">Kill App</string>
+    <string name="quick_settings_sound_ring">Ring</string>
+    <string name="quick_settings_sound_vibrate">Vibrate</string>
+    <string name="quick_settings_sound_dnd">Do not disturb</string>
 
     <!-- Content description of the KernelAdiutor tile in quick settings (not shown on the screen). [CHAR LIMIT=NONE] -->
     <string name="accessibility_quick_settings_kernel_adiutor">Kernel.</string>
