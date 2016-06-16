@@ -251,6 +251,7 @@
     <!-- Pie tile -->
     <string name="quick_settings_pie_label">Pie</string>
 
+
     <!-- Pulse Tile -->
     <string name="quick_settings_pulse_enabled">Pulse Enabled</string>
     <string name="quick_settings_pulse_disabled">No Visualizer</string>
