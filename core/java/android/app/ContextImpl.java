@@ -19,6 +19,8 @@ package android.app;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.util.Preconditions;
 
+import cyanogenmod.themes.ThemeManager;
+
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.ContentProvider;
@@ -41,7 +43,6 @@ import android.content.res.AssetManager;
 import android.content.res.CompatibilityInfo;
 import android.content.res.Configuration;
 import android.content.res.IThemeService;
-import android.content.res.ThemeManager;
 import android.content.res.Resources;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;

@@ -155,7 +155,6 @@ import android.content.pm.VerifierInfo;
 import android.content.res.Resources;
 import android.content.res.AssetManager;
 import android.content.res.ThemeConfig;
-import android.content.res.ThemeManager;
 import android.hardware.display.DisplayManager;
 import android.net.Uri;
 import android.os.Debug;
@@ -247,6 +246,8 @@ import com.android.server.pm.PermissionsState.PermissionState;
 import com.android.server.pm.Settings.DatabaseVersion;
 import com.android.server.pm.Settings.VersionInfo;
 import com.android.server.storage.DeviceStorageMonitorInternal;
+
+import cyanogenmod.themes.ThemeManager;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;

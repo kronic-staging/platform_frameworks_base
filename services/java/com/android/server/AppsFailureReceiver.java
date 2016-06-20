@@ -25,10 +25,11 @@ import android.content.pm.ThemeUtils;
 import android.content.res.ThemeChangeRequest;
 import android.content.res.ThemeChangeRequest.RequestType;
 import android.content.res.ThemeConfig;
-import android.content.res.ThemeManager;
 import android.os.SystemClock;
 
 import com.android.internal.R;
+
+import cyanogenmod.themes.ThemeManager;
 
 public class AppsFailureReceiver extends BroadcastReceiver {
 

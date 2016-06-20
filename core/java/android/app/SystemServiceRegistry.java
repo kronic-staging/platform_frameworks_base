@@ -37,9 +37,7 @@ import android.content.IRestrictionsManager;
 import android.content.RestrictionsManager;
 import android.content.pm.ILauncherApps;
 import android.content.pm.LauncherApps;
-import android.content.res.IThemeService;
 import android.content.res.Resources;
-import android.content.res.ThemeManager;
 import android.hardware.ConsumerIrManager;
 import android.hardware.ISerialManager;
 import android.hardware.SensorManager;
@@ -112,6 +110,8 @@ import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import com.android.internal.policy.PhoneLayoutInflater;
+
+import cyanogenmod.themes.ThemeManager;
 import android.view.WindowManager;
 import android.view.WindowManagerImpl;
 import android.view.accessibility.AccessibilityManager;
@@ -710,10 +710,7 @@ final class SystemServiceRegistry {
         registerService(Context.THEME_SERVICE, ThemeManager.class,
                 new CachedServiceFetcher<ThemeManager>() {
             public ThemeManager createService(ContextImpl ctx) {
-                IBinder b = ServiceManager.getService(Context.THEME_SERVICE);
-                IThemeService service = IThemeService.Stub.asInterface(b);
-                return new ThemeManager(ctx.getOuterContext(),
-                        service);
+                return ThemeManager.getInstance(ctx);
             }});
     }
 
