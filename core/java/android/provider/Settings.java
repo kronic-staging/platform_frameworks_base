@@ -3904,16 +3904,6 @@ public final class Settings {
         public static final String BATTERY_TEXT_COLOR = "battery_text_color";
 
         /**
-         * @hide
-         */
-        public static final String STATUSBAR_BATTERY_BAR_BATTERY_LOW_COLOR = "statusbar_battery_bar_battery_low_color";
-
-        /**
-         * @hide
-         */
-        public static final String STATUSBAR_BATTERY_BAR_THICKNESS = "statusbar_battery_bar_thickness";
-
-        /**
          * Constants to be used for {@link PHONE_BLACKLIST_PRIVATE_NUMBER_MODE} and
          * {@link PHONE_BLACKLIST_UNKNOWN_NUMBER_MODE}.
          * @hide
