@@ -3908,12 +3908,6 @@ public final class Settings {
          */
         public static final String HIDE_LOCKSCREEN_CLOCK = "hide_lockscreen_clock";
 
-        /**
-         * Hide lockscreen date
-         * @hide
-         */
-        public static final String HIDE_LOCKSCREEN_ALARM = "hide_lockscreen_alarm";
-
        /**
         * MediaScanner behavior on boot.
         * 0 = enabled
@@ -4091,6 +4085,30 @@ public final class Settings {
          * @hide
          */
         public static final String NETWORK_TRAFFIC_HIDEARROW = "network_traffic_hidearrow";
+
+        /**
+         * show lockscreen alarm
+         *  @hide
+         */
+        public static final String SHOW_LOCKSCREEN_ALARM = "show_lockscreen_alarm";
+
+        /**
+         * show lockscreen clock
+         *  @hide
+         */
+        public static final String SHOW_LOCKSCREEN_CLOCK = "show_lockscreen_clock";
+
+        /**
+         * show lockscreen date
+         *  @hide
+         */
+        public static final String SHOW_LOCKSCREEN_DATE = "show_lockscreen_date";
+
+        /**
+         * Change fonts for the system lockscreen clock widget
+         * @hide
+         */
+        public static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
 
         /**
          * Toast icon
