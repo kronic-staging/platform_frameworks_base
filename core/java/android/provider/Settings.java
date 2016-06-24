@@ -3846,13 +3846,19 @@ public final class Settings {
          * Hide lockscreen date
          * @hide
          */
-        public static final String HIDE_LOCKSCREEN_DATE = "hide_lockscreen_date";
+        public static final String SHOW_LOCKSCREEN_DATE = "show_lockscreen_date";
 
         /**
          * Hide lockscreen clock
          * @hide
          */
-        public static final String HIDE_LOCKSCREEN_CLOCK = "hide_lockscreen_clock";
+        public static final String SHOW_LOCKSCREEN_CLOCK = "show_lockscreen_clock";
+
+        /**
+         * Hide lockscreen date
+         * @hide
+         */
+        public static final String SHOW_LOCKSCREEN_ALARM = "show_lockscreen_alarm";
 
         /**
          * whether to enable or disable vibration on succesful fingerprint auth
@@ -3907,12 +3913,6 @@ public final class Settings {
          * @hide
          */
         public static final String DOZE_SCREEN_BRIGHTNESS = "doze_screen_brightness";
-
-        /**
-         * Hide lockscreen date
-         * @hide
-         */
-        public static final String HIDE_LOCKSCREEN_ALARM = "hide_lockscreen_alarm";
 
        /**
         * USB Data automatic unlock
@@ -4059,6 +4059,12 @@ public final class Settings {
          * @hide
          */
         public static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
+
+        /**
+         * Change fonts for the system lockscreen clock widget
+         * @hide
+         */
+        public static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
 
         /**
          * Whether or not volume button music controls should be enabled to seek media tracks
