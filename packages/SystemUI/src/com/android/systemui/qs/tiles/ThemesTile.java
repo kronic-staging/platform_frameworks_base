@@ -28,6 +28,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.ThemeChangeRequest;
 import android.content.res.ThemeChangeRequest.RequestType;
 import android.content.res.ThemeConfig;
+import android.content.res.ThemeManager;
 import android.database.Cursor;
 import android.os.RemoteException;
 import android.provider.ThemesContract;
@@ -41,8 +42,6 @@ import com.android.systemui.R;
 import com.android.systemui.qs.QSDetailItems.Item;
 import com.android.systemui.qs.QSDetailItemsList;
 import com.android.systemui.qs.QSTile;
-
-import cyanogenmod.themes.ThemeManager;
 
 import java.util.ArrayList;
 import java.util.List;
