@@ -210,33 +210,6 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private void handleShow() {
         awakenIfNecessary();
         prepareDialog();
-
-        // If we only have 1 item and it's a simple press action, just do this action.
-        if (mAdapter.getCount() == 1
-                && mAdapter.getItem(0) instanceof SinglePressAction
-                && !(mAdapter.getItem(0) instanceof LongPressAction)) {
-            ((SinglePressAction) mAdapter.getItem(0)).onPress();
-        } else {
-            WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
-            attrs.setTitle("GlobalActions");
-            attrs.windowAnimations = R.style.GlobalActionsAnimation;
-            attrs.gravity = Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL;
-
-            attrs.alpha = setPowerMenuAlpha();
-
-            mDialog.getWindow().setAttributes(attrs);
-            mDialog.show();
-            mDialog.getWindow().getDecorView().setSystemUiVisibility(View.STATUS_BAR_DISABLE_EXPAND);
-        }
-    }
-
-    private float setPowerMenuAlpha() {
-        int mPowerMenuAlpha = Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.TRANSPARENT_POWER_MENU, 100);
-        double dAlpha = mPowerMenuAlpha / 100.0;
-        float alpha = (float) dAlpha;
-        return alpha;
-
         WindowManager.LayoutParams attrs = mDialog.getWindow().getAttributes();
         attrs.setTitle("GlobalActions");
 
@@ -254,10 +227,19 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             attrs.windowAnimations = R.style.PowerMenuTopAnimation;
             attrs.gravity = Gravity.TOP|Gravity.CENTER_HORIZONTAL;
         }
+            attrs.alpha = setPowerMenuAlpha();
 
         mDialog.getWindow().setAttributes(attrs);
         mDialog.show();
         mDialog.getWindow().getDecorView().setSystemUiVisibility(View.STATUS_BAR_DISABLE_EXPAND);
+    }
+
+    private float setPowerMenuAlpha() {
+        int mPowerMenuAlpha = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TRANSPARENT_POWER_MENU, 100);
+        double dAlpha = mPowerMenuAlpha / 100.0;
+        float alpha = (float) dAlpha;
+        return alpha;
     }
 
     private int getPowermenuAnimations() {
