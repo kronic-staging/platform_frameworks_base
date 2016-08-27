@@ -7592,12 +7592,17 @@ public final class Settings {
          */
         public static final String QS_DATA_ADVANCED = "qs_data_advanced";
 
-
         /**
          * Count of small QS tiles.
          * @hide
          */
         public static final String QQS_COUNT = "sysui_qqs_count";
+
+        /**
+         * Whether the device should tint notification title.
+         * @hide
+         */
+        public static final String NOTIFICATION_TITLE_TINT = "notification_title_tint";
 
         /**
          * This are the settings to be backed up.
