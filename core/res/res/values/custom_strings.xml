@@ -35,4 +35,6 @@
     <string name="adb_both_active_notification_title">ADB over USB &amp; network enabled</string>
     <string name="adb_active_generic_notification_message">Touch to disable debugging.</string>
 
+    <string name="default_string">Default</string>
+
 </resources>
