@@ -3695,6 +3695,12 @@ public final class Settings {
         public static final String DISABLE_SUGGESTIONS = "disable_suggestions";
 
         /**
+         * Remove tile summaries in settings
+         * @hide
+         */
+        public static final String REMOVE_TILE_SUMMARY = "remove_tile_summary";
+
+        /**
          *  Enable flashlight notification
          * @hide
          */
