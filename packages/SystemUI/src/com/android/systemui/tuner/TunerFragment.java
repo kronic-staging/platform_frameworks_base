@@ -15,10 +15,7 @@
  */
 package com.android.systemui.tuner;
 
-<<<<<<< HEAD
 import android.content.ContentResolver;
-=======
->>>>>>> 861eda9... Repurpose SystemUI tuner for Flash ROM [1/2]
 import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,6 +26,9 @@ import android.support.v14.preference.SwitchPreference;
 import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.android.internal.logging.MetricsLogger;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
