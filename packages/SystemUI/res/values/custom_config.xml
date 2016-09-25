@@ -16,6 +16,11 @@
  -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- The default tiles to display in QuickSettings -->
+    <string name="quick_settings_tiles_extra" translatable="false">
+        hotspot,inversion,saver,work,cast,night,caffeine,heads_up,screenshot,reboot,sound,navigation_bar,music,adb_network,sync,expanded_desktop,usb_tether,ime,nfc,volume,owlsnest,androidauto
+    </string>
+
     <!-- The min animation duration for animating the fab in. -->
     <integer name="recents_animate_fab_enter_duration">225</integer>
     <!-- The animation delay for animating the fab in. This should roughly be the animation
