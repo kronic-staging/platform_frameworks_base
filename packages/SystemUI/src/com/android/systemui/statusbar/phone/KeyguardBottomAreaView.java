@@ -50,6 +50,7 @@ import android.os.RemoteException;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.service.media.CameraPrewarmService;
 import android.telecom.TelecomManager;
 import android.util.AttributeSet;
@@ -363,7 +364,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         if (mLeftAffordanceView == null) {
             return;
         }
-        boolean visible = mUserSetupComplete;
+        boolean visible = mUserSetupComplete && !hideShortcuts();
         if (visible) {
             if (isTargetCustom(Shortcuts.LEFT_SHORTCUT)) {
                 visible = !mShortcutHelper.isTargetEmpty(Shortcuts.LEFT_SHORTCUT);
@@ -379,7 +380,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
             // Things are not set up yet; reply hazy, ask again later
             return;
         }
-        boolean visible = mUserSetupComplete;
+        boolean visible = mUserSetupComplete && !hideShortcuts();
         if (visible) {
             if (isTargetCustom(Shortcuts.RIGHT_SHORTCUT)) {
                 visible = !mShortcutHelper.isTargetEmpty(Shortcuts.RIGHT_SHORTCUT);
@@ -396,7 +397,7 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
         Drawable drawable;
         String contentDescription;
         boolean shouldGrayScale = false;
-        boolean visible = mUserSetupComplete;
+        boolean visible = mUserSetupComplete && !hideShortcuts();
         if (mShortcutHelper.isTargetCustom(Shortcuts.LEFT_SHORTCUT)) {
             drawable = mShortcutHelper.getDrawableForTarget(Shortcuts.LEFT_SHORTCUT);
             shouldGrayScale = true;
@@ -918,5 +919,12 @@ public class KeyguardBottomAreaView extends FrameLayout implements View.OnClickL
     @Override
     public void onChange() {
         updateCustomShortcuts();
+    }
+
+    private boolean hideShortcuts() {
+        boolean secure = mLockPatternUtils.isSecure(KeyguardUpdateMonitor.getCurrentUser());
+        return secure && Settings.Secure.getIntForUser(
+                mContext.getContentResolver(), Settings.Secure.LOCK_QS_DISABLED, 0,
+                KeyguardUpdateMonitor.getCurrentUser()) != 0;
     }
 }
