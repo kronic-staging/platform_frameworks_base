@@ -389,6 +389,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // settings
     private QSPanel mQSPanel;
 
+    // show lte/4g switch
+    private boolean mShowLteFourGee;
+
     // top bar
     BaseStatusBarHeader mHeader;
     protected KeyguardStatusBarView mKeyguardStatusBar;
@@ -498,7 +501,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
            resolver.registerContentObserver(Settings.System.getUriFor(
                   Settings.System.QS_LAYOUT_COLUMNS),
                   false, this, UserHandle.USER_ALL);
-           update();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SHOW_LTE_FOURGEE),
+                    false, this, UserHandle.USER_ALL);
+            update();
         }
 
         @Override
@@ -517,7 +523,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                         mContext.getResources().getBoolean(R.bool.enable_ticker)
                         ? 1 : 1, UserHandle.USER_CURRENT) == 1;
                 initTickerView();
-            }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_ROWS_LANDSCAPE))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_COLUMNS_LANDSCAPE))) {
+                updateQSRowsColumnsLandscape();
+           }
             update();
         }
 
@@ -538,6 +549,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (mHeader != null) {
                 mHeader.updateSettings();
             }
+
+            boolean mShowLteFourGee = Settings.System.getIntForUser(resolver,
+                    Settings.System.SHOW_LTE_FOURGEE, 0, UserHandle.USER_CURRENT) == 1;
         }
     }
 
