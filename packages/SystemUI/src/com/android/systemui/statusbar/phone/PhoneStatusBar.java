@@ -422,6 +422,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // carrier label
     private TextView mCarrierLabel;
     private boolean mShowCarrierInPanel = false;
+    private int mShowCarrierLabel;
     boolean mExpandedVisible;
 
     private int mNavigationBarWindowState = WINDOW_STATE_SHOWING;
@@ -508,6 +509,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SHOW_LTE_FOURGEE),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_CARRIER),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -532,7 +536,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 || uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_COLUMNS_LANDSCAPE))) {
                 updateQSRowsColumnsLandscape();
-           }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_SHOW_CARRIER))) {
+                update();
+                updateCarrier();
+            }
             update();
         }
 
@@ -556,6 +564,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             boolean mShowLteFourGee = Settings.System.getIntForUser(resolver,
                     Settings.System.SHOW_LTE_FOURGEE, 0, UserHandle.USER_CURRENT) == 1;
+            mShowCarrierLabel = Settings.System.getIntForUser(resolver,
+                    Settings.System.STATUS_BAR_SHOW_CARRIER, 1, UserHandle.USER_CURRENT);
         }
     }
 
@@ -1118,6 +1128,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mCarrierLabel.setLayoutParams(mlp);
             }
         }
+
+        mCarrierLabel = (TextView) mStatusBarWindow.findViewById(R.id.statusbar_carrier_text);
+        if (mCarrierLabel != null) {
+            updateCarrier();
+        }
+
         mFlashlightController = new FlashlightController(mContext);
         mKeyguardBottomArea.setFlashlightController(mFlashlightController);
         mKeyguardBottomArea.setPhoneStatusBar(this);
@@ -2273,6 +2289,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
 
             mCarrierLabel.setVisibility(makeVisible ? View.VISIBLE : View.INVISIBLE);
+        }
+    }
+
+    private void updateCarrier() {
+        if (mCarrierLabel != null) {
+            if (mShowCarrierLabel == 2) {
+                mCarrierLabel.setVisibility(View.VISIBLE);
+            } else if (mShowCarrierLabel == 3) {
+                mCarrierLabel.setVisibility(View.VISIBLE);
+            } else {
+                mCarrierLabel.setVisibility(View.GONE);
+            }
         }
     }
 
@@ -4875,6 +4903,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateNotifications();
         checkBarModes();
         updateCarrierLabelVisibility();
+        updateCarrier();
         updateMediaMetaData(false, mState != StatusBarState.KEYGUARD);
         mKeyguardMonitor.notifyKeyguardState(mStatusBarKeyguardViewManager.isShowing(),
                 mStatusBarKeyguardViewManager.isSecure(),
