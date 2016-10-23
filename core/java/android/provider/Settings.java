@@ -7502,12 +7502,6 @@ public final class Settings {
                 "managed_profile_contact_remote_search";
 
         /**
-<<<<<<< HEAD
-         * Beginning of PureNexus Secure Settings Additions
-         * @hide
-         */
-
-        /**
          * Whether to display the ADB notification.
          * @hide
          */
@@ -7518,12 +7512,12 @@ public final class Settings {
          * @hide
          */
         public static final String ADB_PORT = "adb_port";
-=======
+
+        /**
          * Holds comma separated list of ordering of QS tiles.
          * @hide
          */
         public static final String QS_TILES = "sysui_qs_tiles";
->>>>>>> 0f62bfe8a1958c628a6667fece354a99dd183e96
 
         /**
          * Whether to use one tap tile action to enable or disable data 
