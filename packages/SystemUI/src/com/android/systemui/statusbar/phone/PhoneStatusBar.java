@@ -3621,7 +3621,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         repositionNavigationBar();
         updateRowStates();
-        mIconController.defineSlots();
         mScreenPinningRequest.onConfigurationChanged();
         mNetworkController.onConfigurationChanged();
     }
