@@ -190,9 +190,6 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
         mDarkModeIconColorSingleTone = context.getColor(R.color.dark_mode_icon_color_single_tone);
         mLightModeIconColorSingleTone = context.getColor(R.color.light_mode_icon_color_single_tone);
         mHandler = new Handler();
-        mClockController = new ClockController(statusBar, mNotificationIconAreaController, mHandler);
-        mCenterClockLayout = statusBar.findViewById(R.id.center_clock_layout);
-        defineSlots();
         loadDimens();
 
         mClock.setStatusBarIconController(this);
