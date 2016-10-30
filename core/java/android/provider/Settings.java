@@ -4025,6 +4025,12 @@ public final class Settings {
          */
         public static final String REMOVE_TILE_SUMMARY = "remove_tile_summary";
 
+          /**
+          * Whether to show the negociated charger current in the lockscreen
+          * @hide
+          */
+         public static final String LOCKSCREEN_CHARGING_CURRENT = "lockscreen_charging_current";
+ 
         /**
          * Dim amount control for power and reboot dialogs
          * @hide
