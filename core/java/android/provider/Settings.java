@@ -3992,6 +3992,12 @@ public final class Settings {
         public static final String KEYGUARD_SHOW_CLOCK = "keyguard_show_clock";
 
         /**
+         * Change the delay when a screenshot is taken
+         * @hide
+         */
+        public static final String SCREENSHOT_DELAY = "screenshot_delay";
+
+        /**
          * Whether to display qs tile titles in the qs panel
          * @hide
          */
