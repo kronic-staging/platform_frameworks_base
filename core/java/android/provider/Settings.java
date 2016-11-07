@@ -3850,7 +3850,7 @@ public final class Settings {
 
         /**
          * Whether to allow fullscreen screenshots or let the user select which area to screenshot
-         *
+         * @hide
          */
         public static final String SCREENSHOT_TYPE = "screenshot_type";
 
