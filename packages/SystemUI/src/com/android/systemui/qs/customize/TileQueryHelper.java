@@ -58,7 +58,7 @@ public class TileQueryHelper {
 
     private void addSystemTiles(final QSTileHost host) {
         String possible = mContext.getString(R.string.quick_settings_tiles_default)
-                + ",hotspot,inversion,saver,work,cast,night,caffeine,heads_up,screenshot,reboot,sound,navigation_bar,music,adb_network,sync,expanded_desktop,usb_tether,ime,nfc,volume,owlsnest";
+                + ",hotspot,inversion,saver,work,cast,night,caffeine,heads_up,screenshot,reboot,sound,navigation_bar,music,adb_network,sync,expanded_desktop,usb_tether,ime,nfc,volume,owlsnest,androidauto";
         String[] possibleTiles = possible.split(",");
         final Handler qsHandler = new Handler(host.getLooper());
         final Handler mainHandler = new Handler(Looper.getMainLooper());
