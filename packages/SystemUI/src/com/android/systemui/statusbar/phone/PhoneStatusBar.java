@@ -388,6 +388,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     View mExpandedContents;
     TextView mNotificationPanelDebugText;
 
+    private int mQsLayoutColumns;
+
     // settings
     private QSPanel mQSPanel;
 
@@ -497,7 +499,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_TICKER),
                     false, this, UserHandle.USER_ALL);
-            update();
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                  Settings.System.QS_LAYOUT_COLUMNS),
+                  false, this, UserHandle.USER_ALL);
+           update();
         }
 
         @Override
@@ -527,8 +532,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL,
                             UserHandle.USER_CURRENT);
             mAutomaticBrightness = mode != Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+
             mBrightnessControl = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+
+            mQsLayoutColumns = Settings.System.getIntForUser(resolver,
+                    Settings.System.QS_LAYOUT_COLUMNS, 3, mCurrentUserId);
+
+            if (mHeader != null) {
+                mHeader.updateSettings();
+            }
         }
     }
 
