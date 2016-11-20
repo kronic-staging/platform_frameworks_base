@@ -69,8 +69,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
 
     private ActivityStarter mActivityStarter;
     private NextAlarmController mNextAlarmController;
-    private SettingsButton mSettingsButton;
-    protected View mSettingsContainer;
+    private View mSettingsButton;
 
     private TextView mAlarmStatus;
     private View mAlarmStatusCollapsed;
@@ -140,8 +139,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
 
         mHeaderQsPanel = (QuickQSPanel) findViewById(R.id.quick_qs_panel);
 
-        mSettingsButton = (SettingsButton) findViewById(R.id.settings_button);
-        mSettingsContainer = findViewById(R.id.settings_button_container);
+        mSettingsButton = findViewById(R.id.settings_button);
         mSettingsButton.setOnClickListener(this);
         mSettingsButton.setOnLongClickListener(this);
 
@@ -291,8 +289,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
         updateDateTimePosition();
         mEmergencyOnly.setVisibility(mExpanded && (mShowEmergencyCallsOnly || mIsRoaming)
                 ? View.VISIBLE : View.INVISIBLE);
-//        mSettingsContainer.findViewById(R.id.tuner_icon).setVisibility(
-//                TunerService.isTunerEnabled(mContext) ? View.VISIBLE : View.INVISIBLE);
+        mSettingsButton.setVisibility(mExpanded ? View.VISIBLE : View.INVISIBLE);
         final boolean isDemo = UserManager.isDeviceInDemoMode(mContext);
         mMultiUserSwitch.setVisibility(mExpanded && mMultiUserSwitch.hasMultipleUsers() && !isDemo
                 ? View.VISIBLE : View.INVISIBLE);

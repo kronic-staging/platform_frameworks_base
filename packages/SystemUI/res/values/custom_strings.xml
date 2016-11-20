@@ -26,6 +26,11 @@
     <string name="lockscreen_choose_action_title">Choose action</string>
     <string name="lockscreen_none_target">None</string>
 
+    <!-- statusbar items tuner -->
+    <string name="statusbar_icons_blacklist">Status bar icons</string>
+    <!-- notification controls -->
+    <string name="tuner_notification_control">Power notification controls</string>
+
     <!-- Screenrecord Notification Ticker -->
     <string name="screenrecord_notif_ticker">Screen is being recorded</string>
 
