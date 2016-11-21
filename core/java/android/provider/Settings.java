@@ -3898,6 +3898,12 @@ public final class Settings {
          */
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
+         /**
+          * AE Settings activity custom summary text
+          * @hide
+          */
+        public static final String AOSIP_SETTINGS_SUMMARY= "aosip_settings_summary";
+
         /**
          * Enable/disable overwrite default value for ambient display
          * @hide
