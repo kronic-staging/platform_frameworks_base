@@ -2456,6 +2456,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
     };
 
+    private void updateQSRowsColumnsLandscape() {
+        Resources res = mContext.getResources();
+        if (res.getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            updateResources();
+        }
+    }
+
     /**
      * Refresh or remove lockscreen artwork from media metadata or the lockscreen wallpaper.
      */
