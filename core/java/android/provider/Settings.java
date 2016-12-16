@@ -4055,6 +4055,12 @@ public final class Settings {
         public static final String QS_ROWS_LANDSCAPE = "qs_rows_landscape";
 
         /**
+         * Dynamic Navbar Switch
+         * @hide
+         */
+        public static final String NAV_BAR_DYNAMIC = "nav_bar_dynamic";
+
+        /**
          * Number of columns used for the Quick Settings (landscape)
          *
          * @hide
