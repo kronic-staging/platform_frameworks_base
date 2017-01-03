@@ -1120,8 +1120,8 @@ final class DefaultPermissionGrantPolicy {
                         permissions.clear();
                     }
                     permissions.add(permissionGrant.name);
-                    grantRuntimePermissionsLPw(pkg, permissions, false,
-                            permissionGrant.fixed, userId);
+                    grantRuntimePermissionsLPw(pkg, permissions,
+                            permissionGrant.fixed, false, userId);
                 }
             }
         }
