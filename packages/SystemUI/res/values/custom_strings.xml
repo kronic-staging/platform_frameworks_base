@@ -163,4 +163,9 @@
     <!-- Recents Membar -->
     <string name="recents_free_ram">FREE RAM</string>
 
+    <!-- Ambient display and lift gesture Tile -->
+    <string name="quick_settings_doze_notifications_label">Doze notifications</string>
+    <string name="quick_settings_doze_notifications_user">Doze notifications</string>
+    <string name="quick_settings_doze_notifications_off">No doze notifications</string>
+
 </resources>
