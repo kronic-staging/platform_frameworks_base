@@ -4145,6 +4145,12 @@ public final class Settings {
         public static final String QS_LAYOUT_COLUMNS = "qs_layout_columns";
 
         /**
+         * Dashboard columns in settings
+         * @hide
+         */
+        public static final String DASHBOARD_COLUMNS = "dashboard_columns";
+
+        /**
          * Dynamic Navbar Switch
          * @hide
          */
