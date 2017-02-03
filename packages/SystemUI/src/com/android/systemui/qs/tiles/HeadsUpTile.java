@@ -50,7 +50,7 @@ public class HeadsUpTile extends QSTile<QSTile.BooleanState> {
     @Override
     public Intent getLongClickIntent() {
         return new Intent().setComponent(new ComponentName(
-            "com.android.settings", "com.android.settings.Settings$ConfigureNotificationSettingsActivity"));
+            "com.android.settings", "com.android.settings.Settings$HeadsUpSettingsActivity"));
     }
 
     @Override

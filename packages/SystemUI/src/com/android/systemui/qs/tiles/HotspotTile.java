@@ -98,7 +98,8 @@ public class HotspotTile extends QSTile<QSTile.AirplaneBooleanState> {
 
     @Override
     public Intent getLongClickIntent() {
-        return new Intent(TETHER_SETTINGS);
+        return new Intent().setComponent(new ComponentName(
+            "com.android.settings", "com.android.settings.Settings$TetherSettingsActivity"));
     }
 
     @Override
