@@ -121,6 +121,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     private boolean isEdit;
     private boolean isExpandIndicator;
     private boolean isMultiUserSwitch;
+    private boolean hasRunningServices;
     private boolean mDateTimeGroupCenter;
 
     // qs headers
@@ -252,7 +253,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
 
     private void updateDateTimeCenter() {
         mDateTimeGroupCenter = isDateTimeGroupCenter();
-        if (mDateTimeGroupCenter && (!(isSettingsIcon || isSettingsExpanded) || !isEdit || !isMultiUserSwitch || !isExpandIndicator)) {
+        if (mDateTimeGroupCenter && (!(isSettingsIcon || isSettingsExpanded) || !isEdit || !isMultiUserSwitch || !isExpandIndicator || hasRunningServices)) {
             mDateTimeAlarmGroup.setVisibility(View.GONE);
             mDateTimeAlarmCenterGroup.setVisibility(View.VISIBLE);
         } else {
@@ -341,6 +342,7 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     protected void updateVisibilities() {
         updateAlarmVisibilities();
         updateDateTimePosition();
+
         mEmergencyOnly.setVisibility(mExpanded && mShowEmergencyCallsOnly
                 ? View.VISIBLE : View.INVISIBLE);
         mSettingsButton.setVisibility(mExpanded ? View.VISIBLE : View.INVISIBLE);
@@ -358,7 +360,9 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
         isMultiUserSwitch = isMultiUserSwitchEnabled();
         mMultiUserSwitch.setVisibility(isMultiUserSwitch ? View.VISIBLE : View.GONE);
         mMultiUserAvatar.setVisibility(isMultiUserSwitch ? View.VISIBLE : View.GONE);
-        mRunningServicesButton.setVisibility(View.VISIBLE);
+        mRunningServicesButton.setVisibility(View.VISIBLE);      
+        hasRunningServices = !isRunningServicesDisabled();
+        mRunningServicesButton.setVisibility(hasRunningServices ? View.VISIBLE : View.GONE);
     }
 
     private void updateDateTimePosition() {
@@ -644,6 +648,11 @@ public class QuickStatusBarHeader extends BaseStatusBarHeader implements
     public boolean isDateTimeGroupCenter() {
         return Settings.System.getInt(mContext.getContentResolver(),
             Settings.System.QS_DATE_TIME_CENTER, 1) == 1;
+    }
+
+    public boolean isRunningServicesDisabled() {
+        return Settings.System.getInt(mContext.getContentResolver(),
+            Settings.System.QS_RUNNING_SERVICES_TOGGLE, 0) == 1;
     }
 
     private void setQsPanelOffset() {
