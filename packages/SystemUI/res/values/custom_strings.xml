@@ -229,4 +229,7 @@
     <string name="omnijaws_current_text">Now</string>
     <string name="omnijaws_package_not_available">OmniJaws not available</string>
 
+    <!-- volte icon switch -->
+    <string name="status_bar_volte">VoLTE</string>
+
 </resources>
