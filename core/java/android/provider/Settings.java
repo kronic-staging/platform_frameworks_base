@@ -4787,7 +4787,7 @@ public final class Settings {
          */
         public static final String NAVBAR_TINT_SWITCH = "navbar_tint_switch";
         
-         /**
+        /**
          * Navbar Button Color
          * @hide
          */
@@ -4827,6 +4827,31 @@ public final class Settings {
          * @hide
          */
         public static final String SCREEN_STATE_ON_DELAY = "screen_state_on_delay";
+
+ 	    /**
+         * Statusbar Custom logos
+         * @hide
+         */
+        public static final String SHOW_CUSTOM_LOGO = "show_custom_logo";
+
+	    /**
+         * Statusbar Custom logos Color
+         * @hide
+         */
+
+        public static final String CUSTOM_LOGO_COLOR = "custom_logo_color";
+
+ 	    /**
+         * Take your Pick 
+         * @hide
+         */
+        public static final String CUSTOM_LOGO_STYLE = "custom_logo_style";
+
+ 	    /**
+         * Position of Custom logo
+         * @hide
+         */
+        public static final String CUSTOM_LOGO_POSITION = "custom_logo_position";
 
         /**
          * Unlock keystore with fingerprint after reboot

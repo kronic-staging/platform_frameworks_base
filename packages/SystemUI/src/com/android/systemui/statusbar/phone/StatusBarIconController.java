@@ -25,6 +25,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Icon;
+import android.graphics.PorterDuff.Mode;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
@@ -90,6 +91,10 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
     private LinearLayout mCenterClockLayout;
     private NetworkTraffic mNetworkTraffic;
     private TextView mCarrierLabel;
+    private int mCustomLogo;
+    private ImageView mCLogo;
+    private ImageView mCLogoLeft;
+    private ImageView mCLogoRight;
 
     private TextView mWeather;
     private TextView mWeatherLeft;
@@ -158,6 +163,10 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
         mLeftClock = (Clock) statusBar.findViewById(R.id.left_clock);
         mNetworkTraffic = (NetworkTraffic) statusBar.findViewById(R.id.networkTraffic);
         mCarrierLabel = (TextView) statusBar.findViewById(R.id.statusbar_carrier_text);
+
+        mCLogo = (ImageView) statusBar.findViewById(R.id.custom_center);
+        mCLogoLeft = (ImageView) statusBar.findViewById(R.id.custom_left);
+        mCLogoRight = (ImageView) statusBar.findViewById(R.id.custom_right);
 
 	    mWeather = (TextView) statusBar.findViewById(R.id.weather_temp);
 	    mWeatherLeft = (TextView) statusBar.findViewById(R.id.left_weather_temp);
@@ -355,7 +364,14 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
                 Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE, 0,
                 UserHandle.USER_CURRENT) == 1) {
         animateHide(mWeatherLeft,animate);
-        } 
+        }
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_CUSTOM_LOGO, 0) == 1 &&
+           (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.CUSTOM_LOGO_POSITION,  0,
+                UserHandle.USER_CURRENT) == 0)) {
+           animateHide(mCLogoLeft, animate);
+        }
     }
 
     public void showSystemIconArea(boolean animate) {
@@ -365,6 +381,13 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
                 Settings.System.STATUS_BAR_WEATHER_TEMP_STYLE, 0,
                 UserHandle.USER_CURRENT) == 1) {
         animateShow(mWeatherLeft,animate);
+        }
+        if (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SHOW_CUSTOM_LOGO, 0) == 1 &&
+           (Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.CUSTOM_LOGO_POSITION,  0,
+                UserHandle.USER_CURRENT) == 0)) {
+        animateShow(mCLogoLeft, animate);
         }
     }
 
@@ -610,6 +633,17 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
                 UserHandle.USER_CURRENT) == 0xFFFFFFFF) {
         mWeather.setTextColor(mIconTint);
         mWeatherLeft.setTextColor(mIconTint);
+        mCustomLogo = Settings.System.getIntForUser(mContext.getContentResolver(),
+               Settings.System.CUSTOM_LOGO_STYLE, 0,
+               UserHandle.USER_CURRENT);
+	    int mCustomlogoColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+		       Settings.System.CUSTOM_LOGO_COLOR, 0xFFFFFFFF, 
+               UserHandle.USER_CURRENT);
+        if (mCustomlogoColor == 0xFFFFFFFF) { 
+         	    mCLogo.setImageTintList(ColorStateList.valueOf(mIconTint));
+         	    mCLogoLeft.setImageTintList(ColorStateList.valueOf(mIconTint));
+         	    mCLogoRight.setImageTintList(ColorStateList.valueOf(mIconTint));
+                }	
         }
     }
 

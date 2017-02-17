@@ -490,6 +490,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mBlurMixedColorFilter;
     private int mBlurLightColorFilter;
 
+    // Custom Logos
+    private boolean mCustomlogo;
+    private ImageView mCLogo;
+    private ImageView mCLogoright;
+    private ImageView mCLogoleft;
+    private int mCustomLogoPos;
+    private int mCustomlogoColor;	
+    private int mCustomlogoStyle;
+
     // RemoteInputView to be activated after unlock
     private View mPendingRemoteInputView;
     private View mPendingWorkRemoteInputView;
@@ -709,6 +718,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.QS_QUICKBAR_SCROLL_ENABLED),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SHOW_CUSTOM_LOGO),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_LOGO_COLOR),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_LOGO_STYLE),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_LOGO_POSITION),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -719,6 +740,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
+        ContentResolver resolver = mContext.getContentResolver();
             super.onChange(selfChange, uri);
             if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_TICKER))) {
@@ -759,12 +781,26 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NAV_BAR_DYNAMIC))) {
                     mNavigationController.updateNavbarOverlay(mContext.getResources());
-           } else if (uri.equals(Settings.System.getUriFor(
+            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NAVBAR_TINT_SWITCH))) {
                     mNavigationController.updateNavbarOverlay(mContext.getResources());
-           } else if (uri.equals(Settings.System.getUriFor(
+            } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NAVBAR_BUTTON_COLOR))) {
                     mNavigationController.updateNavbarOverlay(mContext.getResources());
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SHOW_CUSTOM_LOGO))
+                    || uri.equals(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_LOGO_STYLE))
+                    || uri.equals(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_LOGO_POSITION))) {
+            		mCustomlogo = Settings.System.getIntForUser(resolver,
+            		Settings.System.SHOW_CUSTOM_LOGO, 0, mCurrentUserId) == 1;
+            		mCustomlogoColor = Settings.System.getIntForUser(resolver,
+            		Settings.System.CUSTOM_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+                    mCustomLogoPos = Settings.System.getIntForUser(
+                    resolver, Settings.System.CUSTOM_LOGO_POSITION, 0,
+                    UserHandle.USER_CURRENT);
+                    showmCustomlogo(mCustomlogo,mCustomlogoColor,mCustomLogoPos);
             }
             update();
         }
@@ -799,6 +835,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             mBrightnessControl = Settings.System.getInt(
                     resolver, Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1;
+
+            mCustomlogoStyle = Settings.System.getIntForUser(
+            resolver, Settings.System.CUSTOM_LOGO_STYLE, 0,
+            UserHandle.USER_CURRENT);
+            mCustomlogo = Settings.System.getIntForUser(resolver,
+            Settings.System.SHOW_CUSTOM_LOGO, 0, mCurrentUserId) == 1;
+            mCustomlogoColor = Settings.System.getIntForUser(resolver,
+            Settings.System.CUSTOM_LOGO_COLOR, 0xFFFFFFFF, mCurrentUserId);
+            mCustomLogoPos = Settings.System.getIntForUser(
+                    resolver, Settings.System.CUSTOM_LOGO_POSITION, 0,
+                    UserHandle.USER_CURRENT);
+            mCLogo = (ImageView) mStatusBarView.findViewById(R.id.custom_center);
+            mCLogoright = (ImageView) mStatusBarView.findViewById(R.id.custom_right);
+            mCLogoleft = (ImageView) mStatusBarView.findViewById(R.id.custom_left);
+	        showmCustomlogo(mCustomlogo,mCustomlogoColor,mCustomLogoPos);
 
             mQsLayoutColumns = Settings.System.getIntForUser(resolver,
                     Settings.System.QS_LAYOUT_COLUMNS, 3, mCurrentUserId);
@@ -4610,6 +4661,57 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
             }
         }, cancelAction, afterKeyguardGone);
     }
+
+    public void showmCustomlogo(boolean show,int color,int pos) { 
+        if (!show) {
+            mCLogoleft.setVisibility(View.GONE);
+            mCLogoright.setVisibility(View.GONE);
+            return;
+        }
+        Drawable d = null;
+        int style = mCustomlogoStyle;
+		if ( style == 0) {
+        d = mContext.getResources().getDrawable(R.drawable.ic_status_bar_kronic_logo);
+		} else if ( style == 1) {
+        d = mContext.getResources().getDrawable(R.drawable.ic_status_bar_kronic2);
+		} else if ( style == 2) {
+        d = mContext.getResources().getDrawable(R.drawable.ic_status_bar_kronic3);
+		} else if ( style == 3) {
+        d = mContext.getResources().getDrawable(R.drawable.ic_status_bar_khloe);
+		} else if ( style == 4) {
+        d = mContext.getResources().getDrawable(R.drawable.ic_settings_illusion);
+		} else if ( style == 5) {
+        d = mContext.getResources().getDrawable(R.drawable.ic_status_bar_rrowl);
+		}
+	    mCLogo.setImageDrawable(null);
+	    mCLogoright.setImageDrawable(null);
+	    mCLogoleft.setImageDrawable(null);
+	    mCLogo.setImageDrawable(d);
+	    mCLogoright.setImageDrawable(d);
+	    mCLogoleft.setImageDrawable(d);
+		if (color != 0xFFFFFFFF) {
+		mCLogo.setColorFilter(color, Mode.MULTIPLY);
+		mCLogoleft.setColorFilter(color, Mode.MULTIPLY);
+		mCLogoright.setColorFilter(color, Mode.MULTIPLY);
+		} else {
+		mCLogo.clearColorFilter();
+		mCLogoleft.clearColorFilter();
+		mCLogoright.clearColorFilter();
+		}
+        if (pos == 0) {
+            mCLogoright.setVisibility(View.GONE);
+            mCLogoleft.setVisibility(View.VISIBLE);
+            mCLogo.setVisibility(View.GONE);
+        } else if (pos == 1) {
+            mCLogo.setVisibility(View.VISIBLE);
+            mCLogoleft.setVisibility(View.GONE);
+            mCLogoright.setVisibility(View.GONE);
+        } else if (pos == 2) {
+            mCLogoright.setVisibility(View.VISIBLE);
+            mCLogo.setVisibility(View.GONE);
+            mCLogoleft.setVisibility(View.GONE);
+        }
+   }
 
     private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
         @Override
