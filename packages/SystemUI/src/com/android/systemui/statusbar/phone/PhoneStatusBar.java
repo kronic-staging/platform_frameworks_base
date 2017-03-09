@@ -65,6 +65,7 @@ import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
