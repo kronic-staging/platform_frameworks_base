@@ -4902,7 +4902,6 @@ public final class Settings {
          */
         public static final String RECENT_CARD_BG_COLOR = "recent_card_bg_color";
 
-
         /**
          * Custom icon pack name to use for Slim Recents
          * @hide
@@ -4920,6 +4919,12 @@ public final class Settings {
          * @hide
          */
         public static final String STATUS_BAR_SHOW_WEATHER_TEMP = "status_bar_show_weather_temp";
+
+        /**
+         * Whether to display roaming indicator for roaming signal connection
+         * @hide
+         */
+        public static final String ROAMING_INDICATOR_ICON = "roaming_indicator_icon";
 
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
