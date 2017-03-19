@@ -2109,6 +2109,12 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
         }
     }
 
+    void setTickerTint(int color) {
+        if (mTicker != null) {
+            mTicker.setDefaultColor(color);
+        }
+    }
+
     public int getStatusBarHeight() {
         if (mNaturalBarHeight < 0) {
             final Resources res = mContext.getResources();
