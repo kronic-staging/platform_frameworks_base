@@ -633,6 +633,7 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
                 UserHandle.USER_CURRENT) == 0xFFFFFFFF) {
         mWeather.setTextColor(mIconTint);
         mWeatherLeft.setTextColor(mIconTint);
+        mPhoneStatusBar.setTickerTint(mIconTint);
         mCustomLogo = Settings.System.getIntForUser(mContext.getContentResolver(),
                Settings.System.CUSTOM_LOGO_STYLE, 0,
                UserHandle.USER_CURRENT);
