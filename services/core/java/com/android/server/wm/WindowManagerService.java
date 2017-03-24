@@ -206,6 +206,7 @@ import static android.view.WindowManager.LayoutParams.TYPE_NAVIGATION_BAR;
 import static android.view.WindowManager.LayoutParams.TYPE_PHONE;
 import static android.view.WindowManager.LayoutParams.TYPE_PRIVATE_PRESENTATION;
 import static android.view.WindowManager.LayoutParams.TYPE_QS_DIALOG;
+import static android.view.WindowManager.LayoutParams.TYPE_SLIM_RECENTS;
 import static android.view.WindowManager.LayoutParams.TYPE_STATUS_BAR;
 import static android.view.WindowManager.LayoutParams.TYPE_TOAST;
 import static android.view.WindowManager.LayoutParams.TYPE_VOICE_INTERACTION;
@@ -1875,6 +1876,7 @@ public class WindowManagerService extends IWindowManager.Stub
             case TYPE_NAVIGATION_BAR:
             case TYPE_INPUT_METHOD_DIALOG:
             case TYPE_PHONE:
+            case TYPE_SLIM_RECENTS:
                 return true;
         }
         return false;
