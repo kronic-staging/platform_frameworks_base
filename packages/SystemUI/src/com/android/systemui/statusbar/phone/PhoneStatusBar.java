@@ -520,8 +520,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // the tracker view
     int mTrackingPosition; // the position of the top of the tracking view.
 
-    // ticker
-    private boolean mTickerEnabled;
+    // status bar notification ticker
+    private int mTickerEnabled;
     private Ticker mTicker;
     private View mTickerView;
     private boolean mTicking;
@@ -748,7 +748,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mTickerEnabled = Settings.System.getIntForUser(
                         mContext.getContentResolver(),
                         Settings.System.STATUS_BAR_SHOW_TICKER,
-                        0, UserHandle.USER_CURRENT) == 1;
+                        0, UserHandle.USER_CURRENT);
                 initTickerView();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_ROWS_PORTRAIT))
@@ -1165,8 +1165,29 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (DEBUG_MEDIA) Log.v(TAG, "DEBUG_MEDIA: onMetadataChanged: " + metadata);
             mMediaMetadata = metadata;
             updateMediaMetaData(true, true);
+            if (mTickerEnabled == 2) {
+                tickTrackInfo();
+            }
         }
     };
+
+    private void tickTrackInfo() {
+        ArrayList<Entry> activeNotifications = mNotificationData.getActiveNotifications();
+        int N = activeNotifications.size();
+        if (PlaybackState.STATE_PLAYING ==
+                getMediaControllerPlaybackState(mMediaController)
+                || PlaybackState.STATE_BUFFERING ==
+                getMediaControllerPlaybackState(mMediaController)) {
+            final String pkg = mMediaController.getPackageName();
+            for (int i = 0; i < N; i++) {
+                final Entry entry = activeNotifications.get(i);
+                if (entry.notification.getPackageName().equals(pkg)) {
+                    tick(entry.notification, true, true, mMediaMetadata);
+                    break;
+                }
+            }
+        }
+    }
 
     private final OnChildLocationsChangedListener mOnChildLocationsChangedListener =
             new OnChildLocationsChangedListener() {
@@ -1547,7 +1568,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mKeyguardBottomArea.setKeyguardIndicationController(mKeyguardIndicationController);
         mCenterClock = (TextView) mStatusBarWindow.findViewById(R.id.center_clock);
         mTickerEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
-                    Settings.System.STATUS_BAR_SHOW_TICKER, 0, UserHandle.USER_CURRENT) == 1;
+                Settings.System.STATUS_BAR_SHOW_TICKER,
+                0, UserHandle.USER_CURRENT);
         initTickerView();
 
         // set the inital view visibility
@@ -2103,7 +2125,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
     }
 
     private void initTickerView() {
-        if (mTickerEnabled && (mTicker == null || mTickerView == null)) {
+        if (mTickerEnabled != 0 && (mTicker == null || mTickerView == null)) {
             final ViewStub tickerStub = (ViewStub) mStatusBarView.findViewById(R.id.ticker_stub);
             if (tickerStub != null) {
                 mTickerView = tickerStub.inflate();
@@ -2112,7 +2134,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
                 TickerView tickerView = (TickerView) mStatusBarView.findViewById(R.id.tickerText);
                 tickerView.mTicker = mTicker;
             } else {
-                mTickerEnabled = false;
+                mTickerEnabled = 0;
             }
         }
     }
@@ -2393,7 +2415,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
                 }
             }
         } else {
-            tick(notification, true);
+            tick(notification, true, false, null);
         }
         addNotificationViews(shadeEntry, ranking);
         // Recalculate the position of the sliding windows and the titles.
@@ -2492,7 +2514,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
 
         if (old != null) {
             // Cancel the ticker if it's still running
-            if (mTickerEnabled) {
+            if (mTickerEnabled != 0) {
                 mTicker.removeEntry(old);
             }
             if (CLOSE_PANEL_WHEN_EMPTIED && !hasActiveNotifications()
@@ -4259,8 +4281,8 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
     }
 
     @Override
-    protected void tick(StatusBarNotification n, boolean firstTime) {
-        if (!mTickerEnabled) return;
+    protected void tick(StatusBarNotification n, boolean firstTime, boolean isMusic, MediaMetadata metaMediaData) {
+        if (mTickerEnabled == 0) return;
 
         // no ticking in lights-out mode
         if (!areLightsOn()) return;
@@ -4275,11 +4297,11 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
         // until status bar window is attached to the window manager,
         // because...  well, what's the point otherwise?  And trying to
         // run a ticker without being attached will crash!
-        if (n.getNotification().tickerText != null && mStatusBarWindow != null
+        if ((!isMusic ? (n.getNotification().tickerText != null) : (metaMediaData != null)) && mStatusBarWindow != null
                 && mStatusBarWindow.getWindowToken() != null) {
             if (0 == (mDisabled1 & (StatusBarManager.DISABLE_NOTIFICATION_ICONS
                     | StatusBarManager.DISABLE_NOTIFICATION_TICKER))) {
-                mTicker.addEntry(n);
+                mTicker.addEntry(n, isMusic, metaMediaData);
             }
         }
     }
@@ -4287,14 +4309,14 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
     private class MyTicker extends Ticker {
         MyTicker(Context context, View sb) {
             super(context, sb);
-            if (!mTickerEnabled) {
-                Log.w(TAG, "MyTicker instantiated with mTickerEnabled=false", new Throwable());
+            if (mTickerEnabled == 0) {
+                Log.w(TAG, "MyTicker instantiated with mTickerEnabled=0", new Throwable());
             }
         }
 
         @Override
         public void tickerStarting() {
-            if (!mTickerEnabled) return;
+            if (mTickerEnabled == 0) return;
             mTicking = true;
             mStatusBarContents.setVisibility(View.GONE);
             mStatusBarContents.startAnimation(loadAnim(true, null));
@@ -4308,7 +4330,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
 
         @Override
         public void tickerDone() {
-            if (!mTickerEnabled) return;
+            if (mTickerEnabled == 0) return;
             mStatusBarContents.setVisibility(View.VISIBLE);
             mStatusBarContents.startAnimation(loadAnim(false, null));
             mTickerView.setVisibility(View.GONE);
@@ -4320,7 +4342,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
         }
 
         public void tickerHalting() {
-            if (!mTickerEnabled) return;
+            if (mTickerEnabled == 0) return;
             if (mStatusBarContents.getVisibility() != View.VISIBLE) {
                 mStatusBarContents.setVisibility(View.VISIBLE);
                 mStatusBarContents
@@ -4371,7 +4393,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
             pw.println("  mExpandedVisible=" + mExpandedVisible
                     + ", mTrackingPosition=" + mTrackingPosition);
             pw.println("  mTickerEnabled=" + mTickerEnabled);
-            if (mTickerEnabled) {
+            if (mTickerEnabled != 0) {
                 pw.println("  mTicking=" + mTicking);
                 pw.println("  mTickerView: " + viewInfo(mTickerView));
             }
@@ -5015,7 +5037,7 @@ mWeatherTempSize, mWeatherTempFontStyle, mWeatherTempColor);
 
     @Override
     protected void haltTicker() {
-        if (mTickerEnabled) {
+        if (mTickerEnabled != 0) {
             mTicker.halt();
         }
     }
