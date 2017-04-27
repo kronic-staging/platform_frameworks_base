@@ -4858,12 +4858,6 @@ public final class Settings {
         public static final String CUSTOM_LOGO_POSITION = "custom_logo_position";
 
         /**
-         * Whether to show or hide the running services icon
-         * @hide
-         */
-        public static final String QS_RUNNING_SERVICES_TOGGLE = "qs_running_services_toggle";
-
-        /**
          * Unlock keystore with fingerprint after reboot
          * @hide
          */
