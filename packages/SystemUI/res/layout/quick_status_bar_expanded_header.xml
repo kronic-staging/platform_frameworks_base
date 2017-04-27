@@ -79,16 +79,7 @@
             android:contentDescription="@string/accessibility_quick_settings_edit"
             android:padding="13dp" />
 
-    <com.android.keyguard.AlphaOptimizedImageButton 
-        android:id="@+id/running_services_button"
-        style="@android:style/Widget.Material.Button.Borderless"
-        android:layout_width="46dp"
-        android:layout_height="48dp"
-        android:background="@drawable/ripple_drawable"
-        android:src="@drawable/ic_settings_memory"
-        android:contentDescription="@string/accessibility_quick_settings_running_services" />
-
-    <com.android.keyguard.AlphaOptimizedImageButton 
+    <com.android.keyguard.AlphaOptimizedImageButton
         android:id="@+id/settings_button"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="46dp"
