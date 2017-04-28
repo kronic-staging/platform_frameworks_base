@@ -60,6 +60,7 @@ import android.os.Trace;
 import android.os.UserHandle;
 import android.service.voice.IVoiceInteractionSession;
 import android.provider.Settings;
+import android.util.BoostFramework;
 import android.util.EventLog;
 import android.util.Log;
 import android.util.Slog;
@@ -142,6 +143,7 @@ final class ActivityRecord {
     int theme;              // resource identifier of activity's theme.
     int realTheme;          // actual theme resource we will use, never 0.
     int windowFlags;        // custom window flags for preview window.
+    int perfActivityBoostHandler = -1; //perflock handler when activity is created.
     TaskRecord task;        // the task this is in.
     long createTime = System.currentTimeMillis();
     long displayStartTime;  // when we started launching this activity
@@ -224,6 +226,8 @@ final class ActivityRecord {
 
     boolean pendingVoiceInteractionStart;   // Waiting for activity-invoked voice session
     IVoiceInteractionSession voiceSession;  // Voice interaction session for this activity
+
+    private BoostFramework mPerf = null;
 
     // A hint to override the window specified rotation animation, or -1
     // to use the window specified value. We use this so that
@@ -767,6 +771,8 @@ final class ActivityRecord {
             immersive = false;
             requestedVrComponent  = null;
         }
+        if (mPerf == null)
+            mPerf = new BoostFramework();
     }
 
     private boolean isHomeIntent(Intent intent) {
@@ -1269,6 +1275,11 @@ final class ActivityRecord {
         }
         displayStartTime = 0;
         stack.mLaunchStartTime = 0;
+        if (mPerf != null && perfActivityBoostHandler > 0) {
+            mPerf.perfLockReleaseHandler(perfActivityBoostHandler);
+        }
+        perfActivityBoostHandler = -1;
+        mPerf = null;
     }
 
     void windowsDrawnLocked() {
