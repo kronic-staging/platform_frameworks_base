@@ -23,6 +23,7 @@
     <string name="reboot_bootloader">Bootloader</string>
     <!-- Button to soft reboot the device in reboot menu -->
     <string name="reboot_soft">Soft reboot</string>
+
     <string name="reboot_systemui">Restart SystemUI</string>
     <!-- Global Actions -->
     <string name="global_action_screenshot">Screenshot</string>
